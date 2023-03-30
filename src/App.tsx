@@ -1,5 +1,5 @@
 import React from "react";
-import { Element, animateScroll as scroll, scroller } from "react-scroll";
+import { Element, scroller } from "react-scroll";
 import styled from "styled-components";
 import "./App.css";
 import Container from 'react-bootstrap/Container';
@@ -9,111 +9,13 @@ import WAVES from 'vanta/dist/vanta.waves.min';
 
 const navHeight = "56px";
 
-const sections = [
-
-  {
-    id: "about",
-    title: "About",
-    content:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel nunc et enim efficitur feugiat a eget dolor. Ut pellentesque, quam id ultrices facilisis, nisi nulla finibus velit, id aliquam ipsum orci non nibh. Sed blandit non libero vitae bibendum. Donec a dolor turpis. Sed suscipit interdum mi, in elementum neque aliquam at. Aenean quis massa a magna egestas pellentesque. Sed tristique semper ante, a gravida ex auctor at."
-  },
-  {
-    id: "projects",
-    title: "Projects",
-    content:
-      "Donec lobortis interdum faucibus. Etiam bibendum, nulla id eleifend congue, nisi nulla iaculis elit, sed eleifend elit elit vel elit. Fusce non dapibus velit. Nullam vel eros et augue commodo auctor vitae sed turpis. Duis euismod aliquet felis, at malesuada sapien vestibulum ac. Fusce sit amet lacinia dolor, vel bibendum nisl."
-  },
-  {
-    id: "blog",
-    title: "Blog",
-    content:
-      "Phasellus vulputate elit a pretium tempor. Morbi ut purus fringilla, lobortis magna a, pharetra leo. Donec et sapien aliquet, pharetra turpis non, tristique quam. Maecenas congue tellus at ante posuere lacinia. Sed sollicitudin bibendum diam ac rhoncus. Ut eget finibus augue. Sed blandit, libero vitae vestibulum ornare, felis augue consequat ipsum, vel feugiat lacus justo vel sapien. In gravida volutpat bibendum. Suspendisse id velit in nisl consectetur congue. Praesent ultrices orci eget arcu luctus, vel interdum lectus pretium."
-  },
-  {
-    id: "contact",
-    title: "Contact Me",
-    content:
-      "Suspendisse rutrum interdum ligula vitae ultrices. Fusce eleifend ut ipsum et pulvinar. Integer bibendum elit euismod nunc venenatis faucibus. Suspendisse nec leo eu tortor semper tincidunt. Integer tincidunt odio sit amet eleifend blandit. Cras vel augue nec lacus ultricies lobortis. Fusce eget quam sagittis, ullamcorper libero id, suscipit sapien. Sed posuere consequat nibh, in fermentum lacus bibendum vitae."
-  }
-];
-
 interface SectionProps {
   navHeight: string;
 }
 
-const Section = styled(Element)<SectionProps>`
-  position: relative;
-  height: calc(100vh - ${props => props.navHeight});
-  display: flex;
-`;
-
-const CenterDownSection = styled(Section)`
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-`;
-
-const LeftDownSection = styled(Section)`
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  text-align: left;
-`;
-
-const Brand = styled(Navbar.Brand)`
-  font-family: 'Kumbh Sans';
-  width: ${parseInt(navHeight, 10) - 16}px;
-  height: ${parseInt(navHeight, 10) - 16}px;
-  text-align: center;
-  &:hover {
-    background-color:#e7e7e7;
-    border-radius: 100%;
-    cursor: pointer;
-  }
-`;
-
-interface NavigationBarElement {
-  children: React.ReactNode;
-  onClick: React.MouseEventHandler<HTMLElement>;
-  id: string;
+interface WithKey {
+  key: React.Key | null | undefined;
 }
-
-interface NavigationBarProps {
-  brand: NavigationBarElement;
-  items: NavigationBarElement[];
-  minHeight: string;
-}
-
-const NavigationBar = ({ brand, items, minHeight }: NavigationBarProps) => {
-  return (
-    <>
-      <div style={{ height: minHeight }} />
-      <Navbar bg="light" expand="sm" fixed="top" style={{ minHeight: minHeight }}>
-        <Container fluid style={{paddingLeft: "30px", paddingRight: "30px"}}>
-          <Brand className="Brand" onClick={brand.onClick}>{brand.children}</Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="justify-content-end" style={{ width: "100%" }}>
-              {items.map((item) => (
-                <Nav.Link key={item.id} onClick={item.onClick}>{item.children}</Nav.Link>
-              ))}
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
-    </>
-  );
-}
-
-const scrollOptions = {
-  offset: -parseInt(navHeight, 10),
-  duration: 300,
-  delay: 0.2,
-  smooth: true,
-  isDynamic: true,
-  ignoreCancelEvents: false,
-};
 
 interface Destroyable {
   destroy: () => void;
@@ -146,42 +48,257 @@ const WaveBackground = () => {
   return <div ref={myRef} className="h-100 w-100 position-absolute" style={{zIndex: -1}} />
 }
 
+const StyledHeroSection = styled(Element)<SectionProps>`
+  position: relative;
+  height: calc(100vh - ${props => props.navHeight});
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
+`;
+
+interface HeroProps extends SectionProps {
+  id: string,
+  title: string,
+  content: string,
+}
+
+const Hero = ({ id, title, content, ...props }: HeroProps) => {
+  return (
+    <StyledHeroSection name={id} id={id} {...props}>
+        <WaveBackground/>
+        <div style={{padding: "45px 30px", color: "white"}}>
+          <h1>{title}</h1>
+          <p style={{maxWidth: "550px", marginTop: "20px"}}>{content}</p>
+        </div>
+    </StyledHeroSection>
+  )
+}
+
+const StyledAboutSection = styled(Element)<SectionProps>`
+  position: relative;
+  height: calc(100vh - ${props => props.navHeight});
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: 20px;
+`;
+
+interface AboutSectionProps extends SectionProps {
+  id: string,
+  title: string,
+  content: string,
+}
+
+const About = ({ id, title, content, ...props }: AboutSectionProps) => {
+  return (
+    <StyledAboutSection name={id} id={id} {...props}>
+      <h2>{title}</h2>
+      <p>{content}</p>
+    </StyledAboutSection>
+  )
+}
+
+const StyledProjectsSection = styled(Element)<SectionProps>`
+  position: relative;
+  height: calc(100vh - ${props => props.navHeight});
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: 20px;
+`;
+
+interface ProjectsSectionProps extends SectionProps {
+  id: string,
+  title: string,
+  content: string,
+}
+
+const Projects = ({ id, title, content, ...props }: ProjectsSectionProps) => {
+  return (
+    <StyledProjectsSection name={id} id={id} {...props}>
+      <h2>{title}</h2>
+      <p>{content}</p>
+    </StyledProjectsSection>
+  )
+};
+
+const StyledBlogSection = styled(Element)<SectionProps>`
+  position: relative;
+  height: calc(100vh - ${props => props.navHeight});
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: 20px;
+`;
+
+interface BlogSectionProps extends SectionProps {
+  id: string,
+  title: string,
+  content: string,
+}
+
+const Blog = ({ id, title, content, ...props }: BlogSectionProps) => {
+  return (
+    <StyledBlogSection name={id} id={id} {...props}>
+      <h2>{title}</h2>
+      <p>{content}</p>
+    </StyledBlogSection>
+  )
+};
+
+const StyledContactSection = styled(Element)<SectionProps>`
+  position: relative;
+  height: calc(100vh - ${props => props.navHeight});
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: 20px;
+`;
+
+interface ContactSectionProps extends SectionProps {
+  id: string,
+  title: string,
+  content: string,
+}
+
+const Contact = ({ id, title, content, ...props }: ContactSectionProps) => {
+  return (
+    <StyledContactSection name={id} id={id} {...props}>
+      <h2>{title}</h2>
+      <p>{content}</p>
+    </StyledContactSection>
+  )
+};
+
+const Brand = styled(Navbar.Brand)`
+  font-family: 'Kumbh Sans';
+  width: ${parseInt(navHeight, 10) - 16}px;
+  height: ${parseInt(navHeight, 10) - 16}px;
+  text-align: center;
+  &:hover {
+    background-color:#e7e7e7;
+    border-radius: 100%;
+    cursor: pointer;
+  }
+`;
+
+interface NavigationBarElement {
+  children: React.ReactNode;
+  onClick: React.MouseEventHandler<HTMLElement>;
+}
+
+interface NavigationBarProps {
+  brand: NavigationBarElement;
+  sections: (NavigationBarElement & WithKey)[];
+  minHeight: string;
+}
+
+const NavigationBar = ({ brand, sections, minHeight }: NavigationBarProps) => {
+  return (
+    <>
+      <div style={{ height: minHeight }} />
+      <Navbar bg="light" expand="sm" fixed="top" style={{ minHeight: minHeight }}>
+        <Container fluid style={{paddingLeft: "30px", paddingRight: "30px"}}>
+          <Brand className="Brand" onClick={brand.onClick}>{brand.children}</Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="justify-content-end" style={{ width: "100%" }}>
+              {sections.map((section) => (
+                <Nav.Link key={section.key} onClick={section.onClick}>{section.children}</Nav.Link>
+              ))}
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+    </>
+  );
+}
+
+const scrollOptions = {
+  offset: -parseInt(navHeight, 10),
+  duration: 300,
+  delay: 0.2,
+  smooth: true,
+  isDynamic: true,
+  ignoreCancelEvents: false,
+};
+
 const App: React.FC = () => {
 
+  const hero = {
+    id: "hero",
+    title: "Hi, I'm Callum",
+    content: "I'm a software engineering student, passionate about solving problems, challenging my skills, and pushing my expectations of myself. Currently, I'm continuing my studies at the University of Victoria."
+  }
+
+  const about = {
+    id: "about",
+    title: "About",
+    content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel nunc et enim efficitur feugiat a eget dolor. Ut pellentesque, quam id ultrices facilisis, nisi nulla finibus velit, id aliquam ipsum orci non nibh. Sed blandit non libero vitae bibendum. Donec a dolor turpis. Sed suscipit interdum mi, in elementum neque aliquam at. Aenean quis massa a magna egestas pellentesque. Sed tristique semper ante, a gravida ex auctor at."
+  }
+
+  const projects = {
+    id: "projects",
+    title: "Projects",
+    content: "Donec lobortis interdum faucibus. Etiam bibendum, nulla id eleifend congue, nisi nulla iaculis elit, sed eleifend elit elit vel elit. Fusce non dapibus velit. Nullam vel eros et augue commodo auctor vitae sed turpis. Duis euismod aliquet felis, at malesuada sapien vestibulum ac. Fusce sit amet lacinia dolor, vel bibendum nisl."
+  }
+
+  const blog = {
+    id: "blog",
+    title: "Blog",
+    content: "Phasellus vulputate elit a pretium tempor. Morbi ut purus fringilla, lobortis magna a, pharetra leo. Donec et sapien aliquet, pharetra turpis non, tristique quam. Maecenas congue tellus at ante posuere lacinia. Sed sollicitudin bibendum diam ac rhoncus. Ut eget finibus augue. Sed blandit non libero vitae bibendum. Donec a dolor turpis. Sed suscipit interdum mi, in elementum neque aliquam at. Aenean quis massa a magna egestas pellentesque. Sed tristique semper ante, a gravida ex auctor at."
+  }
+
+  const contact = {
+    id: "contact",
+    title: "Contact",
+    content: "Suspendisse rutrum interdum ligula vitae ultrices. Fusce eleifend ut ipsum et pulvinar. Integer bibendum elit euismod nunc venenatis faucibus. Suspendisse nec leo eu tortor semper tincidunt. Integer tincidunt odio sit amet eleifend blandit. Cras vel augue nec lacus ultricies lobortis. Fusce eget quam sagittis, ullamcorper libero id, suscipit sapien. Sed posuere consequat nibh, in fermentum lacus bibendum vitae."
+  }
+
   const brand = {
-    id: "C",
     children: "C",
-    onClick: () => scroll.scrollToTop(scrollOptions),
+    onClick: () => scroller.scrollTo(hero.id, scrollOptions),
   };
 
-  const items = sections.map((section) => ({
-    id: section.id,
+  const sections = [
+    about,
+    projects,
+    blog,
+    contact,
+  ];
+
+  const sectionLinks = sections.map((section) => ({
+    key: section.id,
     children: section.title,
     onClick: () => scroller.scrollTo(section.id, scrollOptions),
   }));
 
   return (
     <div className="App">
-      <NavigationBar brand={brand} items={items} minHeight={navHeight}/>
-      <LeftDownSection name={"hero"} key={"hero"} id={"hero"} navHeight={navHeight}>
-        <WaveBackground/>
-        <div style={{padding: "45px 30px", color: "white"}}>
-          <h1>Callum Curtis</h1>
-          <p style={{maxWidth: "550px", marginTop: "20px"}}>
-            I'm a software engineering student, passionate about solving problems,
-            challenging my skills, and pushing my expectations of myself. Currently, I'm
-            continuing my studies at the University of Victoria.
-          </p>
-        </div>
-      </LeftDownSection>
-      {sections.map((section) => (
-        <CenterDownSection name={section.id} key={section.id} navHeight={navHeight}>
-          <div className="Section__content">
-            <h2>{section.title}</h2>
-            <p>{section.content}</p>
-          </div>
-        </CenterDownSection>
-      ))}
+      <NavigationBar brand={brand} sections={sectionLinks} minHeight={navHeight}/>
+      <Hero {...hero} navHeight={navHeight}/>
+      <About {...about} navHeight={navHeight}/>
+      <Projects {...projects} navHeight={navHeight}/>
+      <Blog {...blog} navHeight={navHeight}/>
+      <Contact {...contact} navHeight={navHeight}/>
     </div>
   );
 };
