@@ -1,13 +1,22 @@
 import React from "react";
-import { Element, scroller } from "react-scroll";
+import { scroller } from "react-scroll";
 import styled from "styled-components";
 import "./App.css";
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import WAVES from 'vanta/dist/vanta.waves.min';
+import ScrollReveal from 'scrollreveal'
 
 const navHeight = "56px";
+
+ScrollReveal({
+    viewOffset: { top: parseInt(navHeight), bottom: window.innerHeight * 0.5 },
+    distance: '30px',
+    duration: 500,
+    easing: 'cubic-bezier(.4,-0.01,.3,.37)',
+    origin: "left",
+})
 
 interface SectionProps {
   navHeight: string;
@@ -48,7 +57,7 @@ const WaveBackground = () => {
   return <div ref={myRef} className="h-100 w-100 position-absolute" style={{zIndex: -1}} />
 }
 
-const StyledHeroSection = styled(Element)<SectionProps>`
+const StyledHeroSection = styled.section<SectionProps>`
   position: relative;
   height: calc(100vh - ${props => props.navHeight});
   display: flex;
@@ -66,7 +75,7 @@ interface HeroProps extends SectionProps {
 
 const Hero = ({ id, title, content, ...props }: HeroProps) => {
   return (
-    <StyledHeroSection name={id} id={id} {...props}>
+    <StyledHeroSection id={id} {...props}>
         <WaveBackground/>
         <div style={{padding: "45px 30px", color: "white"}}>
           <h1>{title}</h1>
@@ -76,7 +85,15 @@ const Hero = ({ id, title, content, ...props }: HeroProps) => {
   )
 }
 
-const StyledAboutSection = styled(Element)<SectionProps>`
+const useScrollReveal = (ref: React.RefObject<HTMLElement>) => {
+  React.useEffect(() => {
+    if (ref.current) {
+      ScrollReveal().reveal(ref.current);
+    }
+  }, [ref])
+}
+
+const StyledAboutSection = styled.section<SectionProps>`
   position: relative;
   height: calc(100vh - ${props => props.navHeight});
   display: flex;
@@ -96,15 +113,17 @@ interface AboutSectionProps extends SectionProps {
 }
 
 const About = ({ id, title, content, ...props }: AboutSectionProps) => {
+  const ref = React.createRef<HTMLElement>();
+  useScrollReveal(ref);
   return (
-    <StyledAboutSection name={id} id={id} {...props}>
+    <StyledAboutSection id={id} {...props} ref={ref}>
       <h2>{title}</h2>
       <p>{content}</p>
     </StyledAboutSection>
   )
 }
 
-const StyledProjectsSection = styled(Element)<SectionProps>`
+const StyledProjectsSection = styled.section<SectionProps>`
   position: relative;
   height: calc(100vh - ${props => props.navHeight});
   display: flex;
@@ -124,15 +143,17 @@ interface ProjectsSectionProps extends SectionProps {
 }
 
 const Projects = ({ id, title, content, ...props }: ProjectsSectionProps) => {
+  const ref = React.createRef<HTMLElement>();
+  useScrollReveal(ref);
   return (
-    <StyledProjectsSection name={id} id={id} {...props}>
+    <StyledProjectsSection id={id} {...props} ref={ref}>
       <h2>{title}</h2>
       <p>{content}</p>
     </StyledProjectsSection>
   )
 };
 
-const StyledBlogSection = styled(Element)<SectionProps>`
+const StyledBlogSection = styled.section<SectionProps>`
   position: relative;
   height: calc(100vh - ${props => props.navHeight});
   display: flex;
@@ -152,15 +173,17 @@ interface BlogSectionProps extends SectionProps {
 }
 
 const Blog = ({ id, title, content, ...props }: BlogSectionProps) => {
+  const ref = React.createRef<HTMLElement>();
+  useScrollReveal(ref);
   return (
-    <StyledBlogSection name={id} id={id} {...props}>
+    <StyledBlogSection id={id} {...props} ref={ref}>
       <h2>{title}</h2>
       <p>{content}</p>
     </StyledBlogSection>
   )
 };
 
-const StyledContactSection = styled(Element)<SectionProps>`
+const StyledContactSection = styled.section<SectionProps>`
   position: relative;
   height: calc(100vh - ${props => props.navHeight});
   display: flex;
@@ -180,8 +203,10 @@ interface ContactSectionProps extends SectionProps {
 }
 
 const Contact = ({ id, title, content, ...props }: ContactSectionProps) => {
+  const ref = React.createRef<HTMLElement>();
+  useScrollReveal(ref);
   return (
-    <StyledContactSection name={id} id={id} {...props}>
+    <StyledContactSection id={id} {...props} ref={ref}>
       <h2>{title}</h2>
       <p>{content}</p>
     </StyledContactSection>
