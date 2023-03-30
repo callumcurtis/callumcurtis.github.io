@@ -267,7 +267,18 @@ const scrollOptions = {
   ignoreCancelEvents: false,
 };
 
+const useScrollToHashOnMount = () => {
+  React.useEffect(() => {
+    const hash = window.location.hash;
+    if (hash && document.querySelector(hash)) {
+      scroller.scrollTo(hash.split("#")[1], scrollOptions);
+    }
+  }, []);
+};
+
 const App: React.FC = () => {
+
+  useScrollToHashOnMount();
 
   const hero = {
     id: "hero",
