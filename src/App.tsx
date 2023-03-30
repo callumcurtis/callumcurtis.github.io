@@ -228,6 +228,7 @@ const Brand = styled(Navbar.Brand)`
 interface NavigationBarElement {
   children: React.ReactNode;
   onClick: React.MouseEventHandler<HTMLElement>;
+  href?: string;
 }
 
 interface NavigationBarProps {
@@ -242,12 +243,12 @@ const NavigationBar = ({ brand, sections, minHeight }: NavigationBarProps) => {
       <div style={{ height: minHeight }} />
       <Navbar bg="light" expand="sm" fixed="top" style={{ minHeight: minHeight }}>
         <Container fluid style={{paddingLeft: "30px", paddingRight: "30px"}}>
-          <Brand className="Brand" onClick={brand.onClick}>{brand.children}</Brand>
+          <Brand className="Brand" onClick={brand.onClick} href={brand.href || "#"}>{brand.children}</Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="justify-content-end" style={{ width: "100%" }}>
               {sections.map((section) => (
-                <Nav.Link key={section.key} onClick={section.onClick}>{section.children}</Nav.Link>
+                <Nav.Link {...(section.href && { href: section.href })} key={section.key} onClick={section.onClick}>{section.children}</Nav.Link>
               ))}
             </Nav>
           </Navbar.Collapse>
@@ -312,6 +313,7 @@ const App: React.FC = () => {
 
   const sectionLinks = sections.map((section) => ({
     key: section.id,
+    href: `#${section.id}`,
     children: section.title,
     onClick: () => scroller.scrollTo(section.id, scrollOptions),
   }));
