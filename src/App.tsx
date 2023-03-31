@@ -2,6 +2,7 @@ import React from "react";
 import { scroller } from "react-scroll";
 import styled, { css } from "styled-components";
 import "./App.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -202,14 +203,18 @@ const StyledProjectCard = styled.div`
   }
 `;
 
-const StyledIconAnchor = styled.a`
-  line-height: 1;
-  ${circularBackgroundOnHover}
-`;
+const AnchorOverlay = (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => {
+  return (
+    <a {...props}>
+      <span style={{width: "100%", height: "100%", zIndex: "1", position: "absolute", top: 0, left: 0}}/>
+    </a>
+  )
+}
 
 const Project = () => {
   return (
     <StyledProjectCard>
+      <AnchorOverlay href="https://css-tricks.com/almanac/properties/j/justify-content/"/>
       <div style={{alignSelf: "center", flexBasis: "400px", flexGrow: 1}}>
         <img src="https://via.placeholder.com/600x400" style={{height: "auto", width: "100%", maxHeight: "100%"}}/>
       </div>
@@ -220,9 +225,6 @@ const Project = () => {
           <p>Keywords</p>
         </div>
       </div>
-      <StyledIconAnchor href="https://github.com/callumcurtis/ml-battlesnake" style={{position: "absolute", bottom: "0px", right: "0px", padding: "10px", margin: "5px"}}>
-        <img src={"./github-mark.svg"} style={{height: "20px", width: "20px"}}></img>
-      </StyledIconAnchor>
     </StyledProjectCard>
   )
 }
