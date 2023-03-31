@@ -1,6 +1,6 @@
 import React from "react";
 import { scroller } from "react-scroll";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import "./App.css";
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
@@ -17,6 +17,38 @@ ScrollReveal({
     easing: 'cubic-bezier(.4,-0.01,.3,.37)',
     origin: "left",
 })
+
+const wideContentSize = css`
+  padding: 0px 200px;
+  width: 100%;
+  max-width: 1800px;
+  margin: 0 auto;
+  @media (max-width: 1080px) {
+    padding: 0px 100px;
+  }
+  @media (max-width: 768px) {
+    padding: 0px 50px;
+  }
+  @media (max-width: 480px) {
+    padding: 0px 20px;
+  }
+`;
+
+const regularContentSize = css`
+  padding: 0px 200px;
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  @media (max-width: 1080px) {
+    padding: 0px 100px;
+  }
+  @media (max-width: 768px) {
+    padding: 0px 50px;
+  }
+  @media (max-width: 480px) {
+    padding: 0px 20px;
+  }
+`;
 
 interface SectionProps {
   navHeight: string;
@@ -63,8 +95,11 @@ const StyledHeroSection = styled.section<SectionProps>`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
   text-align: left;
+`;
+
+const StyledHeroContent = styled.div`
+  ${wideContentSize}
 `;
 
 interface HeroProps extends SectionProps {
@@ -77,10 +112,10 @@ const Hero = ({ id, title, content, ...props }: HeroProps) => {
   return (
     <StyledHeroSection id={id} {...props}>
         <WaveBackground/>
-        <div style={{padding: "45px 30px", color: "white"}}>
+        <StyledHeroContent style={{color: "white"}}>
           <h1>{title}</h1>
           <p style={{maxWidth: "550px", marginTop: "20px"}}>{content}</p>
-        </div>
+        </StyledHeroContent>
     </StyledHeroSection>
   )
 }
@@ -94,16 +129,16 @@ const useScrollReveal = (ref: React.RefObject<HTMLElement>) => {
 }
 
 const StyledAboutSection = styled.section<SectionProps>`
-  position: relative;
   height: calc(100vh - ${props => props.navHeight});
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   text-align: center;
-  max-width: 800px;
-  margin: 0 auto;
   font-size: 20px;
+`;
+
+const StyledAboutContent = styled.div`
+  ${regularContentSize}
 `;
 
 interface AboutSectionProps extends SectionProps {
@@ -117,23 +152,25 @@ const About = ({ id, title, content, ...props }: AboutSectionProps) => {
   useScrollReveal(ref);
   return (
     <StyledAboutSection id={id} {...props} ref={ref}>
-      <h2>{title}</h2>
-      <p>{content}</p>
+      <StyledAboutContent>
+        <h2>{title}</h2>
+        <p>{content}</p>
+      </StyledAboutContent>
     </StyledAboutSection>
   )
 }
 
 const StyledProjectsSection = styled.section<SectionProps>`
-  position: relative;
   height: calc(100vh - ${props => props.navHeight});
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   text-align: center;
-  max-width: 800px;
-  margin: 0 auto;
   font-size: 20px;
+`;
+
+const StyledProjectsContent = styled.div`
+  ${regularContentSize}
 `;
 
 interface ProjectsSectionProps extends SectionProps {
@@ -147,23 +184,25 @@ const Projects = ({ id, title, content, ...props }: ProjectsSectionProps) => {
   useScrollReveal(ref);
   return (
     <StyledProjectsSection id={id} {...props} ref={ref}>
-      <h2>{title}</h2>
-      <p>{content}</p>
+      <StyledProjectsContent>
+        <h2>{title}</h2>
+        <p>{content}</p>
+      </StyledProjectsContent>
     </StyledProjectsSection>
   )
 };
 
 const StyledBlogSection = styled.section<SectionProps>`
-  position: relative;
   height: calc(100vh - ${props => props.navHeight});
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   text-align: center;
-  max-width: 800px;
-  margin: 0 auto;
   font-size: 20px;
+`;
+
+const StyledBlogContent = styled.div`
+  ${regularContentSize}
 `;
 
 interface BlogSectionProps extends SectionProps {
@@ -177,23 +216,25 @@ const Blog = ({ id, title, content, ...props }: BlogSectionProps) => {
   useScrollReveal(ref);
   return (
     <StyledBlogSection id={id} {...props} ref={ref}>
-      <h2>{title}</h2>
-      <p>{content}</p>
+      <StyledBlogContent>
+        <h2>{title}</h2>
+        <p>{content}</p>
+      </StyledBlogContent>
     </StyledBlogSection>
   )
 };
 
 const StyledContactSection = styled.section<SectionProps>`
-  position: relative;
   height: calc(100vh - ${props => props.navHeight});
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   text-align: center;
-  max-width: 800px;
-  margin: 0 auto;
   font-size: 20px;
+`;
+
+const StyledContactContent = styled.div`
+  ${regularContentSize}
 `;
 
 interface ContactSectionProps extends SectionProps {
@@ -207,8 +248,10 @@ const Contact = ({ id, title, content, ...props }: ContactSectionProps) => {
   useScrollReveal(ref);
   return (
     <StyledContactSection id={id} {...props} ref={ref}>
-      <h2>{title}</h2>
-      <p>{content}</p>
+      <StyledContactContent>
+        <h2>{title}</h2>
+        <p>{content}</p>
+      </StyledContactContent>
     </StyledContactSection>
   )
 };
@@ -276,6 +319,8 @@ const useScrollToHashOnMount = () => {
   }, []);
 };
 
+const StyledMainContainer = styled.main``;
+
 const App: React.FC = () => {
 
   useScrollToHashOnMount();
@@ -330,14 +375,16 @@ const App: React.FC = () => {
   }));
 
   return (
-    <div className="App">
+    <>
       <NavigationBar brand={brand} sections={sectionLinks} minHeight={navHeight}/>
-      <Hero {...hero} navHeight={navHeight}/>
-      <About {...about} navHeight={navHeight}/>
-      <Projects {...projects} navHeight={navHeight}/>
-      <Blog {...blog} navHeight={navHeight}/>
-      <Contact {...contact} navHeight={navHeight}/>
-    </div>
+      <StyledMainContainer>
+        <Hero {...hero} navHeight={navHeight}/>
+        <About {...about} navHeight={navHeight}/>
+        <Projects {...projects} navHeight={navHeight}/>
+        <Blog {...blog} navHeight={navHeight}/>
+        <Contact {...contact} navHeight={navHeight}/>
+      </StyledMainContainer>
+    </>
   );
 };
 
