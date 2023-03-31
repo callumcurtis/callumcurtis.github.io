@@ -134,7 +134,6 @@ const StyledAboutSection = styled.section<SectionProps>`
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  font-size: 20px;
 `;
 
 const StyledAboutContent = styled.div`
@@ -166,7 +165,6 @@ const StyledProjectsSection = styled.section<SectionProps>`
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  font-size: 20px;
 `;
 
 const StyledProjectsContent = styled.div`
@@ -198,7 +196,6 @@ const StyledBlogSection = styled.section<SectionProps>`
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  font-size: 20px;
 `;
 
 const StyledBlogContent = styled.div`
@@ -230,7 +227,6 @@ const StyledContactSection = styled.section<SectionProps>`
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  font-size: 20px;
 `;
 
 const StyledContactContent = styled.div`
