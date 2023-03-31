@@ -11,7 +11,7 @@ import ScrollReveal from 'scrollreveal'
 const navHeight = "56px";
 
 ScrollReveal({
-    viewOffset: { top: parseInt(navHeight), bottom: window.innerHeight * 0.5 },
+    viewOffset: { top: parseInt(navHeight), bottom: window.innerHeight * 0.6 },
     distance: '30px',
     duration: 500,
     easing: 'cubic-bezier(.4,-0.01,.3,.37)',
