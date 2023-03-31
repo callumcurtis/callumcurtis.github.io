@@ -18,6 +18,14 @@ ScrollReveal({
     origin: "left",
 })
 
+const circularBackgroundOnHover = css`
+  &:hover {
+    background-color:#e7e7e7;
+    border-radius: 100%;
+    cursor: pointer;
+  }
+`;
+
 const wideContentSize = css`
   padding: 0px 200px;
   width: 100%;
@@ -177,14 +185,56 @@ interface ProjectsSectionProps extends SectionProps {
   content: string,
 }
 
-const Projects = ({ id, title, content, ...props }: ProjectsSectionProps) => {
+const StyledProjectCard = styled.div`
+  position: relative;
+  margin: 20px 0px;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  border-radius: 10px;
+  border: 1px solid #eaeaea;
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(56, 125, 255, 0.17);
+  }
+`;
+
+const StyledIconAnchor = styled.a`
+  line-height: 1;
+  ${circularBackgroundOnHover}
+`;
+
+const Project = () => {
+  return (
+    <StyledProjectCard>
+      <div style={{alignSelf: "center", flexBasis: "400px", flexGrow: 1}}>
+        <img src="https://via.placeholder.com/600x400" style={{height: "auto", width: "100%", maxHeight: "100%"}}/>
+      </div>
+      <div style={{flexGrow: 10, flexBasis: "400px"}}>
+        <div style={{display: "flex", flexDirection: "column", textAlign: "right", height: "100%", padding: "15px", justifyContent: "space-between"}}>
+          <h3>Project Title</h3>
+          <p>Quisque mollis hendrerit risus, ut ullamcorper lorem porta id. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Integer vestibulum velit vel mauris aliquet ultrices. Donec pulvinar augue non sapien commodo viverra. Pellentesque eget facilisis purus. Integer dignissim urna felis, eget dictum arcu facilisis et. Pellentesque malesuada nibh ut sem maximus scelerisque. Donec suscipit massa ut purus mollis, a viverra tellus feugiat.</p>
+          <p>Keywords</p>
+        </div>
+      </div>
+      <StyledIconAnchor href="https://github.com/callumcurtis/ml-battlesnake" style={{position: "absolute", bottom: "0px", right: "0px", padding: "10px", margin: "5px"}}>
+        <img src={"./github-mark.svg"} style={{height: "20px", width: "20px"}}></img>
+      </StyledIconAnchor>
+    </StyledProjectCard>
+  )
+}
+
+const Projects = ({ id, title, ...props }: ProjectsSectionProps) => {
   const ref = React.createRef<HTMLElement>();
   useScrollReveal(ref);
   return (
     <StyledProjectsSection id={id} {...props} ref={ref}>
       <StyledProjectsContent>
         <h2>{title}</h2>
-        <p>{content}</p>
+        <Project/>
       </StyledProjectsContent>
     </StyledProjectsSection>
   )
@@ -257,11 +307,7 @@ const Brand = styled(Navbar.Brand)`
   width: ${parseInt(navHeight, 10) - 16}px;
   height: ${parseInt(navHeight, 10) - 16}px;
   text-align: center;
-  &:hover {
-    background-color:#e7e7e7;
-    border-radius: 100%;
-    cursor: pointer;
-  }
+  ${circularBackgroundOnHover}
 `;
 
 interface NavigationBarElement {
