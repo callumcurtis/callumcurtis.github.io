@@ -287,7 +287,7 @@ const NavigationBar = ({ brand, sections, minHeight }: NavigationBarProps) => {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="justify-content-end" style={{ width: "100%" }}>
               {sections.map((section) => (
-                <Nav.Link {...(section.href && { href: section.href })} key={section.key} onClick={section.onClick}>{section.children}</Nav.Link>
+                <Nav.Link {...(section.href && { href: section.href })} key={section.key} onClick={section.onClick} active={false}>{section.children}</Nav.Link>
               ))}
             </Nav>
           </Navbar.Collapse>
