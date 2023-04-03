@@ -101,6 +101,7 @@ const WaveBackground = () => {
 const StyledHeroSection = styled.section<SectionProps>`
   position: relative;
   min-height: calc(100vh - ${props => props.navHeight});
+  padding: clamp(20px, 5vh, 50px) 0px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -155,6 +156,7 @@ const ScrollRevealWrapper = ({ children, options = {} }: ScrollRevealWrapperProp
 
 const StyledAboutSection = styled.section<SectionProps>`
   min-height: calc(100vh - ${props => props.navHeight});
+  padding: clamp(20px, 5vh, 50px) 0px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -186,6 +188,7 @@ const About = ({ id, title, content, ...props }: AboutSectionProps) => {
 
 const StyledProjectsSection = styled.section<SectionProps>`
   min-height: calc(100vh - ${props => props.navHeight});
+  padding: clamp(20px, 5vh, 50px) 0px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -266,6 +269,7 @@ const Projects = ({ id, title, ...props }: ProjectsSectionProps) => {
 
 const StyledBlogSection = styled.section<SectionProps>`
   min-height: calc(100vh - ${props => props.navHeight});
+  padding: clamp(20px, 5vh, 50px) 0px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -297,6 +301,7 @@ const Blog = ({ id, title, content, ...props }: BlogSectionProps) => {
 
 const StyledContactSection = styled.section<SectionProps>`
   min-height: calc(100vh - ${props => props.navHeight});
+  padding: clamp(20px, 5vh, 50px) 0px;
   display: flex;
   flex-direction: column;
   justify-content: center;
