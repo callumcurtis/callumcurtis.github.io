@@ -247,19 +247,20 @@ const Project = () => {
 
 const Projects = ({ id, title, ...props }: ProjectsSectionProps) => {
   return (
-    <ScrollRevealWrapper>
-      <StyledProjectsSection id={id} {...props}>
-        <StyledProjectsContent>
+    <StyledProjectsSection id={id} {...props}>
+      <StyledProjectsContent>
+        <ScrollRevealWrapper>
           <h2>{title}</h2>
-          <Project/>
-          <Project/>
-          <Project/>
-          <Project/>
-          <Project/>
-          <Project/>
-        </StyledProjectsContent>
-      </StyledProjectsSection>
-    </ScrollRevealWrapper>
+        </ScrollRevealWrapper>
+        {
+          Array.from({length: 6}).map((_, i) => (
+            <ScrollRevealWrapper key={i}>
+              <Project/>
+            </ScrollRevealWrapper>
+          ))
+        }
+      </StyledProjectsContent>
+    </StyledProjectsSection>
   )
 };
 
