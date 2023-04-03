@@ -210,10 +210,6 @@ const StyledProjectCard = styled.div`
   position: relative;
   margin: 20px 0px;
   padding: 20px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-around;
   border-radius: 10px;
   border: 1px solid #eaeaea;
   transition: all 0.2s ease-in-out;
@@ -235,14 +231,16 @@ const Project = () => {
   return (
     <StyledProjectCard>
       <AnchorOverlay href="https://css-tricks.com/almanac/properties/j/justify-content/"/>
-      <div style={{alignSelf: "center", flexBasis: "400px", flexGrow: 1}}>
-        <img src="https://via.placeholder.com/600x400" style={{height: "auto", width: "100%", maxHeight: "100%"}}/>
-      </div>
-      <div style={{flexGrow: 10, flexBasis: "400px"}}>
-        <div style={{display: "flex", flexDirection: "column", textAlign: "right", height: "100%", padding: "15px", justifyContent: "space-between"}}>
-          <h3>Project Title</h3>
-          <p>Quisque mollis hendrerit risus, ut ullamcorper lorem porta id. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Integer vestibulum velit vel mauris aliquet ultrices. Donec pulvinar augue non sapien commodo viverra. Pellentesque eget facilisis purus. Integer dignissim urna felis, eget dictum arcu facilisis et. Pellentesque malesuada nibh ut sem maximus scelerisque. Donec suscipit massa ut purus mollis, a viverra tellus feugiat.</p>
-          <p>Keywords</p>
+      <div style={{display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "space-around", columnGap: "20px"}}>
+        <div style={{flexGrow: 10, flexBasis: "400px"}}>
+          <div style={{display: "flex", flexDirection: "column", textAlign: "left", height: "100%", padding: "15px", justifyContent: "space-between"}}>
+            <h3 style={{marginBottom: "1rem"}}>Project Title</h3>
+            <p>Quisque mollis hendrerit risus, ut ullamcorper lorem porta id. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Integer vestibulum velit vel mauris aliquet ultrices. Donec pulvinar augue non sapien commodo viverra. Pellentesque eget facilisis purus. Integer dignissim urna felis, eget dictum arcu facilisis et. Pellentesque malesuada nibh ut sem maximus scelerisque. Donec suscipit massa ut purus mollis, a viverra tellus feugiat.</p>
+            <p>Keywords</p>
+          </div>
+        </div>
+        <div style={{alignSelf: "center", flexBasis: "400px", flexGrow: 1}}>
+          <img src="https://via.placeholder.com/600x400" style={{height: "auto", width: "100%", maxHeight: "100%"}}/>
         </div>
       </div>
     </StyledProjectCard>
