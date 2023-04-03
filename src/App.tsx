@@ -12,7 +12,7 @@ import ScrollReveal from 'scrollreveal'
 const navHeight = "56px";
 
 ScrollReveal({
-    viewOffset: { top: parseInt(navHeight), bottom: window.innerHeight * 0.6 },
+    viewOffset: { top: parseInt(navHeight)},
     distance: '30px',
     duration: 500,
     easing: 'cubic-bezier(.4,-0.01,.3,.37)',
@@ -175,14 +175,14 @@ interface AboutSectionProps extends SectionProps {
 
 const About = ({ id, title, content, ...props }: AboutSectionProps) => {
   return (
-    <ScrollRevealWrapper>
       <StyledAboutSection id={id} {...props}>
-        <StyledAboutContent>
-          <h2>{title}</h2>
-          <p>{content}</p>
-        </StyledAboutContent>
+        <ScrollRevealWrapper>
+          <StyledAboutContent>
+            <h2>{title}</h2>
+            <p>{content}</p>
+          </StyledAboutContent>
+        </ScrollRevealWrapper>
       </StyledAboutSection>
-    </ScrollRevealWrapper>
   )
 }
 
@@ -288,14 +288,14 @@ interface BlogSectionProps extends SectionProps {
 
 const Blog = ({ id, title, content, ...props }: BlogSectionProps) => {
   return (
-    <ScrollRevealWrapper>
       <StyledBlogSection id={id} {...props}>
-        <StyledBlogContent>
-          <h2>{title}</h2>
-          <p>{content}</p>
-        </StyledBlogContent>
+        <ScrollRevealWrapper>
+          <StyledBlogContent>
+            <h2>{title}</h2>
+            <p>{content}</p>
+          </StyledBlogContent>
+        </ScrollRevealWrapper>
       </StyledBlogSection>
-    </ScrollRevealWrapper>
   )
 };
 
@@ -320,14 +320,14 @@ interface ContactSectionProps extends SectionProps {
 
 const Contact = ({ id, title, content, ...props }: ContactSectionProps) => {
   return (
-    <ScrollRevealWrapper>
       <StyledContactSection id={id} {...props}>
-        <StyledContactContent>
-          <h2>{title}</h2>
-          <p>{content}</p>
-        </StyledContactContent>
+        <ScrollRevealWrapper>
+          <StyledContactContent>
+            <h2>{title}</h2>
+            <p>{content}</p>
+          </StyledContactContent>
+        </ScrollRevealWrapper>
       </StyledContactSection>
-    </ScrollRevealWrapper>
   )
 };
 
