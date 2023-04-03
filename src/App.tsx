@@ -32,7 +32,7 @@ const wideContentSize = css`
   width: 100%;
   max-width: 1800px;
   margin: 0 auto;
-  @media (max-width: 1080px) {
+  @media (max-width: 1300px) {
     padding: 0px 100px;
   }
   @media (max-width: 768px) {
@@ -48,7 +48,7 @@ const regularContentSize = css`
   width: 100%;
   max-width: 1300px;
   margin: 0 auto;
-  @media (max-width: 1080px) {
+  @media (max-width: 1300px) {
     padding: 0px 100px;
   }
   @media (max-width: 768px) {
