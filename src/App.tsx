@@ -372,29 +372,30 @@ const NavigationBar = ({ brand, sections, minHeight }: NavigationBarProps) => {
   );
 }
 
-const scrollOptions = {
-  offset: -parseInt(navHeight, 10),
-  duration: 300,
-  delay: 0.2,
-  smooth: true,
-  isDynamic: true,
-  ignoreCancelEvents: false,
-};
-
-const useScrollToHashOnMount = () => {
+// TODO: define custom types for react-scroll options (Definitely Typed package uses any)
+const useScrollToHashOnMount = (options: any) => {
   React.useEffect(() => {
     const hash = window.location.hash;
     if (hash && document.querySelector(hash)) {
-      scroller.scrollTo(hash.split("#")[1], scrollOptions);
+      scroller.scrollTo(hash.split("#")[1], options);
     }
-  }, []);
+  }, [options]);
 };
 
 const StyledMainContainer = styled.main``;
 
 const App: React.FC = () => {
 
-  useScrollToHashOnMount();
+  const scrollOptions = {
+    offset: -parseInt(navHeight, 10),
+    duration: 300,
+    delay: 0.2,
+    smooth: true,
+    isDynamic: true,
+    ignoreCancelEvents: false,
+  };
+
+  useScrollToHashOnMount(scrollOptions);
 
   const hero = {
     id: "hero",
