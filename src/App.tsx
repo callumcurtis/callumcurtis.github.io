@@ -1,8 +1,8 @@
 import React from "react";
 import { scroller } from "react-scroll";
 import styled, { css } from "styled-components";
-import "./App.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import "./App.css";
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
