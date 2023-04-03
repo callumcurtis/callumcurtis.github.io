@@ -129,12 +129,28 @@ const Hero = ({ id, title, content, ...props }: HeroProps) => {
   )
 }
 
-const useScrollReveal = (ref: React.RefObject<HTMLElement>) => {
+const useScrollReveal = <T extends HTMLElement>(options: scrollReveal.ScrollRevealObjectOptions) => {
+  const ref = React.createRef<T>();
   React.useEffect(() => {
     if (ref.current) {
-      ScrollReveal().reveal(ref.current);
+      ScrollReveal(options).reveal(ref.current);
     }
-  }, [ref])
+  }, [ref, options])
+  return ref;
+}
+
+interface ScrollRevealWrapperProps {
+  children: React.ReactNode,
+  options?: scrollReveal.ScrollRevealObjectOptions,
+}
+
+const ScrollRevealWrapper = ({ children, options = {} }: ScrollRevealWrapperProps) => {
+  const ref = useScrollReveal<HTMLDivElement>(options);
+  return (
+    <div ref={ref}>
+      {children}
+    </div>
+  )
 }
 
 const StyledAboutSection = styled.section<SectionProps>`
@@ -156,15 +172,15 @@ interface AboutSectionProps extends SectionProps {
 }
 
 const About = ({ id, title, content, ...props }: AboutSectionProps) => {
-  const ref = React.createRef<HTMLElement>();
-  useScrollReveal(ref);
   return (
-    <StyledAboutSection id={id} {...props} ref={ref}>
-      <StyledAboutContent>
-        <h2>{title}</h2>
-        <p>{content}</p>
-      </StyledAboutContent>
-    </StyledAboutSection>
+    <ScrollRevealWrapper>
+      <StyledAboutSection id={id} {...props}>
+        <StyledAboutContent>
+          <h2>{title}</h2>
+          <p>{content}</p>
+        </StyledAboutContent>
+      </StyledAboutSection>
+    </ScrollRevealWrapper>
   )
 }
 
@@ -230,15 +246,20 @@ const Project = () => {
 }
 
 const Projects = ({ id, title, ...props }: ProjectsSectionProps) => {
-  const ref = React.createRef<HTMLElement>();
-  useScrollReveal(ref);
   return (
-    <StyledProjectsSection id={id} {...props} ref={ref}>
-      <StyledProjectsContent>
-        <h2>{title}</h2>
-        <Project/>
-      </StyledProjectsContent>
-    </StyledProjectsSection>
+    <ScrollRevealWrapper>
+      <StyledProjectsSection id={id} {...props}>
+        <StyledProjectsContent>
+          <h2>{title}</h2>
+          <Project/>
+          <Project/>
+          <Project/>
+          <Project/>
+          <Project/>
+          <Project/>
+        </StyledProjectsContent>
+      </StyledProjectsSection>
+    </ScrollRevealWrapper>
   )
 };
 
@@ -261,15 +282,15 @@ interface BlogSectionProps extends SectionProps {
 }
 
 const Blog = ({ id, title, content, ...props }: BlogSectionProps) => {
-  const ref = React.createRef<HTMLElement>();
-  useScrollReveal(ref);
   return (
-    <StyledBlogSection id={id} {...props} ref={ref}>
-      <StyledBlogContent>
-        <h2>{title}</h2>
-        <p>{content}</p>
-      </StyledBlogContent>
-    </StyledBlogSection>
+    <ScrollRevealWrapper>
+      <StyledBlogSection id={id} {...props}>
+        <StyledBlogContent>
+          <h2>{title}</h2>
+          <p>{content}</p>
+        </StyledBlogContent>
+      </StyledBlogSection>
+    </ScrollRevealWrapper>
   )
 };
 
@@ -292,15 +313,15 @@ interface ContactSectionProps extends SectionProps {
 }
 
 const Contact = ({ id, title, content, ...props }: ContactSectionProps) => {
-  const ref = React.createRef<HTMLElement>();
-  useScrollReveal(ref);
   return (
-    <StyledContactSection id={id} {...props} ref={ref}>
-      <StyledContactContent>
-        <h2>{title}</h2>
-        <p>{content}</p>
-      </StyledContactContent>
-    </StyledContactSection>
+    <ScrollRevealWrapper>
+      <StyledContactSection id={id} {...props}>
+        <StyledContactContent>
+          <h2>{title}</h2>
+          <p>{content}</p>
+        </StyledContactContent>
+      </StyledContactSection>
+    </ScrollRevealWrapper>
   )
 };
 
