@@ -135,7 +135,7 @@ const useScrollReveal = <T extends HTMLElement>(options: scrollReveal.ScrollReve
   const ref = React.createRef<T>();
   React.useEffect(() => {
     if (ref.current) {
-      ScrollReveal(options).reveal(ref.current);
+      ScrollReveal().reveal(ref.current, options);
     }
   }, [ref, options])
   return ref;
