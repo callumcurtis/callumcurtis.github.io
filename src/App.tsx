@@ -1,6 +1,6 @@
 import React from "react";
 import { scroller } from "react-scroll";
-import styled, { css } from "styled-components";
+import styled, { css, useTheme, ThemeProvider } from "styled-components";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css";
 import Container from 'react-bootstrap/Container';
@@ -24,7 +24,7 @@ ScrollReveal({
 
 const circularBackgroundOnHover = css`
   &:hover {
-    background-color:#e7e7e7;
+    background-color: ${props => props.theme.colors.neutral.subtle};
     border-radius: 100%;
     cursor: pointer;
   }
@@ -209,7 +209,7 @@ const StyledExperienceCard = styled.div<{emphasized?: boolean}>`
   padding: 20px;
   ${props => props.emphasized && css`
     border-radius: 10px;
-    border: 1px solid #eaeaea;
+    border: 1px solid ${props => props.theme.colors.border.default};
   `}
   transition: all 0.2s linear 0s;
   @media (max-width: 1450px) {
@@ -220,8 +220,8 @@ const StyledExperienceCard = styled.div<{emphasized?: boolean}>`
   }
   ${props => props.emphasized && css`
     &:hover {
-      border-color: #c3c3c3;
-      box-shadow: 0 6px 20px #387dff2b;
+      border-color: ${props => props.theme.colors.border.emphasized};
+      box-shadow: ${props => props.theme.shadow.default};
     }
   `}
 `;
@@ -241,7 +241,7 @@ const StyledVerticalTimeline = styled.div`
   height: calc(100% - 20px);
   top: 50px;
   width: 1px;
-  background-color: #eaeaea;
+  background-color: ${props => props.theme.colors.neutral.default};
   ${timelineHorizontalPosition}
 `;
 
@@ -254,7 +254,7 @@ const timelineNodePosition = css`
 const StyledTimelineNodeCircle = styled.div<{hoverable?: boolean}>`
   ${timelineNodePosition}
   border-radius: 50%;
-  background-color: #eaeaea;
+  background-color: ${props => props.theme.colors.neutral.emphasized};
   width: 19px;
   height: 19px;
   ${props => props.hoverable && css`
@@ -262,14 +262,13 @@ const StyledTimelineNodeCircle = styled.div<{hoverable?: boolean}>`
     ${StyledExperienceCard}:hover & {
       transform: scale(1.2);
       transition-delay: 0s;
-      background-color: #c3c3c3;
     }
   `}
 `;
 
 const StyledTimelineNodeIcon = styled.div<{hoverable?: boolean}>`
   ${timelineNodePosition}
-  color: #eaeaea;
+  color: ${props => props.theme.colors.neutral.emphasized};
   width: 25px;
   height: 25px;
   ${props => props.hoverable && css`
@@ -277,18 +276,18 @@ const StyledTimelineNodeIcon = styled.div<{hoverable?: boolean}>`
     ${StyledExperienceCard}:hover & {
       transform: scale(1.2);
       transition-delay: 0s;
-      color: #c3c3c3;
     }
   `}
 `;
 
 const StyledTimelineNodeToContentConnector = styled.div<{socket?: boolean}>`
   position: absolute;
-  background-color: #c3c3c3;
+  background-color: ${props => props.theme.colors.neutral.emphasized};
   top: -22px;
   padding-left: ${props => props.socket ? '20px' : '0px'};
   background-clip: content-box;
   width: 0px;
+  z-index: -1;
   height: 3px;
   transition: all 0.1s linear 0.2s;
   ${props => props.socket && css`
@@ -302,7 +301,7 @@ const StyledTimelineNodeToContentConnector = styled.div<{socket?: boolean}>`
       background-color: transparent;
       border-top-right-radius: 16px;  /* 100px of height + 10px of border */
       border-bottom-right-radius: 16px; /* 100px of height + 10px of border */
-      border: 0px solid #c3c3c3;
+      border: 0px solid ${props => props.theme.colors.neutral.emphasized};
       border-left: 0;
       transition-delay: 0.3s;
     }
@@ -353,8 +352,8 @@ const Experience = ({timelineNode, socket = false, emphasized = true}: {timeline
         {emphasized && <StyledDateRange>May 2019 - Sep 2021</StyledDateRange>}
         {emphasized &&
           <>
-            <p>At <a href="https://www.ubisoft.com/en-US/studio/quebec.aspx">Ubisoft Quebec</a> from 2019 to 2021</p>
-            <p>Working on <a href="https://www.ubisoft.com/en-US/game/assassins-creed/valhalla">Assassin's Creed Valhalla</a></p>
+            <p>At Ubisoft Quebec from 2019 to 2021</p>
+            <p>Working on Assassin's Creed Valhalla</p>
           </>
         }
       </StyledExperienceCard>
@@ -379,6 +378,7 @@ const WorkExperience = ({emphasized = true}: {emphasized?: boolean}) => {
 }
 
 const Experiences = ({ id, title, ...props }: ExperiencesSectionProps) => {
+  const theme = useTheme();
   return (
       <StyledExperiencesSection id={id} {...props}>
           <div style={{display: "flex", justifyContent: "center"}}>
@@ -393,7 +393,7 @@ const Experiences = ({ id, title, ...props }: ExperiencesSectionProps) => {
               <SchoolExperience emphasized={false}/>
               <TimelineAlignment>
                 <ScrollRevealWrapper options={{origin: "top", scale: 0.5, delay: 200, distance: "5px"}}>
-                  <TerminalIcon style={{left: "calc(50% - 11px)", position: "absolute", top: "20px", color: '#c3c3c3'}}/>
+                  <TerminalIcon style={{left: "calc(50% - 11px)", position: "absolute", top: "20px", color: theme.colors.neutral.emphasized}}/>
                 </ScrollRevealWrapper>
               </TimelineAlignment>
             </StyledExperiencesContent>
@@ -426,11 +426,12 @@ const StyledProjectCard = styled.div`
   margin: 20px 0px;
   padding: 20px;
   border-radius: 10px;
-  border: 1px solid #eaeaea;
+  border: 1px solid ${props => props.theme.colors.border.default};
   transition: all 0.2s ease-in-out;
   &:hover {
     transform: translateY(-5px);
-    box-shadow: 0 6px 20px #387dff2b;
+    box-shadow: ${props => props.theme.shadow.default};
+    border: 1px solid ${props => props.theme.colors.border.emphasized};
   }
 `;
 
@@ -600,6 +601,23 @@ const StyledMainContainer = styled.main``;
 
 const App: React.FC = () => {
 
+  const theme = {
+    colors: {
+      neutral: {
+        subtle: "#eaeaea",
+        default: "#c3c3c3",
+        emphasized: "#6e7781"
+      },
+      border: {
+        default: "#eaeaea",
+        emphasized: "#c3c3c3",
+      },
+    },
+    shadow: {
+      default: "0 6px 20px #387dff4b",
+    },
+  }
+
   const scrollOptions = {
     offset: -parseInt(navHeight, 10),
     duration: 300,
@@ -668,7 +686,7 @@ const App: React.FC = () => {
   }));
 
   return (
-    <>
+    <ThemeProvider theme={theme}>
       <NavigationBar brand={brand} sections={sectionLinks} minHeight={navHeight}/>
       <StyledMainContainer>
         <Hero {...hero} navHeight={navHeight}/>
@@ -678,7 +696,7 @@ const App: React.FC = () => {
         <Blog {...blog} navHeight={navHeight}/>
         <Contact {...contact} navHeight={navHeight}/>
       </StyledMainContainer>
-    </>
+    </ThemeProvider>
   );
 };
 
