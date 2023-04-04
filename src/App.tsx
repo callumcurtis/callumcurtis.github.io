@@ -213,7 +213,7 @@ const StyledExperienceCard = styled.div`
   @media (max-width: 1450px) {
     margin: 20px 0px 20px 200px;
   }
-  @media (max-width: 1080px) {
+  @media (max-width: 1079px) {
     margin: 20px 0px;
   }
   &:hover {
@@ -228,7 +228,7 @@ const timelineHorizontalPosition = css`
   @media (max-width: 1450px) {
     left: 100px;
   }
-  @media (max-width: 1080px) {
+  @media (max-width: 1079px) {
     display: none;
   }
 `;
@@ -328,7 +328,7 @@ const TimelineAlignment = styled.div`
 
 const StyledDateRange = styled.div`
   display: none;
-  @media (max-width: 1080px) {
+  @media (max-width: 1079px) {
     display: block;
   }
 `;
