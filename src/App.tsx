@@ -488,38 +488,6 @@ const Projects = ({ id, title, ...props }: ProjectsSectionProps) => {
   )
 };
 
-const StyledBlogSection = styled.section<SectionProps>`
-  min-height: calc(100vh - ${props => props.navHeight});
-  padding: clamp(20px, 5vh, 50px) 0px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-`;
-
-const StyledBlogContent = styled.div`
-  ${regularContentSize}
-`;
-
-interface BlogSectionProps extends SectionProps {
-  id: string,
-  title: string,
-  content: string,
-}
-
-const Blog = ({ id, title, content, ...props }: BlogSectionProps) => {
-  return (
-      <StyledBlogSection id={id} {...props}>
-        <ScrollRevealWrapper>
-          <StyledBlogContent>
-            <h2>{title}</h2>
-            <p>{content}</p>
-          </StyledBlogContent>
-        </ScrollRevealWrapper>
-      </StyledBlogSection>
-  )
-};
-
 const StyledContactSection = styled.section<SectionProps>`
   min-height: calc(100vh - ${props => props.navHeight});
   padding: clamp(20px, 5vh, 50px) 0px;
@@ -659,12 +627,6 @@ const App: React.FC = () => {
     content: "Donec lobortis interdum faucibus. Etiam bibendum, nulla id eleifend congue, nisi nulla iaculis elit, sed eleifend elit elit vel elit. Fusce non dapibus velit. Nullam vel eros et augue commodo auctor vitae sed turpis. Duis euismod aliquet felis, at malesuada sapien vestibulum ac. Fusce sit amet lacinia dolor, vel bibendum nisl."
   }
 
-  const blog = {
-    id: "blog",
-    title: "Blog",
-    content: "Phasellus vulputate elit a pretium tempor. Morbi ut purus fringilla, lobortis magna a, pharetra leo. Donec et sapien aliquet, pharetra turpis non, tristique quam. Maecenas congue tellus at ante posuere lacinia. Sed sollicitudin bibendum diam ac rhoncus. Ut eget finibus augue. Sed blandit non libero vitae bibendum. Donec a dolor turpis. Sed suscipit interdum mi, in elementum neque aliquam at. Aenean quis massa a magna egestas pellentesque. Sed tristique semper ante, a gravida ex auctor at."
-  }
-
   const contact = {
     id: "contact",
     title: "Contact",
@@ -680,7 +642,6 @@ const App: React.FC = () => {
     about,
     experiences,
     projects,
-    blog,
     contact,
   ];
 
@@ -699,7 +660,6 @@ const App: React.FC = () => {
         <About {...about} navHeight={navHeight}/>
         <Experiences {...experiences} navHeight={navHeight}/>
         <Projects {...projects} navHeight={navHeight}/>
-        <Blog {...blog} navHeight={navHeight}/>
         <Contact {...contact} navHeight={navHeight}/>
       </StyledMainContainer>
     </ThemeProvider>
