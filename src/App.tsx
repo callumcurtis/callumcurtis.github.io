@@ -204,10 +204,10 @@ interface ExperiencesSectionProps extends SectionProps {
   title: string,
 }
 
-const StyledExperienceCard = styled.div<{emphasized?: boolean}>`
+const StyledExperienceCard = styled.div<{isWork?: boolean}>`
   margin: 20px 0px 20px 150px;
   padding: 20px;
-  ${props => props.emphasized && css`
+  ${props => props.isWork && css`
     border-radius: 10px;
     border: 1px solid ${props => props.theme.colors.border.default};
   `}
@@ -217,8 +217,11 @@ const StyledExperienceCard = styled.div<{emphasized?: boolean}>`
   }
   @media (max-width: 1079px) {
     margin: 20px 0px;
+    ${props => !props.isWork && css`
+      display: none;
+    `}
   }
-  ${props => props.emphasized && css`
+  ${props => props.isWork && css`
     &:hover {
       border-color: ${props => props.theme.colors.border.emphasized};
       box-shadow: ${props => props.theme.shadow.default};
@@ -336,45 +339,50 @@ const StyledDateRange = styled.div`
   }
 `;
 
-const Experience = ({timelineNode, socket = false, emphasized = true}: {timelineNode: React.ReactNode, socket?: boolean, emphasized?: boolean}) => {
+const WorkExperience = () => {
   return (
     <ScrollRevealWrapper options={{origin: "bottom"}}>
-      <StyledExperienceCard emphasized={emphasized}>
+      <StyledExperienceCard isWork>
         <StyledVerticalTimeline>
           <StyledTimelineDateRange>May 2019 - Sep 2021</StyledTimelineDateRange>
-          {timelineNode}
-          {emphasized && <StyledTimelineNodeToContentConnector socket={socket}/>}
+          <StyledTimelineNodeCircle hoverable/>
+          <StyledTimelineNodeToContentConnector/>
         </StyledVerticalTimeline>
-        {emphasized ?
-          <h3>Software Engineering</h3>
-          : <p style={{fontSize: "14px"}}>Continuing: Software Engineering at the University of Victoria</p>
-        }
-        {emphasized && <StyledDateRange>May 2019 - Sep 2021</StyledDateRange>}
-        {emphasized &&
-          <>
-            <p>At Ubisoft Quebec from 2019 to 2021</p>
-            <p>Working on Assassin's Creed Valhalla</p>
-          </>
-        }
+        <h3>Software Engineering</h3>
+        <StyledDateRange>May 2019 - Sep 2021</StyledDateRange>
+        <p>At Ubisoft Quebec from 2019 to 2021</p>
+        <p>Working on Assassin's Creed Valhalla</p>
       </StyledExperienceCard>
     </ScrollRevealWrapper>
   )
 }
 
-const SchoolExperience = ({emphasized = true}: {emphasized?: boolean}) => {
+const NonWorkExperience = ({ timelineNode, socket }: { timelineNode: React.ReactNode, socket?: boolean }) => {
   return (
-    <Experience socket emphasized={emphasized} timelineNode={
-      <StyledTimelineNodeIcon hoverable>
-        <SchoolIcon style={{width: "100%", height: "100%", position: "absolute", right: "3px", top: "-3px"}}/>
-      </StyledTimelineNodeIcon>
-    }/>
-  )
+    <ScrollRevealWrapper options={{ origin: "bottom" }}>
+      <StyledExperienceCard>
+        <StyledVerticalTimeline>
+          <StyledTimelineDateRange>May 2019 - Sep 2021</StyledTimelineDateRange>
+          {timelineNode}
+          <StyledTimelineNodeToContentConnector socket={socket} />
+        </StyledVerticalTimeline>
+        <p style={{ fontSize: "14px" }}>Continuing: Software Engineering at the University of Victoria</p>
+      </StyledExperienceCard>
+    </ScrollRevealWrapper>
+  );
 }
 
-const WorkExperience = ({emphasized = true}: {emphasized?: boolean}) => {
+const School = () => {
   return (
-    <Experience emphasized={emphasized} timelineNode={<StyledTimelineNodeCircle hoverable/>}/>
-  )
+    <NonWorkExperience
+      socket
+      timelineNode={
+        <StyledTimelineNodeIcon hoverable>
+          <SchoolIcon style={{ width: "100%", height: "100%", position: "absolute", right: "3px", top: "-3px" }} />
+        </StyledTimelineNodeIcon>
+      }
+    />
+  );
 }
 
 const Experiences = ({ id, title, ...props }: ExperiencesSectionProps) => {
@@ -384,13 +392,11 @@ const Experiences = ({ id, title, ...props }: ExperiencesSectionProps) => {
           <div style={{display: "flex", justifyContent: "center"}}>
             <StyledExperiencesContent>
               <h2 style={{textAlign: "center"}}>{title}</h2>
-              <SchoolExperience/>
+              <School/>
               <WorkExperience/>
-              <SchoolExperience emphasized={false}/>
+              <School/>
               <WorkExperience/>
-              <SchoolExperience emphasized={false}/>
-              <WorkExperience/>
-              <SchoolExperience emphasized={false}/>
+              <School/>
               <TimelineAlignment>
                 <ScrollRevealWrapper options={{origin: "top", scale: 0.5, delay: 200, distance: "5px"}}>
                   <TerminalIcon style={{left: "calc(50% - 11px)", position: "absolute", top: "20px", color: theme.colors.neutral.emphasized}}/>
