@@ -8,6 +8,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import WAVES from 'vanta/dist/vanta.waves.min';
 import ScrollReveal from 'scrollreveal'
+import TerminalIcon from '@mui/icons-material/Terminal';
 
 const navHeight = "56px";
 
@@ -45,13 +46,10 @@ const wideContentSize = css`
 `;
 
 const regularContentSize = css`
-  padding: 0px 200px;
+  padding: 0px 100px;
   width: 100%;
-  max-width: 1300px;
+  max-width: 1100px;
   margin: 0 auto;
-  @media (max-width: 1300px) {
-    padding: 0px 100px;
-  }
   @media (max-width: 768px) {
     padding: 0px 50px;
   }
@@ -187,6 +185,149 @@ const About = ({ id, title, content, ...props }: AboutSectionProps) => {
   )
 }
 
+const StyledExperiencesSection = styled.section<SectionProps>`
+  min-height: calc(100vh - ${props => props.navHeight});
+  padding: clamp(20px, 5vh, 50px) 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
+
+const StyledExperiencesContent = styled.div`
+  position: relative;
+  ${regularContentSize}
+`;
+
+interface ExperiencesSectionProps extends SectionProps {
+  id: string,
+  title: string,
+}
+
+const StyledExperienceCard = styled.div`
+  margin: 20px 0px 20px 150px;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #eaeaea;
+  transition: all 0.2s linear 0s;
+  @media (max-width: 1450px) {
+    margin: 20px 0px 20px 200px;
+  }
+  @media (max-width: 1080px) {
+    margin: 20px 0px;
+  }
+  &:hover {
+    border-color: #c3c3c3;
+    box-shadow: 0 6px 20px #387dff2b;
+  }
+`;
+
+const timelineHorizontalPosition = css`
+  position: absolute;
+  left: 50px;
+  @media (max-width: 1450px) {
+    left: 100px;
+  }
+  @media (max-width: 1080px) {
+    display: none;
+  }
+`;
+
+const StyledVerticalTimeline = styled.div`
+  height: calc(100% - 20px);
+  top: 50px;
+  width: 1px;
+  background-color: #eaeaea;
+  ${timelineHorizontalPosition}
+`;
+
+const StyledTimelineDot = styled.div`
+  position: absolute;
+  top: -30px;
+  left: -9px;
+  width: 19px;
+  height: 19px;
+  border-radius: 50%;
+  background-color: #eaeaea;
+  transition: all 0.05s linear 0.3s;
+  ${StyledExperienceCard}:hover & {
+    transform: scale(1.2);
+    transition-delay: 0s;
+    background-color: #c3c3c3;
+  }
+`;
+
+const StyledTimelineDotToContentLine = styled.div`
+  position: absolute;
+  background-color: #c3c3c3;
+  top: -22px;
+  left: 10px;
+  width: 0px;
+  height: 3px;
+  transition: all 0.1s linear 0.2s;
+  ${StyledExperienceCard}:hover & {
+    width: 90px;
+    transition-delay: 0.05s;
+  }
+`;
+
+const StyledTimelineDateRange = styled.div`
+  position: absolute;
+  top: -30px;
+  right: 20px;
+  font-size: 14px;
+  white-space: nowrap;
+`;
+
+const TimelineAlignment = styled.div`
+  padding: inherit;
+  ${timelineHorizontalPosition}
+`;
+
+const StyledDateRange = styled.div`
+  display: none;
+  @media (max-width: 1080px) {
+    display: block;
+  }
+`;
+
+const Experience = () => {
+  return (
+    <ScrollRevealWrapper options={{origin: "bottom"}}>
+      <StyledExperienceCard>
+        <StyledVerticalTimeline>
+          <StyledTimelineDateRange>May 2019 - Sep 2021</StyledTimelineDateRange>
+          <StyledTimelineDot/>
+          <StyledTimelineDotToContentLine/>
+        </StyledVerticalTimeline>
+        <h3>Software Engineer</h3>
+        <StyledDateRange>May 2019 - Sep 2021</StyledDateRange>
+        <p>At <a href="https://www.ubisoft.com/en-US/studio/quebec.aspx">Ubisoft Quebec</a> from 2019 to 2021</p>
+        <p>Working on <a href="https://www.ubisoft.com/en-US/game/assassins-creed/valhalla">Assassin's Creed Valhalla</a></p>
+      </StyledExperienceCard>
+    </ScrollRevealWrapper>
+  )
+}
+
+const Experiences = ({ id, title, ...props }: ExperiencesSectionProps) => {
+  return (
+      <StyledExperiencesSection id={id} {...props}>
+          <div style={{display: "flex", justifyContent: "center"}}>
+            <StyledExperiencesContent>
+              <h2 style={{textAlign: "center"}}>{title}</h2>
+              <Experience/>
+              <Experience/>
+              <Experience/>
+              <TimelineAlignment>
+                <ScrollRevealWrapper options={{origin: "top", scale: 0.5, delay: 200, distance: "5px"}}>
+                  <TerminalIcon style={{left: "calc(50% - 11px)", position: "absolute", top: "20px", color: '#c3c3c3'}}/>
+                </ScrollRevealWrapper>
+              </TimelineAlignment>
+            </StyledExperiencesContent>
+          </div>
+      </StyledExperiencesSection>
+  )
+}
+
 const StyledProjectsSection = styled.section<SectionProps>`
   min-height: calc(100vh - ${props => props.navHeight});
   padding: clamp(20px, 5vh, 50px) 0px;
@@ -215,7 +356,7 @@ const StyledProjectCard = styled.div`
   transition: all 0.2s ease-in-out;
   &:hover {
     transform: translateY(-5px);
-    box-shadow: 0 6px 20px rgba(56, 125, 255, 0.17);
+    box-shadow: 0 6px 20px #387dff2b;
   }
 `;
 
@@ -229,21 +370,23 @@ const AnchorOverlay = (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => 
 
 const Project = () => {
   return (
-    <StyledProjectCard>
-      <AnchorOverlay href="https://css-tricks.com/almanac/properties/j/justify-content/"/>
-      <div style={{display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "space-around", columnGap: "20px"}}>
-        <div style={{flexGrow: 10, flexBasis: "400px"}}>
-          <div style={{display: "flex", flexDirection: "column", textAlign: "left", height: "100%", padding: "15px", justifyContent: "space-between"}}>
-            <h3 style={{marginBottom: "1rem"}}>Project Title</h3>
-            <p>Quisque mollis hendrerit risus, ut ullamcorper lorem porta id. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Integer vestibulum velit vel mauris aliquet ultrices. Donec pulvinar augue non sapien commodo viverra. Pellentesque eget facilisis purus. Integer dignissim urna felis, eget dictum arcu facilisis et. Pellentesque malesuada nibh ut sem maximus scelerisque. Donec suscipit massa ut purus mollis, a viverra tellus feugiat.</p>
-            <p>Keywords</p>
+    <ScrollRevealWrapper>
+      <StyledProjectCard>
+        <AnchorOverlay href="https://css-tricks.com/almanac/properties/j/justify-content/"/>
+        <div style={{display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "space-around", columnGap: "20px"}}>
+          <div style={{flexGrow: 10, flexBasis: "400px"}}>
+            <div style={{display: "flex", flexDirection: "column", textAlign: "left", height: "100%", padding: "15px", justifyContent: "space-between"}}>
+              <h3 style={{marginBottom: "1rem"}}>Project Title</h3>
+              <p>Quisque mollis hendrerit risus, ut ullamcorper lorem porta id. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Integer vestibulum velit vel mauris aliquet ultrices. Donec pulvinar augue non sapien commodo viverra. Pellentesque eget facilisis purus. Integer dignissim urna felis, eget dictum arcu facilisis et. Pellentesque malesuada nibh ut sem maximus scelerisque. Donec suscipit massa ut purus mollis, a viverra tellus feugiat.</p>
+              <p>Keywords</p>
+            </div>
+          </div>
+          <div style={{alignSelf: "center", flexBasis: "400px", flexGrow: 1}}>
+            <img src="https://via.placeholder.com/600x400" style={{height: "auto", width: "100%", maxHeight: "100%"}}/>
           </div>
         </div>
-        <div style={{alignSelf: "center", flexBasis: "400px", flexGrow: 1}}>
-          <img src="https://via.placeholder.com/600x400" style={{height: "auto", width: "100%", maxHeight: "100%"}}/>
-        </div>
-      </div>
-    </StyledProjectCard>
+      </StyledProjectCard>
+    </ScrollRevealWrapper>
   )
 }
 
@@ -256,9 +399,7 @@ const Projects = ({ id, title, ...props }: ProjectsSectionProps) => {
         </ScrollRevealWrapper>
         {
           Array.from({length: 6}).map((_, i) => (
-            <ScrollRevealWrapper key={i}>
-              <Project/>
-            </ScrollRevealWrapper>
+              <Project key={i}/>
           ))
         }
       </StyledProjectsContent>
@@ -408,6 +549,12 @@ const App: React.FC = () => {
     content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel nunc et enim efficitur feugiat a eget dolor. Ut pellentesque, quam id ultrices facilisis, nisi nulla finibus velit, id aliquam ipsum orci non nibh. Sed blandit non libero vitae bibendum. Donec a dolor turpis. Sed suscipit interdum mi, in elementum neque aliquam at. Aenean quis massa a magna egestas pellentesque. Sed tristique semper ante, a gravida ex auctor at."
   }
 
+  const experiences = {
+    id: "experience",
+    title: "Experience",
+    content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel nunc et enim efficitur feugiat a eget dolor. Ut pellentesque, quam id ultrices facilisis, nisi nulla finibus velit, id aliquam ipsum orci non nibh. Sed blandit non libero vitae bibendum. Donec a dolor turpis. Sed suscipit interdum mi, in elementum neque aliquam at. Aenean quis massa a magna egestas pellentesque. Sed tristique semper ante, a gravida ex auctor at."
+  }
+
   const projects = {
     id: "projects",
     title: "Projects",
@@ -433,6 +580,7 @@ const App: React.FC = () => {
 
   const sections = [
     about,
+    experiences,
     projects,
     blog,
     contact,
@@ -451,6 +599,7 @@ const App: React.FC = () => {
       <StyledMainContainer>
         <Hero {...hero} navHeight={navHeight}/>
         <About {...about} navHeight={navHeight}/>
+        <Experiences {...experiences} navHeight={navHeight}/>
         <Projects {...projects} navHeight={navHeight}/>
         <Blog {...blog} navHeight={navHeight}/>
         <Contact {...contact} navHeight={navHeight}/>
