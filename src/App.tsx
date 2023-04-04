@@ -204,11 +204,13 @@ interface ExperiencesSectionProps extends SectionProps {
   title: string,
 }
 
-const StyledExperienceCard = styled.div`
+const StyledExperienceCard = styled.div<{emphasized?: boolean}>`
   margin: 20px 0px 20px 150px;
   padding: 20px;
-  border-radius: 10px;
-  border: 1px solid #eaeaea;
+  ${props => props.emphasized && css`
+    border-radius: 10px;
+    border: 1px solid #eaeaea;
+  `}
   transition: all 0.2s linear 0s;
   @media (max-width: 1450px) {
     margin: 20px 0px 20px 200px;
@@ -216,10 +218,12 @@ const StyledExperienceCard = styled.div`
   @media (max-width: 1079px) {
     margin: 20px 0px;
   }
-  &:hover {
-    border-color: #c3c3c3;
-    box-shadow: 0 6px 20px #387dff2b;
-  }
+  ${props => props.emphasized && css`
+    &:hover {
+      border-color: #c3c3c3;
+      box-shadow: 0 6px 20px #387dff2b;
+    }
+  `}
 `;
 
 const timelineHorizontalPosition = css`
@@ -241,41 +245,41 @@ const StyledVerticalTimeline = styled.div`
   ${timelineHorizontalPosition}
 `;
 
-const StyledTimelineNode = styled.div`
+const timelineNodePosition = css`
   position: absolute;
   top: -30px;
   left: -9px;
 `;
 
-const StyledTimelineNodeCircle = styled(StyledTimelineNode)`
+const StyledTimelineNodeCircle = styled.div<{hoverable?: boolean}>`
+  ${timelineNodePosition}
   border-radius: 50%;
   background-color: #eaeaea;
   width: 19px;
   height: 19px;
+  ${props => props.hoverable && css`
+    transition: all 0.05s linear 0.3s;
+    ${StyledExperienceCard}:hover & {
+      transform: scale(1.2);
+      transition-delay: 0s;
+      background-color: #c3c3c3;
+    }
+  `}
 `;
 
-const StyledTimelineNodeCircleWithInteraction = styled(StyledTimelineNodeCircle)`
-  transition: all 0.05s linear 0.3s;
-  ${StyledExperienceCard}:hover & {
-    transform: scale(1.2);
-    transition-delay: 0s;
-    background-color: #c3c3c3;
-  }
-`;
-
-const StyledTimelineNodeIcon = styled(StyledTimelineNode)`
+const StyledTimelineNodeIcon = styled.div<{hoverable?: boolean}>`
+  ${timelineNodePosition}
   color: #eaeaea;
   width: 25px;
   height: 25px;
-`;
-
-const StyledTimelineNodeIconWithInteraction = styled(StyledTimelineNodeIcon)`
-  transition: all 0.05s linear 0.3s;
-  ${StyledExperienceCard}:hover & {
-    transform: scale(1.2);
-    transition-delay: 0s;
-    color: #c3c3c3;
-  }
+  ${props => props.hoverable && css`
+    transition: all 0.05s linear 0.3s;
+    ${StyledExperienceCard}:hover & {
+      transform: scale(1.2);
+      transition-delay: 0s;
+      color: #c3c3c3;
+    }
+  `}
 `;
 
 const StyledTimelineNodeToContentConnector = styled.div<{socket?: boolean}>`
@@ -333,41 +337,44 @@ const StyledDateRange = styled.div`
   }
 `;
 
-const School = () => {
+const Experience = ({timelineNode, socket = false, emphasized = true}: {timelineNode: React.ReactNode, socket?: boolean, emphasized?: boolean}) => {
   return (
     <ScrollRevealWrapper options={{origin: "bottom"}}>
-      <StyledExperienceCard>
+      <StyledExperienceCard emphasized={emphasized}>
         <StyledVerticalTimeline>
-          <StyledTimelineDateRange>2015 - 2019</StyledTimelineDateRange>
-          <StyledTimelineNodeIconWithInteraction>
-            <SchoolIcon style={{width: "100%", height: "100%", position: "absolute", right: "3px", top: "-3px"}}/>
-          </StyledTimelineNodeIconWithInteraction>
-          <StyledTimelineNodeToContentConnector socket={true}/>
+          <StyledTimelineDateRange>May 2019 - Sep 2021</StyledTimelineDateRange>
+          {timelineNode}
+          {emphasized && <StyledTimelineNodeToContentConnector socket={socket}/>}
         </StyledVerticalTimeline>
-        <h3>Software Engineering</h3>
-        <StyledDateRange>2015 - 2019</StyledDateRange>
-        <p>At <a href="https://www.usherbrooke.ca/">Université de Sherbrooke</a></p>
-        <p>Graduated with a Bachelor's degree in Software Engineering</p>
+        {emphasized ?
+          <h3>Software Engineering</h3>
+          : <p style={{fontSize: "14px"}}>Continuing: Software Engineering at the University of Victoria</p>
+        }
+        {emphasized && <StyledDateRange>May 2019 - Sep 2021</StyledDateRange>}
+        {emphasized &&
+          <>
+            <p>At <a href="https://www.ubisoft.com/en-US/studio/quebec.aspx">Ubisoft Quebec</a> from 2019 to 2021</p>
+            <p>Working on <a href="https://www.ubisoft.com/en-US/game/assassins-creed/valhalla">Assassin's Creed Valhalla</a></p>
+          </>
+        }
       </StyledExperienceCard>
     </ScrollRevealWrapper>
   )
 }
 
-const Experience = () => {
+const SchoolExperience = ({emphasized = true}: {emphasized?: boolean}) => {
   return (
-    <ScrollRevealWrapper options={{origin: "bottom"}}>
-      <StyledExperienceCard>
-        <StyledVerticalTimeline>
-          <StyledTimelineDateRange>May 2019 - Sep 2021</StyledTimelineDateRange>
-          <StyledTimelineNodeCircleWithInteraction/>
-          <StyledTimelineNodeToContentConnector/>
-        </StyledVerticalTimeline>
-        <h3>Software Engineer</h3>
-        <StyledDateRange>May 2019 - Sep 2021</StyledDateRange>
-        <p>At <a href="https://www.ubisoft.com/en-US/studio/quebec.aspx">Ubisoft Quebec</a> from 2019 to 2021</p>
-        <p>Working on <a href="https://www.ubisoft.com/en-US/game/assassins-creed/valhalla">Assassin's Creed Valhalla</a></p>
-      </StyledExperienceCard>
-    </ScrollRevealWrapper>
+    <Experience socket emphasized={emphasized} timelineNode={
+      <StyledTimelineNodeIcon hoverable>
+        <SchoolIcon style={{width: "100%", height: "100%", position: "absolute", right: "3px", top: "-3px"}}/>
+      </StyledTimelineNodeIcon>
+    }/>
+  )
+}
+
+const WorkExperience = ({emphasized = true}: {emphasized?: boolean}) => {
+  return (
+    <Experience emphasized={emphasized} timelineNode={<StyledTimelineNodeCircle hoverable/>}/>
   )
 }
 
@@ -377,10 +384,13 @@ const Experiences = ({ id, title, ...props }: ExperiencesSectionProps) => {
           <div style={{display: "flex", justifyContent: "center"}}>
             <StyledExperiencesContent>
               <h2 style={{textAlign: "center"}}>{title}</h2>
-              <Experience/>
-              <Experience/>
-              <School/>
-              <Experience/>
+              <SchoolExperience/>
+              <WorkExperience/>
+              <SchoolExperience emphasized={false}/>
+              <WorkExperience/>
+              <SchoolExperience emphasized={false}/>
+              <WorkExperience/>
+              <SchoolExperience emphasized={false}/>
               <TimelineAlignment>
                 <ScrollRevealWrapper options={{origin: "top", scale: 0.5, delay: 200, distance: "5px"}}>
                   <TerminalIcon style={{left: "calc(50% - 11px)", position: "absolute", top: "20px", color: '#c3c3c3'}}/>
