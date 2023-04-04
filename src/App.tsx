@@ -9,6 +9,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import WAVES from 'vanta/dist/vanta.waves.min';
 import ScrollReveal from 'scrollreveal'
 import TerminalIcon from '@mui/icons-material/Terminal';
+import SchoolIcon from '@mui/icons-material/SchoolOutlined';
 
 const navHeight = "56px";
 
@@ -240,14 +241,20 @@ const StyledVerticalTimeline = styled.div`
   ${timelineHorizontalPosition}
 `;
 
-const StyledTimelineDot = styled.div`
+const StyledTimelineNode = styled.div`
   position: absolute;
   top: -30px;
   left: -9px;
-  width: 19px;
-  height: 19px;
+`;
+
+const StyledTimelineNodeCircle = styled(StyledTimelineNode)`
   border-radius: 50%;
   background-color: #eaeaea;
+  width: 19px;
+  height: 19px;
+`;
+
+const StyledTimelineNodeCircleWithInteraction = styled(StyledTimelineNodeCircle)`
   transition: all 0.05s linear 0.3s;
   ${StyledExperienceCard}:hover & {
     transform: scale(1.2);
@@ -256,16 +263,52 @@ const StyledTimelineDot = styled.div`
   }
 `;
 
-const StyledTimelineDotToContentLine = styled.div`
+const StyledTimelineNodeIcon = styled(StyledTimelineNode)`
+  color: #eaeaea;
+  width: 25px;
+  height: 25px;
+`;
+
+const StyledTimelineNodeIconWithInteraction = styled(StyledTimelineNodeIcon)`
+  transition: all 0.05s linear 0.3s;
+  ${StyledExperienceCard}:hover & {
+    transform: scale(1.2);
+    transition-delay: 0s;
+    color: #c3c3c3;
+  }
+`;
+
+const StyledTimelineNodeToContentConnector = styled.div<{socket?: boolean}>`
   position: absolute;
   background-color: #c3c3c3;
   top: -22px;
-  left: 10px;
+  padding-left: ${props => props.socket ? '20px' : '0px'};
+  background-clip: content-box;
   width: 0px;
   height: 3px;
   transition: all 0.1s linear 0.2s;
+  ${props => props.socket && css`
+    &:before {
+      content: "";
+      position: absolute;
+      top: -16px;
+      left: 4px;
+      width: 18px;
+      height: 35px;
+      background-color: transparent;
+      border-top-right-radius: 16px;  /* 100px of height + 10px of border */
+      border-bottom-right-radius: 16px; /* 100px of height + 10px of border */
+      border: 0px solid #c3c3c3;
+      border-left: 0;
+      transition-delay: 0.3s;
+    }
+    ${StyledExperienceCard}:hover &:before {
+      border-width: 3px;
+      transition-delay: 0.05s;
+    }
+  `}
   ${StyledExperienceCard}:hover & {
-    width: 90px;
+    width: 100px;
     transition-delay: 0.05s;
   }
 `;
@@ -290,14 +333,34 @@ const StyledDateRange = styled.div`
   }
 `;
 
+const School = () => {
+  return (
+    <ScrollRevealWrapper options={{origin: "bottom"}}>
+      <StyledExperienceCard>
+        <StyledVerticalTimeline>
+          <StyledTimelineDateRange>2015 - 2019</StyledTimelineDateRange>
+          <StyledTimelineNodeIconWithInteraction>
+            <SchoolIcon style={{width: "100%", height: "100%", position: "absolute", right: "3px", top: "-3px"}}/>
+          </StyledTimelineNodeIconWithInteraction>
+          <StyledTimelineNodeToContentConnector socket={true}/>
+        </StyledVerticalTimeline>
+        <h3>Software Engineering</h3>
+        <StyledDateRange>2015 - 2019</StyledDateRange>
+        <p>At <a href="https://www.usherbrooke.ca/">Université de Sherbrooke</a></p>
+        <p>Graduated with a Bachelor's degree in Software Engineering</p>
+      </StyledExperienceCard>
+    </ScrollRevealWrapper>
+  )
+}
+
 const Experience = () => {
   return (
     <ScrollRevealWrapper options={{origin: "bottom"}}>
       <StyledExperienceCard>
         <StyledVerticalTimeline>
           <StyledTimelineDateRange>May 2019 - Sep 2021</StyledTimelineDateRange>
-          <StyledTimelineDot/>
-          <StyledTimelineDotToContentLine/>
+          <StyledTimelineNodeCircleWithInteraction/>
+          <StyledTimelineNodeToContentConnector/>
         </StyledVerticalTimeline>
         <h3>Software Engineer</h3>
         <StyledDateRange>May 2019 - Sep 2021</StyledDateRange>
@@ -316,6 +379,7 @@ const Experiences = ({ id, title, ...props }: ExperiencesSectionProps) => {
               <h2 style={{textAlign: "center"}}>{title}</h2>
               <Experience/>
               <Experience/>
+              <School/>
               <Experience/>
               <TimelineAlignment>
                 <ScrollRevealWrapper options={{origin: "top", scale: 0.5, delay: 200, distance: "5px"}}>
