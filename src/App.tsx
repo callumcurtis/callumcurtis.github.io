@@ -22,6 +22,14 @@ ScrollReveal({
     reset: true,
 })
 
+const StyledAnchor = styled.a`
+  color: ${props => props.theme.colors.foreground.muted};
+  text-decoration: none;
+  &:hover {
+    color: ${props => props.theme.colors.foreground.muted};
+  }
+`;
+
 const circularBackgroundOnHover = css`
   &:hover {
     background-color: ${props => props.theme.colors.neutral.subtle};
@@ -517,9 +525,9 @@ const StyledProjectCard = styled.div`
 
 const AnchorOverlay = (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => {
   return (
-    <a {...props}>
+    <StyledAnchor {...props}>
       <span style={{width: "100%", height: "100%", zIndex: "1", position: "absolute", top: 0, left: 0}}/>
-    </a>
+    </StyledAnchor>
   )
 }
 
@@ -603,31 +611,20 @@ const NavigationBar = ({ brand, sections, minHeight }: NavigationBarProps) => {
   );
 }
 
-const FixedSocials = ({ children, ...props }: React.HTMLAttributes<HTMLDivElement>) => {
-  return (
-    <div {...props}>
-      {children}
-      <StyledFixedSocialsToBottomOfViewportConnector/>
-    </div>
-  )
-}
-
-const StyledFixedSocials = styled(FixedSocials)`
+const StyledFixedSocials = styled.div`
   position: fixed;
   display: flex;
   margin: 0 50px 0 0;
-  flex-direction: column;
   align-items: center;
   bottom: 0;
   right: 0;
-  display: flex;
   flex-direction: column;
-  z-index: 100;
   & svg {
     width: 35px;
     height: auto;
     color: ${props => props.theme.colors.neutral.emphasized};
     transition: all 0.2s ease-in-out;
+    will-change: transform;
   }
   & a {
     margin: 0 0 20px 0;
@@ -641,6 +638,15 @@ const StyledFixedSocials = styled(FixedSocials)`
   @media (max-width: 768px) {
     display: none;
 `;
+
+const FixedSocials = ({ children, ...props }: React.HTMLAttributes<HTMLDivElement>) => {
+  return (
+    <StyledFixedSocials {...props}>
+      {children}
+      <StyledFixedSocialsToBottomOfViewportConnector/>
+    </StyledFixedSocials>
+  )
+}
 
 const StyledFixedSocialsToBottomOfViewportConnector = styled.div`
   height: calc(clamp(10px, 10vh, 100px) - 10px);
@@ -660,7 +666,7 @@ const useScrollToHashOnMount = (options: any) => {
 
 const ExternalLink = ({ children, href, ...props }: React.AnchorHTMLAttributes<HTMLAnchorElement>) => {
   return (
-    <a {...props} href={href} target="_blank" rel="noopener noreferrer">{children}</a>
+    <StyledAnchor {...props} href={href} target="_blank" rel="noopener noreferrer">{children}</StyledAnchor>
   )
 }
 
@@ -673,6 +679,63 @@ const Social = ({href, icon}: {href: string, icon: React.ReactNode}) => {
 }
 
 const StyledMainContainer = styled.main``;
+
+const StyledFooter = styled.footer`
+  margin-top: 80px;
+  padding: 20px 0;
+  text-align: center;
+  & p {
+    font-size: 14px;
+    padding: 0 10px;
+  }
+`;
+
+const StyledFooterSocials = styled.div`
+  display: flex;
+  margin: 0 0 20px 0;
+  justify-content: center;
+  flex-direction: row;
+  & svg {
+    width: 35px;
+    height: auto;
+    color: ${props => props.theme.colors.neutral.emphasized};
+    transition: all 0.2s ease-in-out;
+    will-change: transform;
+  }
+  & a {
+    margin: 0 10px;
+  }
+  & svg:hover {
+    transform: translateY(-2px);
+  }
+  @media (min-width: 768px) {
+    display: none;
+  }
+`;
+
+const FooterSocials = ({ children, ...props }: React.HTMLAttributes<HTMLDivElement>) => {
+  return (
+    <StyledFooterSocials {...props}>
+      {children}
+    </StyledFooterSocials>
+  )
+}
+
+interface credits {
+  content: string;
+  href: string;
+}
+
+const Footer = ({socials, credits}: {socials: React.ReactNode, credits: credits}) => {
+  return (
+    <StyledFooter>
+      <FooterSocials children={socials}/>
+      <ExternalLink href={credits.href}>
+        <p>{credits.content}</p>
+      </ExternalLink>
+    </StyledFooter>
+  )
+}
 
 const App: React.FC = () => {
 
@@ -687,6 +750,9 @@ const App: React.FC = () => {
       border: {
         default: "#eaeaea",
         emphasized: "#c3c3c3",
+      },
+      foreground: {
+        muted: "#656d76",
       },
     },
     shadow: {
@@ -776,7 +842,21 @@ const App: React.FC = () => {
       href: "https://www.linkedin.com/in/callumcurtis/",
       icon: <LinkedInIcon/>,
     },
-  ]
+  ].map((social) => (
+    <Social key={social.key} href={social.href} icon={social.icon}/>
+  ));
+
+  const fixedSocials = {
+    children: socials,
+  }
+
+  const footer = {
+    socials: socials,
+    credits: {
+      content: "Created by Callum Curtis using React and TypeScript",
+      href: "https://github.com/callumcurtis/callumcurtis.github.io"
+    },
+  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -788,11 +868,8 @@ const App: React.FC = () => {
         <Testimonials {...testimonials} navHeight={navHeight}/>
         <Projects {...projects} navHeight={navHeight}/>
       </StyledMainContainer>
-      <StyledFixedSocials>
-        {socials.map((social) => (
-          <Social key={social.key} href={social.href} icon={social.icon}/>
-        ))}
-      </StyledFixedSocials>
+      <FixedSocials {...fixedSocials}/>
+      <Footer {...footer}/>
     </ThemeProvider>
   );
 };

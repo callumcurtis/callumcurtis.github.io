@@ -13,6 +13,9 @@ declare module 'styled-components' {
         default: string,
         emphasized: string,
       },
+      foreground: {
+        muted: string,
+      },
     },
     shadow: {
       default: string,
