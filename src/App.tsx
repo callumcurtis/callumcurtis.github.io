@@ -408,6 +408,80 @@ const Experiences = ({ id, title, ...props }: ExperiencesSectionProps) => {
   )
 }
 
+interface TestimonialProps {
+  content: string,
+  attribution: string,
+}
+
+interface TestimonialSectionProps extends SectionProps {
+  testimonials: (TestimonialProps & WithKey)[],
+}
+
+const StyledTestimonialSection = styled.div<SectionProps>`
+  min-height: calc(100vh - ${props => props.navHeight});
+  padding: clamp(20px, 5vh, 50px) 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
+
+const StyledTestimonialRow = styled.div`
+  ${wideContentSize}
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  column-gap: 100px;
+  max-height: 500px;
+  overflow: hidden;
+  text-align: left;
+`;
+
+const StyledTestimonial = styled.div`
+  flex-basis: 350px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 500px;
+  max-width: 520px;
+`;
+
+const TestimonialQuotationMark = () => {
+  return <span>“</span>
+}
+
+const StyledTestimonialQuotationMark = styled(TestimonialQuotationMark)`
+  font-size: 48px;
+  font-family: "Arial Black";
+  height: 60px;
+`;
+
+const Testimonial = ({content, attribution}: TestimonialProps) => {
+  return (
+    <StyledTestimonial>
+      <StyledTestimonialQuotationMark/>
+      <h3>{content}</h3>
+      <p>{attribution}</p>
+    </StyledTestimonial>
+  )
+};
+
+const Testimonials = ({ testimonials, ...props }: TestimonialSectionProps) => {
+  return (
+      <StyledTestimonialSection {...props}>
+        <ScrollRevealWrapper>
+          <StyledTestimonialRow>
+            {
+              testimonials.map(({key, ...testimonial}) => (
+                <Testimonial key={key} {...testimonial}/>
+              ))
+            }
+          </StyledTestimonialRow>
+        </ScrollRevealWrapper>
+      </StyledTestimonialSection>
+  )
+};
+
 const StyledProjectsSection = styled.section<SectionProps>`
   min-height: calc(100vh - ${props => props.navHeight});
   padding: clamp(20px, 5vh, 50px) 0px;
@@ -454,7 +528,7 @@ const Project = () => {
     <ScrollRevealWrapper>
       <StyledProjectCard>
         <AnchorOverlay href="https://css-tricks.com/almanac/properties/j/justify-content/"/>
-        <div style={{display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "space-around", columnGap: "20px"}}>
+        <div style={{display: "flex", flexDirection: "row", flexWrap: "wrap", columnGap: "20px"}}>
           <div style={{flexGrow: 10, flexBasis: "400px"}}>
             <div style={{display: "flex", flexDirection: "column", textAlign: "left", height: "100%", padding: "15px", justifyContent: "space-between"}}>
               <h3 style={{marginBottom: "1rem"}}>Project Title</h3>
@@ -638,19 +712,37 @@ const App: React.FC = () => {
     onClick: () => scroller.scrollTo(hero.id, scrollOptions),
   };
 
-  const sections = [
+  const sectionLinks = [
     about,
     experiences,
     projects,
     contact,
-  ];
-
-  const sectionLinks = sections.map((section) => ({
+  ].map((section) => ({
     key: section.id,
     href: `#${section.id}`,
     children: section.title,
     onClick: () => scroller.scrollTo(section.id, scrollOptions),
   }));
+
+  const testimonials = {
+    testimonials: [
+      {
+        key: "1",
+        content: "Callum is a big big helper and did a good job, all the time, yes indeed",
+        attribution: "Callum, Student",
+      },
+      {
+        key: "2",
+        content: "Callum is a big big helper and did a good job, all the time, yes indeed",
+        attribution: "Callum, Student",
+      },
+      {
+        key: "3",
+        content: "Callum is a big big helper and did a good job, all the time, yes indeed",
+        attribution: "Callum, Student",
+      },
+    ]
+  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -659,6 +751,7 @@ const App: React.FC = () => {
         <Hero {...hero} navHeight={navHeight}/>
         <About {...about} navHeight={navHeight}/>
         <Experiences {...experiences} navHeight={navHeight}/>
+        <Testimonials {...testimonials} navHeight={navHeight}/>
         <Projects {...projects} navHeight={navHeight}/>
         <Contact {...contact} navHeight={navHeight}/>
       </StyledMainContainer>
