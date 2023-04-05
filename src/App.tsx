@@ -603,11 +603,10 @@ const NavigationBar = ({ brand, sections, minHeight }: NavigationBarProps) => {
   );
 }
 
-const FixedSocialsList = (props: React.HTMLAttributes<HTMLDivElement>) => {
+const FixedSocialsList = ({ children, ...props }: React.HTMLAttributes<HTMLDivElement>) => {
   return (
     <div {...props}>
-      <GitHubIcon/>
-      <LinkedInIcon/>
+      {children}
       <StyledFixedSocialsListToBottomOfViewportConnector/>
     </div>
   )
@@ -627,8 +626,14 @@ const StyledFixedSocialsList = styled(FixedSocialsList)`
   & svg {
     width: 35px;
     height: auto;
-    margin: 0 0 20px 0;
     color: ${props => props.theme.colors.neutral.emphasized};
+    transition: all 0.2s ease-in-out;
+  }
+  & a {
+    margin: 0 0 20px 0;
+  }
+  & svg:hover {
+    transform: translateY(-2px);
   }
   @media (max-width: 1300px) {
     margin: 0 35px 0 0;
@@ -640,7 +645,7 @@ const StyledFixedSocialsList = styled(FixedSocialsList)`
 const StyledFixedSocialsListToBottomOfViewportConnector = styled.div`
   height: calc(clamp(10px, 10vh, 100px) - 10px);
   width: 0px;
-  border: 1px solid ${props => props.theme.colors.neutral.muted};
+  border: 1px solid ${props => props.theme.colors.neutral.emphasized};
 `;
 
 // TODO: define custom types for react-scroll options (Definitely Typed package uses any)
@@ -652,6 +657,12 @@ const useScrollToHashOnMount = (options: any) => {
     }
   }, [options]);
 };
+
+const ExternalLink = ({ children, href, ...props }: React.AnchorHTMLAttributes<HTMLAnchorElement>) => {
+  return (
+    <a {...props} href={href} target="_blank" rel="noopener noreferrer">{children}</a>
+  )
+}
 
 const StyledMainContainer = styled.main``;
 
@@ -756,7 +767,14 @@ const App: React.FC = () => {
         <Testimonials {...testimonials} navHeight={navHeight}/>
         <Projects {...projects} navHeight={navHeight}/>
       </StyledMainContainer>
-      <StyledFixedSocialsList/>
+      <StyledFixedSocialsList>
+        <ExternalLink href="https://github.com/callumcurtis">
+          <GitHubIcon/>
+        </ExternalLink>
+        <ExternalLink href="https://www.linkedin.com/in/callumcurtis/">
+          <LinkedInIcon/>
+        </ExternalLink>
+      </StyledFixedSocialsList>
     </ThemeProvider>
   );
 };
