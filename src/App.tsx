@@ -123,7 +123,7 @@ const Hero = ({ id, title, content, ...props }: HeroProps) => {
     <StyledHeroSection id={id} {...props}>
         <WaveBackground/>
         <StyledHeroContent style={{color: "white"}}>
-          <h1>{title}</h1>
+          <h1 style={{fontWeight: "600"}}>{title}</h1>
           <p style={{maxWidth: "550px", marginTop: "20px"}}>{content}</p>
         </StyledHeroContent>
     </StyledHeroSection>
