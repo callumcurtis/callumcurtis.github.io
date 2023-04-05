@@ -562,38 +562,6 @@ const Projects = ({ id, title, ...props }: ProjectsSectionProps) => {
   )
 };
 
-const StyledContactSection = styled.section<SectionProps>`
-  min-height: calc(100vh - ${props => props.navHeight});
-  padding: clamp(20px, 5vh, 50px) 0px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-`;
-
-const StyledContactContent = styled.div`
-  ${regularContentSize}
-`;
-
-interface ContactSectionProps extends SectionProps {
-  id: string,
-  title: string,
-  content: string,
-}
-
-const Contact = ({ id, title, content, ...props }: ContactSectionProps) => {
-  return (
-      <StyledContactSection id={id} {...props}>
-        <ScrollRevealWrapper>
-          <StyledContactContent>
-            <h2>{title}</h2>
-            <p>{content}</p>
-          </StyledContactContent>
-        </ScrollRevealWrapper>
-      </StyledContactSection>
-  )
-};
-
 const Brand = styled(Navbar.Brand)`
   font-family: 'Kumbh Sans';
   width: ${parseInt(navHeight, 10) - 16}px;
@@ -701,12 +669,6 @@ const App: React.FC = () => {
     content: "Donec lobortis interdum faucibus. Etiam bibendum, nulla id eleifend congue, nisi nulla iaculis elit, sed eleifend elit elit vel elit. Fusce non dapibus velit. Nullam vel eros et augue commodo auctor vitae sed turpis. Duis euismod aliquet felis, at malesuada sapien vestibulum ac. Fusce sit amet lacinia dolor, vel bibendum nisl."
   }
 
-  const contact = {
-    id: "contact",
-    title: "Contact",
-    content: "Suspendisse rutrum interdum ligula vitae ultrices. Fusce eleifend ut ipsum et pulvinar. Integer bibendum elit euismod nunc venenatis faucibus. Suspendisse nec leo eu tortor semper tincidunt. Integer tincidunt odio sit amet eleifend blandit. Cras vel augue nec lacus ultricies lobortis. Fusce eget quam sagittis, ullamcorper libero id, suscipit sapien. Sed posuere consequat nibh, in fermentum lacus bibendum vitae."
-  }
-
   const brand = {
     children: "C",
     onClick: () => scroller.scrollTo(hero.id, scrollOptions),
@@ -716,7 +678,6 @@ const App: React.FC = () => {
     about,
     experiences,
     projects,
-    contact,
   ].map((section) => ({
     key: section.id,
     href: `#${section.id}`,
@@ -753,7 +714,6 @@ const App: React.FC = () => {
         <Experiences {...experiences} navHeight={navHeight}/>
         <Testimonials {...testimonials} navHeight={navHeight}/>
         <Projects {...projects} navHeight={navHeight}/>
-        <Contact {...contact} navHeight={navHeight}/>
       </StyledMainContainer>
     </ThemeProvider>
   );
