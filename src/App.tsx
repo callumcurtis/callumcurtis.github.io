@@ -9,7 +9,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import WAVES from 'vanta/dist/vanta.waves.min';
 import ScrollReveal from 'scrollreveal'
 import TerminalIcon from '@mui/icons-material/Terminal';
-import SchoolIcon from '@mui/icons-material/SchoolOutlined';
+import { GitHub as GitHubIcon, LinkedIn as LinkedInIcon, SchoolOutlined as SchoolIcon} from "@mui/icons-material";
 
 const navHeight = "56px";
 
@@ -244,7 +244,7 @@ const StyledVerticalTimeline = styled.div`
   height: calc(100% - 20px);
   top: 50px;
   width: 1px;
-  background-color: ${props => props.theme.colors.neutral.default};
+  background-color: ${props => props.theme.colors.neutral.muted};
   ${timelineHorizontalPosition}
 `;
 
@@ -603,6 +603,46 @@ const NavigationBar = ({ brand, sections, minHeight }: NavigationBarProps) => {
   );
 }
 
+const FixedSocialsList = (props: React.HTMLAttributes<HTMLDivElement>) => {
+  return (
+    <div {...props}>
+      <GitHubIcon/>
+      <LinkedInIcon/>
+      <StyledFixedSocialsListToBottomOfViewportConnector/>
+    </div>
+  )
+}
+
+const StyledFixedSocialsList = styled(FixedSocialsList)`
+  position: fixed;
+  display: flex;
+  margin: 0 50px 0 0;
+  flex-direction: column;
+  align-items: center;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+  & svg {
+    width: 35px;
+    height: auto;
+    margin: 0 0 20px 0;
+    color: ${props => props.theme.colors.neutral.emphasized};
+  }
+  @media (max-width: 1300px) {
+    margin: 0 35px 0 0;
+  }
+  @media (max-width: 768px) {
+    display: none;
+`;
+
+const StyledFixedSocialsListToBottomOfViewportConnector = styled.div`
+  height: calc(clamp(10px, 10vh, 100px) - 10px);
+  width: 0px;
+  border: 1px solid ${props => props.theme.colors.neutral.muted};
+`;
+
 // TODO: define custom types for react-scroll options (Definitely Typed package uses any)
 const useScrollToHashOnMount = (options: any) => {
   React.useEffect(() => {
@@ -621,7 +661,8 @@ const App: React.FC = () => {
     colors: {
       neutral: {
         subtle: "#eaeaea",
-        default: "#c3c3c3",
+        muted: "#c3c3c3",
+        default: "#a8adb3",
         emphasized: "#6e7781"
       },
       border: {
@@ -715,6 +756,7 @@ const App: React.FC = () => {
         <Testimonials {...testimonials} navHeight={navHeight}/>
         <Projects {...projects} navHeight={navHeight}/>
       </StyledMainContainer>
+      <StyledFixedSocialsList/>
     </ThemeProvider>
   );
 };

@@ -4,8 +4,9 @@ declare module 'styled-components' {
   export interface DefaultTheme {
     colors: {
       neutral: {
-        default: string,
         subtle: string,
+        muted: string,
+        default: string,
         emphasized: string,
       },
       border: {
