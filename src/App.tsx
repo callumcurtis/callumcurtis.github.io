@@ -603,16 +603,16 @@ const NavigationBar = ({ brand, sections, minHeight }: NavigationBarProps) => {
   );
 }
 
-const FixedSocialsList = ({ children, ...props }: React.HTMLAttributes<HTMLDivElement>) => {
+const FixedSocials = ({ children, ...props }: React.HTMLAttributes<HTMLDivElement>) => {
   return (
     <div {...props}>
       {children}
-      <StyledFixedSocialsListToBottomOfViewportConnector/>
+      <StyledFixedSocialsToBottomOfViewportConnector/>
     </div>
   )
 }
 
-const StyledFixedSocialsList = styled(FixedSocialsList)`
+const StyledFixedSocials = styled(FixedSocials)`
   position: fixed;
   display: flex;
   margin: 0 50px 0 0;
@@ -642,7 +642,7 @@ const StyledFixedSocialsList = styled(FixedSocialsList)`
     display: none;
 `;
 
-const StyledFixedSocialsListToBottomOfViewportConnector = styled.div`
+const StyledFixedSocialsToBottomOfViewportConnector = styled.div`
   height: calc(clamp(10px, 10vh, 100px) - 10px);
   width: 0px;
   border: 1px solid ${props => props.theme.colors.neutral.emphasized};
@@ -661,6 +661,14 @@ const useScrollToHashOnMount = (options: any) => {
 const ExternalLink = ({ children, href, ...props }: React.AnchorHTMLAttributes<HTMLAnchorElement>) => {
   return (
     <a {...props} href={href} target="_blank" rel="noopener noreferrer">{children}</a>
+  )
+}
+
+const Social = ({href, icon}: {href: string, icon: React.ReactNode}) => {
+  return (
+    <ExternalLink href={href}>
+      {icon}
+    </ExternalLink>
   )
 }
 
@@ -757,6 +765,19 @@ const App: React.FC = () => {
     ]
   }
 
+  const socials = [
+    {
+      key: "github",
+      href: "https://github.com/callumcurtis",
+      icon: <GitHubIcon/>,
+    },
+    {
+      key: "linkedin",
+      href: "https://www.linkedin.com/in/callumcurtis/",
+      icon: <LinkedInIcon/>,
+    },
+  ]
+
   return (
     <ThemeProvider theme={theme}>
       <NavigationBar brand={brand} sections={sectionLinks} minHeight={navHeight}/>
@@ -767,14 +788,11 @@ const App: React.FC = () => {
         <Testimonials {...testimonials} navHeight={navHeight}/>
         <Projects {...projects} navHeight={navHeight}/>
       </StyledMainContainer>
-      <StyledFixedSocialsList>
-        <ExternalLink href="https://github.com/callumcurtis">
-          <GitHubIcon/>
-        </ExternalLink>
-        <ExternalLink href="https://www.linkedin.com/in/callumcurtis/">
-          <LinkedInIcon/>
-        </ExternalLink>
-      </StyledFixedSocialsList>
+      <StyledFixedSocials>
+        {socials.map((social) => (
+          <Social key={social.key} href={social.href} icon={social.icon}/>
+        ))}
+      </StyledFixedSocials>
     </ThemeProvider>
   );
 };
