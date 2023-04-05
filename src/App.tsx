@@ -528,7 +528,7 @@ const Project = () => {
     <ScrollRevealWrapper>
       <StyledProjectCard>
         <AnchorOverlay href="https://css-tricks.com/almanac/properties/j/justify-content/"/>
-        <div style={{display: "flex", flexDirection: "row", flexWrap: "wrap", columnGap: "20px"}}>
+        <div style={{display: "flex", flexDirection: "row", flexWrap: "wrap-reverse", columnGap: "20px"}}>
           <div style={{flexGrow: 10, flexBasis: "400px"}}>
             <div style={{display: "flex", flexDirection: "column", textAlign: "left", height: "100%", padding: "15px", justifyContent: "space-between"}}>
               <h3 style={{marginBottom: "1rem"}}>Project Title</h3>
