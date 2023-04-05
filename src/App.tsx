@@ -1,4 +1,4 @@
-import React from "react";
+import React, { HTMLAttributes } from "react";
 import { scroller } from "react-scroll";
 import styled, { css, useTheme, ThemeProvider } from "styled-components";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -446,8 +446,8 @@ const StyledTestimonial = styled.div`
   max-width: 520px;
 `;
 
-const TestimonialQuotationMark = () => {
-  return <span>“</span>
+const TestimonialQuotationMark = (props: HTMLAttributes<HTMLSpanElement>) => {
+  return <span {...props}>“</span>
 }
 
 const StyledTestimonialQuotationMark = styled(TestimonialQuotationMark)`
