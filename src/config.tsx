@@ -33,6 +33,9 @@ const defaultConfig = {
     hero: "hero",
     about: "about",
   },
+  layers: {
+    background: -1,
+  },
   layout: {
     nav: {
       height: navHeight,

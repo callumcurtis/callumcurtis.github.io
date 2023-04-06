@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-import Reveal from 'src/components/common/reveal';
+import Reveal from 'src/components/reveal';
 import { useContent } from 'src/content';
 import { useConfig, usePropsWithConfig } from 'src/config';
-import { sectionSize, sectionLayout, regularContentSize } from 'src/components/sections/section';
+import { sectionSize, sectionLayout, regularContentSize } from 'src/styles/section';
 
 
 const StyledAboutSection = styled.section.attrs(usePropsWithConfig)`

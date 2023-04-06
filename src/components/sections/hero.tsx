@@ -1,44 +1,23 @@
-import React from 'react';
-import WAVES from 'vanta/dist/vanta.waves.min';
 import styled from 'styled-components';
 
+import { backgroundContainer, backgroundFillContainer } from 'src/styles/background';
+import { withWaveAnimationBackground } from 'src/components/background';
+import { wideContentSize, sectionSize, sectionLayout } from 'src/styles/section';
 import { useConfig, usePropsWithConfig } from 'src/config';
-import { wideContentSize, sectionSize, sectionLayout } from 'src/components/sections/section';
 import { useContent } from 'src/content';
 
 
-const StyledHeroBackground = styled.div`
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  z-index: -1;
-`;
-
-const WaveBackground = () => {
-  const [vantaEffect, setVantaEffect] = React.useState<{destroy: () => void} | null>(null)
-  const { vanta: { waves: wavesConfig } } = useConfig();
-  const myRef = React.useRef(null)
-  React.useEffect(() => {
-    if (!vantaEffect) {
-      setVantaEffect(WAVES({
-        el: myRef.current,
-        ...wavesConfig,
-      }))
-    }
-    return () => {
-      if (vantaEffect) vantaEffect.destroy()
-    }
-  }, [vantaEffect, wavesConfig])
-  return <StyledHeroBackground ref={myRef}/>
-}
-
 const StyledHeroSection = styled.section.attrs(usePropsWithConfig)`
-  position: relative;
   text-align: left;
   color: white;
   ${sectionSize}
   ${sectionLayout}
+  ${backgroundContainer}
 `;
+
+const StyledHeroBackground = withWaveAnimationBackground(styled.div.attrs(usePropsWithConfig)`
+  ${backgroundFillContainer}
+`);
 
 const StyledHeroContent = styled.div`
   ${wideContentSize}
@@ -58,7 +37,7 @@ const Hero = () => {
   const content = useContent();
   return (
     <StyledHeroSection id={config.ids.hero}>
-        <WaveBackground/>
+        <StyledHeroBackground/>
         <StyledHeroContent>
           <StyledHeroHeading>{content.hero.heading}</StyledHeroHeading>
           <StyledHeroBrief>{content.hero.brief}</StyledHeroBrief>

@@ -9,7 +9,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import TerminalIcon from '@mui/icons-material/Terminal';
 import { GitHub as GitHubIcon, LinkedIn as LinkedInIcon, SchoolOutlined as SchoolIcon} from "@mui/icons-material";
 
-import Reveal from 'src/components/common/reveal';
+import Reveal from 'src/components/reveal';
 import defaultConfig, { ConfigProvider, useConfig, usePropsWithConfig, PropsWithConfig } from 'src/config';
 import defaultContent, { ContentProvider } from 'src/content';
 import Hero from 'src/components/sections/hero';
