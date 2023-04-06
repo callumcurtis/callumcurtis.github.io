@@ -1,18 +1,17 @@
-import React from "react";
+import React from 'react';
 import ScrollReveal from 'scrollreveal';
 
-import { defaults } from 'src/config/scroll-reveal';
+import { useConfig } from 'src/config'
 
-
-ScrollReveal(defaults);
 
 const useScrollReveal = <T extends HTMLElement>(options: scrollReveal.ScrollRevealObjectOptions) => {
+  const { scrollReveal: { defaults } } = useConfig();
   const ref = React.createRef<T>();
   React.useEffect(() => {
     if (ref.current) {
-      ScrollReveal().reveal(ref.current, options);
+      ScrollReveal().reveal(ref.current, {...defaults, ...options});
     }
-  }, [ref, options])
+  }, [ref, defaults, options])
   return ref;
 }
 

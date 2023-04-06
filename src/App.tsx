@@ -1,6 +1,6 @@
 import React, { HTMLAttributes } from "react";
 import { scroller } from "react-scroll";
-import styled, { css, useTheme, ThemeProvider } from "styled-components";
+import styled, { css } from "styled-components";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css";
 import Container from 'react-bootstrap/Container';
@@ -11,21 +11,20 @@ import TerminalIcon from '@mui/icons-material/Terminal';
 import { GitHub as GitHubIcon, LinkedIn as LinkedInIcon, SchoolOutlined as SchoolIcon} from "@mui/icons-material";
 
 import Reveal from 'src/components/common/reveal';
+import defaultConfig, { ConfigProvider, useConfig, usePropsWithConfig, PropsWithConfig } from 'src/config';
 
-import { height as navHeight } from 'src/config/nav';
 
-
-const StyledAnchor = styled.a`
-  color: ${props => props.theme.colors.foreground.muted};
+const StyledAnchor = styled.a.attrs(usePropsWithConfig)`
+  color: ${props => props.config.theme.colors.foreground.muted};
   text-decoration: none;
   &:hover {
-    color: ${props => props.theme.colors.foreground.muted};
+    color: ${props => props.config.theme.colors.foreground.muted};
   }
 `;
 
-const circularBackgroundOnHover = css`
+const circularBackgroundOnHover = css<PropsWithConfig<{}>>`
   &:hover {
-    background-color: ${props => props.theme.colors.neutral.subtle};
+    background-color: ${props => props.config.theme.colors.neutral.subtle};
     border-radius: 100%;
     cursor: pointer;
   }
@@ -181,12 +180,12 @@ interface ExperiencesSectionProps extends SectionProps {
   title: string,
 }
 
-const StyledExperienceCard = styled.div<{isWork?: boolean}>`
+const StyledExperienceCard = styled.div.attrs(usePropsWithConfig)<PropsWithConfig<{isWork?: boolean}>>`
   margin: 20px 0px 20px 150px;
   padding: 20px;
   ${props => props.isWork && css`
     border-radius: 10px;
-    border: 1px solid ${props => props.theme.colors.border.default};
+    border: 1px solid ${props.config.theme.colors.border.default};
   `}
   transition: all 0.2s linear 0s;
   @media (max-width: 1450px) {
@@ -200,8 +199,8 @@ const StyledExperienceCard = styled.div<{isWork?: boolean}>`
   }
   ${props => props.isWork && css`
     &:hover {
-      border-color: ${props => props.theme.colors.border.emphasized};
-      box-shadow: ${props => props.theme.shadow.default};
+      border-color: ${props.config.theme.colors.border.emphasized};
+      box-shadow: ${props.config.theme.shadow.default};
     }
   `}
 `;
@@ -217,11 +216,11 @@ const timelineHorizontalPosition = css`
   }
 `;
 
-const StyledVerticalTimeline = styled.div`
+const StyledVerticalTimeline = styled.div.attrs(usePropsWithConfig)`
   height: calc(100% - 20px);
   top: 50px;
   width: 1px;
-  background-color: ${props => props.theme.colors.neutral.muted};
+  background-color: ${props => props.config.theme.colors.neutral.muted};
   ${timelineHorizontalPosition}
 `;
 
@@ -231,10 +230,10 @@ const timelineNodePosition = css`
   left: -9px;
 `;
 
-const StyledTimelineNodeCircle = styled.div<{hoverable?: boolean}>`
+const StyledTimelineNodeCircle = styled.div.attrs(usePropsWithConfig)<PropsWithConfig<{hoverable?: boolean}>>`
   ${timelineNodePosition}
   border-radius: 50%;
-  background-color: ${props => props.theme.colors.neutral.emphasized};
+  background-color: ${props => props.config.theme.colors.neutral.emphasized};
   width: 19px;
   height: 19px;
   ${props => props.hoverable && css`
@@ -246,9 +245,9 @@ const StyledTimelineNodeCircle = styled.div<{hoverable?: boolean}>`
   `}
 `;
 
-const StyledTimelineNodeIcon = styled.div<{hoverable?: boolean}>`
+const StyledTimelineNodeIcon = styled.div.attrs(usePropsWithConfig)<PropsWithConfig<{hoverable?: boolean}>>`
   ${timelineNodePosition}
-  color: ${props => props.theme.colors.neutral.emphasized};
+  color: ${props => props.config.theme.colors.neutral.emphasized};
   width: 25px;
   height: 25px;
   ${props => props.hoverable && css`
@@ -260,9 +259,9 @@ const StyledTimelineNodeIcon = styled.div<{hoverable?: boolean}>`
   `}
 `;
 
-const StyledTimelineNodeToContentConnector = styled.div<{socket?: boolean}>`
+const StyledTimelineNodeToContentConnector = styled.div.attrs(usePropsWithConfig)<PropsWithConfig<{socket?: boolean}>>`
   position: absolute;
-  background-color: ${props => props.theme.colors.neutral.emphasized};
+  background-color: ${props => props.config.theme.colors.neutral.emphasized};
   top: -22px;
   padding-left: ${props => props.socket ? '20px' : '0px'};
   background-clip: content-box;
@@ -281,7 +280,7 @@ const StyledTimelineNodeToContentConnector = styled.div<{socket?: boolean}>`
       background-color: transparent;
       border-top-right-radius: 16px;  /* 100px of height + 10px of border */
       border-bottom-right-radius: 16px; /* 100px of height + 10px of border */
-      border: 0px solid ${props => props.theme.colors.neutral.emphasized};
+      border: 0px solid ${props.config.theme.colors.neutral.emphasized};
       border-left: 0;
       transition-delay: 0.3s;
     }
@@ -363,7 +362,7 @@ const School = () => {
 }
 
 const Experiences = ({ id, title, ...props }: ExperiencesSectionProps) => {
-  const theme = useTheme();
+  const { theme } = useConfig();
   return (
       <StyledExperiencesSection id={id} {...props}>
           <div style={{display: "flex", justifyContent: "center"}}>
@@ -478,17 +477,17 @@ interface ProjectsSectionProps extends SectionProps {
   content: string,
 }
 
-const StyledProjectCard = styled.div`
+const StyledProjectCard = styled.div.attrs(usePropsWithConfig)`
   position: relative;
   margin: 20px 0px;
   padding: 20px;
   border-radius: 10px;
-  border: 1px solid ${props => props.theme.colors.border.default};
+  border: 1px solid ${props => props.config.theme.colors.border.default};
   transition: all 0.2s ease-in-out;
   &:hover {
     transform: translateY(-5px);
-    box-shadow: ${props => props.theme.shadow.default};
-    border: 1px solid ${props => props.theme.colors.border.emphasized};
+    box-shadow: ${props => props.config.theme.shadow.default};
+    border: 1px solid ${props => props.config.theme.colors.border.emphasized};
   }
 `;
 
@@ -539,10 +538,10 @@ const Projects = ({ id, title, ...props }: ProjectsSectionProps) => {
   )
 };
 
-const Brand = styled(Navbar.Brand)`
+const Brand = styled(Navbar.Brand).attrs(usePropsWithConfig)<{navHeight: string}>`
   font-family: 'Kumbh Sans';
-  width: ${parseInt(navHeight, 10) - 16}px;
-  height: ${parseInt(navHeight, 10) - 16}px;
+  width: ${props => parseInt(props.navHeight, 10) - 16}px;
+  height: ${props => parseInt(props.navHeight, 10) - 16}px;
   text-align: center;
   ${circularBackgroundOnHover}
 `;
@@ -580,7 +579,7 @@ const NavigationBar = ({ brand, sections, minHeight }: NavigationBarProps) => {
   );
 }
 
-const StyledFixedSocials = styled.div`
+const StyledFixedSocials = styled.div.attrs(usePropsWithConfig)`
   position: fixed;
   display: flex;
   margin: 0 50px 0 0;
@@ -591,7 +590,7 @@ const StyledFixedSocials = styled.div`
   & svg {
     width: 35px;
     height: auto;
-    color: ${props => props.theme.colors.neutral.emphasized};
+    color: ${props => props.config.theme.colors.neutral.emphasized};
     transition: all 0.2s ease-in-out;
     will-change: transform;
   }
@@ -617,10 +616,10 @@ const FixedSocials = ({ children, ...props }: React.HTMLAttributes<HTMLDivElemen
   )
 }
 
-const StyledFixedSocialsToBottomOfViewportConnector = styled.div`
+const StyledFixedSocialsToBottomOfViewportConnector = styled.div.attrs(usePropsWithConfig)`
   height: calc(clamp(10px, 10vh, 100px) - 10px);
   width: 0px;
-  border: 1px solid ${props => props.theme.colors.neutral.emphasized};
+  border: 1px solid ${props => props.config.theme.colors.neutral.emphasized};
 `;
 
 // TODO: define custom types for react-scroll options (Definitely Typed package uses any)
@@ -659,7 +658,7 @@ const StyledFooter = styled.footer`
   }
 `;
 
-const StyledFooterSocials = styled.div`
+const StyledFooterSocials = styled.div.attrs(usePropsWithConfig)`
   display: flex;
   margin: 0 0 20px 0;
   justify-content: center;
@@ -667,7 +666,7 @@ const StyledFooterSocials = styled.div`
   & svg {
     width: 35px;
     height: auto;
-    color: ${props => props.theme.colors.neutral.emphasized};
+    color: ${props => props.config.theme.colors.neutral.emphasized};
     transition: all 0.2s ease-in-out;
     will-change: transform;
   }
@@ -708,29 +707,10 @@ const Footer = ({socials, credits}: {socials: React.ReactNode, credits: credits}
 
 const App: React.FC = () => {
 
-  const theme = {
-    colors: {
-      neutral: {
-        subtle: "#eaeaea",
-        muted: "#c3c3c3",
-        default: "#a8adb3",
-        emphasized: "#6e7781"
-      },
-      border: {
-        default: "#eaeaea",
-        emphasized: "#c3c3c3",
-      },
-      foreground: {
-        muted: "#656d76",
-      },
-    },
-    shadow: {
-      default: "0 6px 20px #387dff4b",
-    },
-  }
+  const config = defaultConfig;
 
   const scrollOptions = {
-    offset: -parseInt(navHeight, 10),
+    offset: -parseInt(config.layout.nav.height, 10),
     duration: 300,
     delay: 0.2,
     smooth: true,
@@ -828,18 +808,18 @@ const App: React.FC = () => {
   }
 
   return (
-    <ThemeProvider theme={theme}>
-      <NavigationBar brand={brand} sections={sectionLinks} minHeight={navHeight}/>
+    <ConfigProvider>
+      <NavigationBar brand={brand} sections={sectionLinks} minHeight={config.layout.nav.height}/>
       <StyledMainContainer>
-        <Hero {...hero} navHeight={navHeight}/>
-        <About {...about} navHeight={navHeight}/>
-        <Experiences {...experiences} navHeight={navHeight}/>
-        <Testimonials {...testimonials} navHeight={navHeight}/>
-        <Projects {...projects} navHeight={navHeight}/>
+        <Hero {...hero} navHeight={config.layout.nav.height}/>
+        <About {...about} navHeight={config.layout.nav.height}/>
+        <Experiences {...experiences} navHeight={config.layout.nav.height}/>
+        <Testimonials {...testimonials} navHeight={config.layout.nav.height}/>
+        <Projects {...projects} navHeight={config.layout.nav.height}/>
       </StyledMainContainer>
       <FixedSocials {...fixedSocials}/>
       <Footer {...footer}/>
-    </ThemeProvider>
+    </ConfigProvider>
   );
 };
 
