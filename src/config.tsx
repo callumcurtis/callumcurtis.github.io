@@ -3,6 +3,25 @@ import React from 'react';
 
 const navHeight = "56px";
 
+const defaultColors = {
+  neutral: {
+    subtle: "#eaeaea",
+    muted: "#c3c3c3",
+    default: "#6e7781",
+    emphasized: "#060609",
+  },
+  border: {
+    default: "#eaeaea",
+    emphasized: "#c3c3c3",
+  },
+  foreground: {
+    muted: "#656d76",
+  },
+  accent: {
+    muted: "#387dff4b",
+  }
+}
+
 const defaultConfig = {
   scrollReveal: {
     defaults: {
@@ -23,7 +42,7 @@ const defaultConfig = {
       minWidth: 200.00,
       scale: 1.00,
       scaleMobile: 1.00,
-      color: 0x60609,
+      color: defaultColors.neutral.emphasized,
       shininess: 48.00,
       waveHeight: 12.00,
       zoom: 0.88,
@@ -41,25 +60,9 @@ const defaultConfig = {
       height: navHeight,
     },
   },
-  theme: {
-    colors: {
-      neutral: {
-        subtle: "#eaeaea",
-        muted: "#c3c3c3",
-        default: "#a8adb3",
-        emphasized: "#6e7781"
-      },
-      border: {
-        default: "#eaeaea",
-        emphasized: "#c3c3c3",
-      },
-      foreground: {
-        muted: "#656d76",
-      },
-    },
-    shadow: {
-      default: "0 6px 20px #387dff4b",
-    },
+  colors: { ...defaultColors },
+  shadow: {
+    default: `0 6px 20px ${defaultColors.accent.muted}`,
   },
 }
 

@@ -17,16 +17,16 @@ import About from 'src/components/sections/about';
 
 
 const StyledAnchor = styled.a.attrs(usePropsWithConfig)`
-  color: ${props => props.config.theme.colors.foreground.muted};
+  color: ${props => props.config.colors.foreground.muted};
   text-decoration: none;
   &:hover {
-    color: ${props => props.config.theme.colors.foreground.muted};
+    color: ${props => props.config.colors.foreground.muted};
   }
 `;
 
 const circularBackgroundOnHover = css<PropsWithConfig<{}>>`
   &:hover {
-    background-color: ${props => props.config.theme.colors.neutral.subtle};
+    background-color: ${props => props.config.colors.neutral.subtle};
     border-radius: 100%;
     cursor: pointer;
   }
@@ -88,7 +88,7 @@ const StyledExperienceCard = styled.div.attrs(usePropsWithConfig)<PropsWithConfi
   padding: 20px;
   ${props => props.isWork && css`
     border-radius: 10px;
-    border: 1px solid ${props.config.theme.colors.border.default};
+    border: 1px solid ${props.config.colors.border.default};
   `}
   transition: all 0.2s linear 0s;
   @media (max-width: 1450px) {
@@ -102,8 +102,8 @@ const StyledExperienceCard = styled.div.attrs(usePropsWithConfig)<PropsWithConfi
   }
   ${props => props.isWork && css`
     &:hover {
-      border-color: ${props.config.theme.colors.border.emphasized};
-      box-shadow: ${props.config.theme.shadow.default};
+      border-color: ${props.config.colors.border.emphasized};
+      box-shadow: ${props.config.shadow.default};
     }
   `}
 `;
@@ -123,7 +123,7 @@ const StyledVerticalTimeline = styled.div.attrs(usePropsWithConfig)`
   height: calc(100% - 20px);
   top: 50px;
   width: 1px;
-  background-color: ${props => props.config.theme.colors.neutral.muted};
+  background-color: ${props => props.config.colors.neutral.muted};
   ${timelineHorizontalPosition}
 `;
 
@@ -136,7 +136,7 @@ const timelineNodePosition = css`
 const StyledTimelineNodeCircle = styled.div.attrs(usePropsWithConfig)<PropsWithConfig<{hoverable?: boolean}>>`
   ${timelineNodePosition}
   border-radius: 50%;
-  background-color: ${props => props.config.theme.colors.neutral.emphasized};
+  background-color: ${props => props.config.colors.neutral.default};
   width: 19px;
   height: 19px;
   ${props => props.hoverable && css`
@@ -150,7 +150,7 @@ const StyledTimelineNodeCircle = styled.div.attrs(usePropsWithConfig)<PropsWithC
 
 const StyledTimelineNodeIcon = styled.div.attrs(usePropsWithConfig)<PropsWithConfig<{hoverable?: boolean}>>`
   ${timelineNodePosition}
-  color: ${props => props.config.theme.colors.neutral.emphasized};
+  color: ${props => props.config.colors.neutral.default};
   width: 25px;
   height: 25px;
   ${props => props.hoverable && css`
@@ -164,7 +164,7 @@ const StyledTimelineNodeIcon = styled.div.attrs(usePropsWithConfig)<PropsWithCon
 
 const StyledTimelineNodeToContentConnector = styled.div.attrs(usePropsWithConfig)<PropsWithConfig<{socket?: boolean}>>`
   position: absolute;
-  background-color: ${props => props.config.theme.colors.neutral.emphasized};
+  background-color: ${props => props.config.colors.neutral.default};
   top: -22px;
   padding-left: ${props => props.socket ? '20px' : '0px'};
   background-clip: content-box;
@@ -183,7 +183,7 @@ const StyledTimelineNodeToContentConnector = styled.div.attrs(usePropsWithConfig
       background-color: transparent;
       border-top-right-radius: 16px;  /* 100px of height + 10px of border */
       border-bottom-right-radius: 16px; /* 100px of height + 10px of border */
-      border: 0px solid ${props.config.theme.colors.neutral.emphasized};
+      border: 0px solid ${props.config.colors.neutral.default};
       border-left: 0;
       transition-delay: 0.3s;
     }
@@ -265,7 +265,7 @@ const School = () => {
 }
 
 const Experiences = ({ id, title, ...props }: ExperiencesSectionProps) => {
-  const { theme } = useConfig();
+  const config = useConfig();
   return (
       <StyledExperiencesSection id={id} {...props}>
           <div style={{display: "flex", justifyContent: "center"}}>
@@ -278,7 +278,7 @@ const Experiences = ({ id, title, ...props }: ExperiencesSectionProps) => {
               <School/>
               <TimelineAlignment>
                 <Reveal origin="top" scale={0.5} delay={200} distance="5px">
-                  <TerminalIcon style={{left: "calc(50% - 11px)", position: "absolute", top: "20px", color: theme.colors.neutral.emphasized}}/>
+                  <TerminalIcon style={{left: "calc(50% - 11px)", position: "absolute", top: "20px", color: config.colors.neutral.default}}/>
                 </Reveal>
               </TimelineAlignment>
             </StyledExperiencesContent>
@@ -385,12 +385,12 @@ const StyledProjectCard = styled.div.attrs(usePropsWithConfig)`
   margin: 20px 0px;
   padding: 20px;
   border-radius: 10px;
-  border: 1px solid ${props => props.config.theme.colors.border.default};
+  border: 1px solid ${props => props.config.colors.border.default};
   transition: all 0.2s ease-in-out;
   &:hover {
     transform: translateY(-5px);
-    box-shadow: ${props => props.config.theme.shadow.default};
-    border: 1px solid ${props => props.config.theme.colors.border.emphasized};
+    box-shadow: ${props => props.config.shadow.default};
+    border: 1px solid ${props => props.config.colors.border.emphasized};
   }
 `;
 
@@ -493,7 +493,7 @@ const StyledFixedSocials = styled.div.attrs(usePropsWithConfig)`
   & svg {
     width: 35px;
     height: auto;
-    color: ${props => props.config.theme.colors.neutral.emphasized};
+    color: ${props => props.config.colors.neutral.default};
     transition: all 0.2s ease-in-out;
     will-change: transform;
   }
@@ -522,7 +522,7 @@ const FixedSocials = ({ children, ...props }: React.HTMLAttributes<HTMLDivElemen
 const StyledFixedSocialsToBottomOfViewportConnector = styled.div.attrs(usePropsWithConfig)`
   height: calc(clamp(10px, 10vh, 100px) - 10px);
   width: 0px;
-  border: 1px solid ${props => props.config.theme.colors.neutral.emphasized};
+  border: 1px solid ${props => props.config.colors.neutral.default};
 `;
 
 // TODO: define custom types for react-scroll options (Definitely Typed package uses any)
@@ -569,7 +569,7 @@ const StyledFooterSocials = styled.div.attrs(usePropsWithConfig)`
   & svg {
     width: 35px;
     height: auto;
-    color: ${props => props.config.theme.colors.neutral.emphasized};
+    color: ${props => props.config.colors.neutral.default};
     transition: all 0.2s ease-in-out;
     will-change: transform;
   }
