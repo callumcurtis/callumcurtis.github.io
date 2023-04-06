@@ -60,16 +60,12 @@ const regularContentSize = css`
   }
 `;
 
-interface SectionProps {
-  navHeight: string;
-}
-
 interface WithKey {
   key: React.Key | null | undefined;
 }
 
-const StyledAboutSection = styled.section<SectionProps>`
-  min-height: calc(100vh - ${props => props.navHeight});
+const StyledAboutSection = styled.section.attrs(usePropsWithConfig)`
+  min-height: calc(100vh - ${props => props.config.layout.nav.height});
   padding: clamp(20px, 5vh, 50px) 0px;
   display: flex;
   flex-direction: column;
@@ -81,7 +77,7 @@ const StyledAboutContent = styled.div`
   ${regularContentSize}
 `;
 
-interface AboutSectionProps extends SectionProps {
+interface AboutSectionProps {
   id: string,
   title: string,
   content: string,
@@ -100,8 +96,8 @@ const About = ({ id, title, content, ...props }: AboutSectionProps) => {
   )
 }
 
-const StyledExperiencesSection = styled.section<SectionProps>`
-  min-height: calc(100vh - ${props => props.navHeight});
+const StyledExperiencesSection = styled.section.attrs(usePropsWithConfig)`
+  min-height: calc(100vh - ${props => props.config.layout.nav.height});
   padding: clamp(20px, 5vh, 50px) 0px;
   display: flex;
   flex-direction: column;
@@ -113,7 +109,7 @@ const StyledExperiencesContent = styled.div`
   ${regularContentSize}
 `;
 
-interface ExperiencesSectionProps extends SectionProps {
+interface ExperiencesSectionProps {
   id: string,
   title: string,
 }
@@ -327,12 +323,12 @@ interface TestimonialProps {
   attribution: string,
 }
 
-interface TestimonialSectionProps extends SectionProps {
+interface TestimonialSectionProps {
   testimonials: (TestimonialProps & WithKey)[],
 }
 
-const StyledTestimonialSection = styled.div<SectionProps>`
-  min-height: calc(100vh - ${props => props.navHeight});
+const StyledTestimonialSection = styled.div.attrs(usePropsWithConfig)`
+  min-height: calc(100vh - ${props => props.config.layout.nav.height});
   padding: clamp(20px, 5vh, 50px) 0px;
   display: flex;
   flex-direction: column;
@@ -396,8 +392,8 @@ const Testimonials = ({ testimonials, ...props }: TestimonialSectionProps) => {
   )
 };
 
-const StyledProjectsSection = styled.section<SectionProps>`
-  min-height: calc(100vh - ${props => props.navHeight});
+const StyledProjectsSection = styled.section.attrs(usePropsWithConfig)`
+  min-height: calc(100vh - ${props => props.config.layout.nav.height});
   padding: clamp(20px, 5vh, 50px) 0px;
   display: flex;
   flex-direction: column;
@@ -409,7 +405,7 @@ const StyledProjectsContent = styled.div`
   ${regularContentSize}
 `;
 
-interface ProjectsSectionProps extends SectionProps {
+interface ProjectsSectionProps {
   id: string,
   title: string,
   content: string,
@@ -476,10 +472,10 @@ const Projects = ({ id, title, ...props }: ProjectsSectionProps) => {
   )
 };
 
-const Brand = styled(Navbar.Brand).attrs(usePropsWithConfig)<{navHeight: string}>`
+const Brand = styled(Navbar.Brand).attrs(usePropsWithConfig)`
   font-family: 'Kumbh Sans';
-  width: ${props => parseInt(props.navHeight, 10) - 16}px;
-  height: ${props => parseInt(props.navHeight, 10) - 16}px;
+  width: ${props => parseInt(props.config.layout.nav.height, 10) - 16}px;
+  height: ${props => parseInt(props.config.layout.nav.height, 10) - 16}px;
   text-align: center;
   ${circularBackgroundOnHover}
 `;
@@ -493,14 +489,14 @@ interface NavigationBarElement {
 interface NavigationBarProps {
   brand: NavigationBarElement;
   sections: (NavigationBarElement & WithKey)[];
-  minHeight: string;
 }
 
-const NavigationBar = ({ brand, sections, minHeight }: NavigationBarProps) => {
+const NavigationBar = ({ brand, sections }: NavigationBarProps) => {
+  const config = useConfig();
   return (
     <>
-      <div style={{ height: minHeight }} />
-      <Navbar bg="light" expand="sm" fixed="top" style={{ minHeight: minHeight }}>
+      <div style={{ height:  config.layout.nav.height}} />
+      <Navbar bg="light" expand="sm" fixed="top" style={{ minHeight: config.layout.nav.height }}>
         <Container fluid style={{paddingLeft: "30px", paddingRight: "30px"}}>
           <Brand className="Brand" onClick={brand.onClick} href={brand.href || "#"}>{brand.children}</Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -742,13 +738,13 @@ const App: React.FC = () => {
   return (
     <ConfigProvider config={config}>
       <ContentProvider content={defaultContent}>
-        <NavigationBar brand={brand} sections={sectionLinks} minHeight={config.layout.nav.height}/>
+        <NavigationBar brand={brand} sections={sectionLinks}/>
         <StyledMainContainer>
           <Hero/>
-          <About {...about} navHeight={config.layout.nav.height}/>
-          <Experiences {...experiences} navHeight={config.layout.nav.height}/>
-          <Testimonials {...testimonials} navHeight={config.layout.nav.height}/>
-          <Projects {...projects} navHeight={config.layout.nav.height}/>
+          <About {...about}/>
+          <Experiences {...experiences}/>
+          <Testimonials {...testimonials}/>
+          <Projects {...projects}/>
         </StyledMainContainer>
         <FixedSocials {...fixedSocials}/>
         <Footer {...footer}/>
