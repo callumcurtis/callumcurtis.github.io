@@ -6,12 +6,13 @@ import "./App.css";
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import WAVES from 'vanta/dist/vanta.waves.min';
 import TerminalIcon from '@mui/icons-material/Terminal';
 import { GitHub as GitHubIcon, LinkedIn as LinkedInIcon, SchoolOutlined as SchoolIcon} from "@mui/icons-material";
 
 import Reveal from 'src/components/common/reveal';
 import defaultConfig, { ConfigProvider, useConfig, usePropsWithConfig, PropsWithConfig } from 'src/config';
+import defaultContent, { ContentProvider } from 'src/content';
+import Hero from 'src/components/sections/hero';
 
 
 const StyledAnchor = styled.a.attrs(usePropsWithConfig)`
@@ -65,69 +66,6 @@ interface SectionProps {
 
 interface WithKey {
   key: React.Key | null | undefined;
-}
-
-interface Destroyable {
-  destroy: () => void;
-}
-
-const WaveBackground = () => {
-  const [vantaEffect, setVantaEffect] = React.useState<Destroyable | null>(null)
-  const myRef = React.useRef(null)
-  React.useEffect(() => {
-    if (!vantaEffect) {
-      setVantaEffect(WAVES({
-        el: myRef.current,
-        mouseControls: true,
-        touchControls: true,
-        gyroControls: false,
-        minHeight: 200.00,
-        minWidth: 200.00,
-        scale: 1.00,
-        scaleMobile: 1.00,
-        color: 0x60609,
-        shininess: 48.00,
-        waveHeight: 12.00,
-        zoom: 0.88,
-      }))
-    }
-    return () => {
-      if (vantaEffect) vantaEffect.destroy()
-    }
-  }, [vantaEffect])
-  return <div ref={myRef} className="h-100 w-100 position-absolute" style={{zIndex: -1}} />
-}
-
-const StyledHeroSection = styled.section<SectionProps>`
-  position: relative;
-  min-height: calc(100vh - ${props => props.navHeight});
-  padding: clamp(20px, 5vh, 50px) 0px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: left;
-`;
-
-const StyledHeroContent = styled.div`
-  ${wideContentSize}
-`;
-
-interface HeroProps extends SectionProps {
-  id: string,
-  title: string,
-  content: string,
-}
-
-const Hero = ({ id, title, content, ...props }: HeroProps) => {
-  return (
-    <StyledHeroSection id={id} {...props}>
-        <WaveBackground/>
-        <StyledHeroContent style={{color: "white"}}>
-          <h1 style={{fontWeight: "600"}}>{title}</h1>
-          <p style={{maxWidth: "550px", marginTop: "20px"}}>{content}</p>
-        </StyledHeroContent>
-    </StyledHeroSection>
-  )
 }
 
 const StyledAboutSection = styled.section<SectionProps>`
@@ -720,12 +658,6 @@ const App: React.FC = () => {
 
   useScrollToHashOnMount(scrollOptions);
 
-  const hero = {
-    id: "hero",
-    title: "Hi, I'm Callum",
-    content: "I'm a software engineering student, passionate about solving problems, challenging my skills, and pushing my expectations of myself. Currently, I'm continuing my studies at the University of Victoria."
-  }
-
   const about = {
     id: "about",
     title: "About",
@@ -746,7 +678,7 @@ const App: React.FC = () => {
 
   const brand = {
     children: "C",
-    onClick: () => scroller.scrollTo(hero.id, scrollOptions),
+    onClick: () => scroller.scrollTo(config.ids.hero, scrollOptions),
   };
 
   const sectionLinks = [
@@ -808,17 +740,19 @@ const App: React.FC = () => {
   }
 
   return (
-    <ConfigProvider>
-      <NavigationBar brand={brand} sections={sectionLinks} minHeight={config.layout.nav.height}/>
-      <StyledMainContainer>
-        <Hero {...hero} navHeight={config.layout.nav.height}/>
-        <About {...about} navHeight={config.layout.nav.height}/>
-        <Experiences {...experiences} navHeight={config.layout.nav.height}/>
-        <Testimonials {...testimonials} navHeight={config.layout.nav.height}/>
-        <Projects {...projects} navHeight={config.layout.nav.height}/>
-      </StyledMainContainer>
-      <FixedSocials {...fixedSocials}/>
-      <Footer {...footer}/>
+    <ConfigProvider config={config}>
+      <ContentProvider content={defaultContent}>
+        <NavigationBar brand={brand} sections={sectionLinks} minHeight={config.layout.nav.height}/>
+        <StyledMainContainer>
+          <Hero/>
+          <About {...about} navHeight={config.layout.nav.height}/>
+          <Experiences {...experiences} navHeight={config.layout.nav.height}/>
+          <Testimonials {...testimonials} navHeight={config.layout.nav.height}/>
+          <Projects {...projects} navHeight={config.layout.nav.height}/>
+        </StyledMainContainer>
+        <FixedSocials {...fixedSocials}/>
+        <Footer {...footer}/>
+      </ContentProvider>
     </ConfigProvider>
   );
 };

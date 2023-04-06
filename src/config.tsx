@@ -1,7 +1,7 @@
 import React from 'react';
 
-const navHeight = "56px";
 
+const navHeight = "56px";
 
 const defaultConfig = {
   scrollReveal: {
@@ -13,6 +13,24 @@ const defaultConfig = {
       origin: "left",
       reset: true,
     }
+  },
+  vanta: {
+    waves: {
+      mouseControls: true,
+      touchControls: true,
+      gyroControls: false,
+      minHeight: 200.00,
+      minWidth: 200.00,
+      scale: 1.00,
+      scaleMobile: 1.00,
+      color: 0x60609,
+      shininess: 48.00,
+      waveHeight: 12.00,
+      zoom: 0.88,
+    },
+  },
+  ids: {
+    hero: "hero",
   },
   layout: {
     nav: {
