@@ -13,6 +13,7 @@ import Reveal from 'src/components/common/reveal';
 import defaultConfig, { ConfigProvider, useConfig, usePropsWithConfig, PropsWithConfig } from 'src/config';
 import defaultContent, { ContentProvider } from 'src/content';
 import Hero from 'src/components/sections/hero';
+import About from 'src/components/sections/about';
 
 
 const StyledAnchor = styled.a.attrs(usePropsWithConfig)`
@@ -62,38 +63,6 @@ const regularContentSize = css`
 
 interface WithKey {
   key: React.Key | null | undefined;
-}
-
-const StyledAboutSection = styled.section.attrs(usePropsWithConfig)`
-  min-height: calc(100vh - ${props => props.config.layout.nav.height});
-  padding: clamp(20px, 5vh, 50px) 0px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-`;
-
-const StyledAboutContent = styled.div`
-  ${regularContentSize}
-`;
-
-interface AboutSectionProps {
-  id: string,
-  title: string,
-  content: string,
-}
-
-const About = ({ id, title, content, ...props }: AboutSectionProps) => {
-  return (
-      <StyledAboutSection id={id} {...props}>
-        <Reveal>
-          <StyledAboutContent>
-            <h2>{title}</h2>
-            <p>{content}</p>
-          </StyledAboutContent>
-        </Reveal>
-      </StyledAboutSection>
-  )
 }
 
 const StyledExperiencesSection = styled.section.attrs(usePropsWithConfig)`
@@ -657,7 +626,6 @@ const App: React.FC = () => {
   const about = {
     id: "about",
     title: "About",
-    content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel nunc et enim efficitur feugiat a eget dolor. Ut pellentesque, quam id ultrices facilisis, nisi nulla finibus velit, id aliquam ipsum orci non nibh. Sed blandit non libero vitae bibendum. Donec a dolor turpis. Sed suscipit interdum mi, in elementum neque aliquam at. Aenean quis massa a magna egestas pellentesque. Sed tristique semper ante, a gravida ex auctor at."
   }
 
   const experiences = {
@@ -741,7 +709,7 @@ const App: React.FC = () => {
         <NavigationBar brand={brand} sections={sectionLinks}/>
         <StyledMainContainer>
           <Hero/>
-          <About {...about}/>
+          <About/>
           <Experiences {...experiences}/>
           <Testimonials {...testimonials}/>
           <Projects {...projects}/>

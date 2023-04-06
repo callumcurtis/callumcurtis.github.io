@@ -31,6 +31,7 @@ const defaultConfig = {
   },
   ids: {
     hero: "hero",
+    about: "about",
   },
   layout: {
     nav: {

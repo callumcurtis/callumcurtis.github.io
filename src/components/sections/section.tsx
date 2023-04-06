@@ -14,6 +14,19 @@ const sectionLayout = css`
   justify-content: center;
 `;
 
+const regularContentSize = css`
+  padding: 0px 100px;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  @media (max-width: 768px) {
+    padding: 0px 50px;
+  }
+  @media (max-width: 480px) {
+    padding: 0px 20px;
+  }
+`;
+
 const wideContentSize = css`
   padding: 0px 200px;
   width: 100%;
@@ -30,4 +43,4 @@ const wideContentSize = css`
   }
 `;
 
-export { wideContentSize, sectionSize, sectionLayout }
+export { regularContentSize, wideContentSize, sectionSize, sectionLayout }

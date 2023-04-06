@@ -7,7 +7,7 @@ import { wideContentSize, sectionSize, sectionLayout } from 'src/components/sect
 import { useContent } from 'src/content';
 
 
-const StyledBackground = styled.div`
+const StyledHeroBackground = styled.div`
   position: absolute;
   height: 100%;
   width: 100%;
@@ -29,7 +29,7 @@ const WaveBackground = () => {
       if (vantaEffect) vantaEffect.destroy()
     }
   }, [vantaEffect, wavesConfig])
-  return <StyledBackground ref={myRef}/>
+  return <StyledHeroBackground ref={myRef}/>
 }
 
 const StyledHeroSection = styled.section.attrs(usePropsWithConfig)`
@@ -44,11 +44,11 @@ const StyledHeroContent = styled.div`
   ${wideContentSize}
 `;
 
-const StyledHeading = styled.h1`
+const StyledHeroHeading = styled.h1`
   font-weight: 600;
 `;
 
-const StyledBrief = styled.p`
+const StyledHeroBrief = styled.p`
   max-width: 550px;
   margin-top: 20px;
 `;
@@ -60,8 +60,8 @@ const Hero = () => {
     <StyledHeroSection id={config.ids.hero}>
         <WaveBackground/>
         <StyledHeroContent>
-          <StyledHeading>{content.hero.heading}</StyledHeading>
-          <StyledBrief>{content.hero.brief}</StyledBrief>
+          <StyledHeroHeading>{content.hero.heading}</StyledHeroHeading>
+          <StyledHeroBrief>{content.hero.brief}</StyledHeroBrief>
         </StyledHeroContent>
     </StyledHeroSection>
   )
