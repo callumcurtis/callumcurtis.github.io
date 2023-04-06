@@ -16,6 +16,8 @@ const defaultColors = {
   },
   foreground: {
     muted: "#656d76",
+    emphasizedOnEmphasized: "#ffffff",
+    mutedOnEmphasized: "#dddddd",
   },
   accent: {
     muted: "#387dff4b",
@@ -34,19 +36,11 @@ const defaultConfig = {
     }
   },
   vanta: {
-    waves: {
+    defaults: {
       mouseControls: true,
       touchControls: true,
       gyroControls: false,
-      minHeight: 200.00,
-      minWidth: 200.00,
-      scale: 1.00,
-      scaleMobile: 1.00,
-      color: defaultColors.neutral.emphasized,
-      shininess: 48.00,
-      waveHeight: 12.00,
-      zoom: 0.88,
-    },
+    }
   },
   ids: {
     hero: "hero",
@@ -64,6 +58,11 @@ const defaultConfig = {
   shadow: {
     default: `0 6px 20px ${defaultColors.accent.muted}`,
   },
+  text: {
+    weight: {
+      semibold: 600,
+    }
+  }
 }
 
 type Config = typeof defaultConfig;

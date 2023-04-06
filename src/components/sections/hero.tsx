@@ -9,7 +9,7 @@ import { useContent } from 'src/content';
 
 const StyledHeroSection = styled.section.attrs(usePropsWithConfig)`
   text-align: left;
-  color: white;
+  color: ${props => props.config.colors.foreground.emphasizedOnEmphasized};
   ${sectionSize}
   ${sectionLayout}
   ${backgroundContainer}
@@ -23,21 +23,33 @@ const StyledHeroContent = styled.div`
   ${wideContentSize}
 `;
 
-const StyledHeroHeading = styled.h1`
-  font-weight: 600;
+const StyledHeroHeading = styled.h1.attrs(usePropsWithConfig)`
+  font-weight: ${props => props.config.text.weight.semibold};
 `;
 
-const StyledHeroBrief = styled.p`
-  max-width: 550px;
-  margin-top: 20px;
+const StyledHeroBrief = styled.p.attrs(usePropsWithConfig)`
+  color: ${props => props.config.colors.foreground.mutedOnEmphasized};
+  max-width: 750px;
+  margin-top: 25px;
 `;
 
 const Hero = () => {
   const config = useConfig();
   const content = useContent();
+  const waveOptions = {
+    ...config.vanta.defaults,
+    minHeight: 200.00,
+    minWidth: 200.00,
+    scale: 1.00,
+    scaleMobile: 1.00,
+    color: config.colors.neutral.emphasized,
+    shininess: 48.00,
+    waveHeight: 12.00,
+    zoom: 0.88,
+  }
   return (
     <StyledHeroSection id={config.ids.hero}>
-        <StyledHeroBackground/>
+        <StyledHeroBackground waveOptions={waveOptions}/>
         <StyledHeroContent>
           <StyledHeroHeading>{content.hero.heading}</StyledHeroHeading>
           <StyledHeroBrief>{content.hero.brief}</StyledHeroBrief>

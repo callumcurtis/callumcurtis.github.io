@@ -1,24 +1,21 @@
 import React from 'react';
 import WAVES from 'vanta/dist/vanta.waves.min';
 
-import { useConfig } from 'src/config';
 
-
-const withWaveAnimationBackground = <P extends {}>(Component: React.ComponentType<P>) => (props: P) => {
+const withWaveAnimationBackground = <P extends {waveOptions?: {}}>(Component: React.ComponentType<Omit<P, "waveOptions">>) => (props: P) => {
   const [vantaEffect, setVantaEffect] = React.useState<{ destroy: () => void } | null>(null)
-  const { vanta: { waves: wavesConfig } } = useConfig();
   const myRef = React.useRef(null)
   React.useEffect(() => {
     if (!vantaEffect) {
       setVantaEffect(WAVES({
         el: myRef.current,
-        ...wavesConfig,
+        ...props.waveOptions,
       }))
     }
     return () => {
       if (vantaEffect) vantaEffect.destroy()
     }
-  }, [vantaEffect, wavesConfig])
+  }, [vantaEffect, props.waveOptions])
   return <Component {...props} ref={myRef} />
 }
 
