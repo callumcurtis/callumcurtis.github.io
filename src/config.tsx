@@ -45,6 +45,7 @@ const defaultConfig = {
   ids: {
     hero: "hero",
     about: "about",
+    experience: "experience",
   },
   layers: {
     background: -1,

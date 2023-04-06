@@ -6,14 +6,14 @@ import "./App.css";
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import TerminalIcon from '@mui/icons-material/Terminal';
-import { GitHub as GitHubIcon, LinkedIn as LinkedInIcon, SchoolOutlined as SchoolIcon} from "@mui/icons-material";
+import { GitHub as GitHubIcon, LinkedIn as LinkedInIcon} from "@mui/icons-material";
 
 import Reveal from 'src/components/reveal';
 import defaultConfig, { ConfigProvider, useConfig, usePropsWithConfig, PropsWithConfig } from 'src/config';
 import defaultContent, { ContentProvider } from 'src/content';
 import Hero from 'src/components/sections/hero';
 import About from 'src/components/sections/about';
+import Experience from 'src/components/sections/experience';
 
 
 const StyledAnchor = styled.a.attrs(usePropsWithConfig)`
@@ -63,228 +63,6 @@ const regularContentSize = css`
 
 interface WithKey {
   key: React.Key | null | undefined;
-}
-
-const StyledExperiencesSection = styled.section.attrs(usePropsWithConfig)`
-  min-height: calc(100vh - ${props => props.config.layout.nav.height});
-  padding: clamp(20px, 5vh, 50px) 0px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-`;
-
-const StyledExperiencesContent = styled.div`
-  position: relative;
-  ${regularContentSize}
-`;
-
-interface ExperiencesSectionProps {
-  id: string,
-  title: string,
-}
-
-const StyledExperienceCard = styled.div.attrs(usePropsWithConfig)<PropsWithConfig<{isWork?: boolean}>>`
-  margin: 20px 0px 20px 150px;
-  padding: 20px;
-  ${props => props.isWork && css`
-    border-radius: 10px;
-    border: 1px solid ${props.config.colors.border.default};
-  `}
-  transition: all 0.2s linear 0s;
-  @media (max-width: 1450px) {
-    margin: 20px 0px 20px 200px;
-  }
-  @media (max-width: 1079px) {
-    margin: 20px 0px;
-    ${props => !props.isWork && css`
-      display: none;
-    `}
-  }
-  ${props => props.isWork && css`
-    &:hover {
-      border-color: ${props.config.colors.border.emphasized};
-      box-shadow: ${props.config.shadow.default};
-    }
-  `}
-`;
-
-const timelineHorizontalPosition = css`
-  position: absolute;
-  left: 50px;
-  @media (max-width: 1450px) {
-    left: 100px;
-  }
-  @media (max-width: 1079px) {
-    display: none;
-  }
-`;
-
-const StyledVerticalTimeline = styled.div.attrs(usePropsWithConfig)`
-  height: calc(100% - 20px);
-  top: 50px;
-  width: 1px;
-  background-color: ${props => props.config.colors.neutral.muted};
-  ${timelineHorizontalPosition}
-`;
-
-const timelineNodePosition = css`
-  position: absolute;
-  top: -30px;
-  left: -9px;
-`;
-
-const StyledTimelineNodeCircle = styled.div.attrs(usePropsWithConfig)<PropsWithConfig<{hoverable?: boolean}>>`
-  ${timelineNodePosition}
-  border-radius: 50%;
-  background-color: ${props => props.config.colors.neutral.default};
-  width: 19px;
-  height: 19px;
-  ${props => props.hoverable && css`
-    transition: all 0.05s linear 0.3s;
-    ${StyledExperienceCard}:hover & {
-      transform: scale(1.2);
-      transition-delay: 0s;
-    }
-  `}
-`;
-
-const StyledTimelineNodeIcon = styled.div.attrs(usePropsWithConfig)<PropsWithConfig<{hoverable?: boolean}>>`
-  ${timelineNodePosition}
-  color: ${props => props.config.colors.neutral.default};
-  width: 25px;
-  height: 25px;
-  ${props => props.hoverable && css`
-    transition: all 0.05s linear 0.3s;
-    ${StyledExperienceCard}:hover & {
-      transform: scale(1.2);
-      transition-delay: 0s;
-    }
-  `}
-`;
-
-const StyledTimelineNodeToContentConnector = styled.div.attrs(usePropsWithConfig)<PropsWithConfig<{socket?: boolean}>>`
-  position: absolute;
-  background-color: ${props => props.config.colors.neutral.default};
-  top: -22px;
-  padding-left: ${props => props.socket ? '20px' : '0px'};
-  background-clip: content-box;
-  width: 0px;
-  z-index: -1;
-  height: 3px;
-  transition: all 0.1s linear 0.2s;
-  ${props => props.socket && css`
-    &:before {
-      content: "";
-      position: absolute;
-      top: -16px;
-      left: 4px;
-      width: 18px;
-      height: 35px;
-      background-color: transparent;
-      border-top-right-radius: 16px;  /* 100px of height + 10px of border */
-      border-bottom-right-radius: 16px; /* 100px of height + 10px of border */
-      border: 0px solid ${props.config.colors.neutral.default};
-      border-left: 0;
-      transition-delay: 0.3s;
-    }
-    ${StyledExperienceCard}:hover &:before {
-      border-width: 3px;
-      transition-delay: 0.05s;
-    }
-  `}
-  ${StyledExperienceCard}:hover & {
-    width: 100px;
-    transition-delay: 0.05s;
-  }
-`;
-
-const StyledTimelineDateRange = styled.div`
-  position: absolute;
-  top: -30px;
-  right: 20px;
-  font-size: 14px;
-  white-space: nowrap;
-`;
-
-const TimelineAlignment = styled.div`
-  padding: inherit;
-  ${timelineHorizontalPosition}
-`;
-
-const StyledDateRange = styled.div`
-  display: none;
-  @media (max-width: 1079px) {
-    display: block;
-  }
-`;
-
-const WorkExperience = () => {
-  return (
-    <Reveal origin="bottom">
-      <StyledExperienceCard isWork>
-        <StyledVerticalTimeline>
-          <StyledTimelineDateRange>May 2019 - Sep 2021</StyledTimelineDateRange>
-          <StyledTimelineNodeCircle hoverable/>
-          <StyledTimelineNodeToContentConnector/>
-        </StyledVerticalTimeline>
-        <h3>Software Engineering</h3>
-        <StyledDateRange>May 2019 - Sep 2021</StyledDateRange>
-        <p>At Ubisoft Quebec from 2019 to 2021</p>
-        <p>Working on Assassin's Creed Valhalla</p>
-      </StyledExperienceCard>
-    </Reveal>
-  )
-}
-
-const NonWorkExperience = ({ timelineNode, socket }: { timelineNode: React.ReactNode, socket?: boolean }) => {
-  return (
-    <Reveal origin="bottom">
-      <StyledExperienceCard>
-        <StyledVerticalTimeline>
-          <StyledTimelineDateRange>May 2019 - Sep 2021</StyledTimelineDateRange>
-          {timelineNode}
-          <StyledTimelineNodeToContentConnector socket={socket} />
-        </StyledVerticalTimeline>
-        <p style={{ fontSize: "14px" }}>Continuing: Software Engineering at the University of Victoria</p>
-      </StyledExperienceCard>
-    </Reveal>
-  );
-}
-
-const School = () => {
-  return (
-    <NonWorkExperience
-      socket
-      timelineNode={
-        <StyledTimelineNodeIcon hoverable>
-          <SchoolIcon style={{ width: "100%", height: "100%", position: "absolute", right: "3px", top: "-3px" }} />
-        </StyledTimelineNodeIcon>
-      }
-    />
-  );
-}
-
-const Experiences = ({ id, title, ...props }: ExperiencesSectionProps) => {
-  const config = useConfig();
-  return (
-      <StyledExperiencesSection id={id} {...props}>
-          <div style={{display: "flex", justifyContent: "center"}}>
-            <StyledExperiencesContent>
-              <h2 style={{textAlign: "center"}}>{title}</h2>
-              <School/>
-              <WorkExperience/>
-              <School/>
-              <WorkExperience/>
-              <School/>
-              <TimelineAlignment>
-                <Reveal origin="top" scale={0.5} delay={200} distance="5px">
-                  <TerminalIcon style={{left: "calc(50% - 11px)", position: "absolute", top: "20px", color: config.colors.neutral.default}}/>
-                </Reveal>
-              </TimelineAlignment>
-            </StyledExperiencesContent>
-          </div>
-      </StyledExperiencesSection>
-  )
 }
 
 interface TestimonialProps {
@@ -628,10 +406,9 @@ const App: React.FC = () => {
     title: "About",
   }
 
-  const experiences = {
+  const experience = {
     id: "experience",
     title: "Experience",
-    content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel nunc et enim efficitur feugiat a eget dolor. Ut pellentesque, quam id ultrices facilisis, nisi nulla finibus velit, id aliquam ipsum orci non nibh. Sed blandit non libero vitae bibendum. Donec a dolor turpis. Sed suscipit interdum mi, in elementum neque aliquam at. Aenean quis massa a magna egestas pellentesque. Sed tristique semper ante, a gravida ex auctor at."
   }
 
   const projects = {
@@ -647,7 +424,7 @@ const App: React.FC = () => {
 
   const sectionLinks = [
     about,
-    experiences,
+    experience,
     projects,
   ].map((section) => ({
     key: section.id,
@@ -710,7 +487,7 @@ const App: React.FC = () => {
         <StyledMainContainer>
           <Hero/>
           <About/>
-          <Experiences {...experiences}/>
+          <Experience/>
           <Testimonials {...testimonials}/>
           <Projects {...projects}/>
         </StyledMainContainer>
