@@ -7,20 +7,13 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import WAVES from 'vanta/dist/vanta.waves.min';
-import ScrollReveal from 'scrollreveal'
 import TerminalIcon from '@mui/icons-material/Terminal';
 import { GitHub as GitHubIcon, LinkedIn as LinkedInIcon, SchoolOutlined as SchoolIcon} from "@mui/icons-material";
 
-const navHeight = "56px";
+import Reveal from 'src/components/common/reveal';
 
-ScrollReveal({
-    viewOffset: { top: parseInt(navHeight) + 50, bottom: 50},
-    distance: '30px',
-    duration: 500,
-    easing: 'cubic-bezier(.4,-0.01,.3,.37)',
-    origin: "left",
-    reset: true,
-})
+import { height as navHeight } from 'src/config/nav';
+
 
 const StyledAnchor = styled.a`
   color: ${props => props.theme.colors.foreground.muted};
@@ -138,30 +131,6 @@ const Hero = ({ id, title, content, ...props }: HeroProps) => {
   )
 }
 
-const useScrollReveal = <T extends HTMLElement>(options: scrollReveal.ScrollRevealObjectOptions) => {
-  const ref = React.createRef<T>();
-  React.useEffect(() => {
-    if (ref.current) {
-      ScrollReveal().reveal(ref.current, options);
-    }
-  }, [ref, options])
-  return ref;
-}
-
-interface ScrollRevealWrapperProps {
-  children: React.ReactNode,
-  options?: scrollReveal.ScrollRevealObjectOptions,
-}
-
-const ScrollRevealWrapper = ({ children, options = {} }: ScrollRevealWrapperProps) => {
-  const ref = useScrollReveal<HTMLDivElement>(options);
-  return (
-    <div ref={ref}>
-      {children}
-    </div>
-  )
-}
-
 const StyledAboutSection = styled.section<SectionProps>`
   min-height: calc(100vh - ${props => props.navHeight});
   padding: clamp(20px, 5vh, 50px) 0px;
@@ -184,12 +153,12 @@ interface AboutSectionProps extends SectionProps {
 const About = ({ id, title, content, ...props }: AboutSectionProps) => {
   return (
       <StyledAboutSection id={id} {...props}>
-        <ScrollRevealWrapper>
+        <Reveal>
           <StyledAboutContent>
             <h2>{title}</h2>
             <p>{content}</p>
           </StyledAboutContent>
-        </ScrollRevealWrapper>
+        </Reveal>
       </StyledAboutSection>
   )
 }
@@ -349,7 +318,7 @@ const StyledDateRange = styled.div`
 
 const WorkExperience = () => {
   return (
-    <ScrollRevealWrapper options={{origin: "bottom"}}>
+    <Reveal origin="bottom">
       <StyledExperienceCard isWork>
         <StyledVerticalTimeline>
           <StyledTimelineDateRange>May 2019 - Sep 2021</StyledTimelineDateRange>
@@ -361,13 +330,13 @@ const WorkExperience = () => {
         <p>At Ubisoft Quebec from 2019 to 2021</p>
         <p>Working on Assassin's Creed Valhalla</p>
       </StyledExperienceCard>
-    </ScrollRevealWrapper>
+    </Reveal>
   )
 }
 
 const NonWorkExperience = ({ timelineNode, socket }: { timelineNode: React.ReactNode, socket?: boolean }) => {
   return (
-    <ScrollRevealWrapper options={{ origin: "bottom" }}>
+    <Reveal origin="bottom">
       <StyledExperienceCard>
         <StyledVerticalTimeline>
           <StyledTimelineDateRange>May 2019 - Sep 2021</StyledTimelineDateRange>
@@ -376,7 +345,7 @@ const NonWorkExperience = ({ timelineNode, socket }: { timelineNode: React.React
         </StyledVerticalTimeline>
         <p style={{ fontSize: "14px" }}>Continuing: Software Engineering at the University of Victoria</p>
       </StyledExperienceCard>
-    </ScrollRevealWrapper>
+    </Reveal>
   );
 }
 
@@ -406,9 +375,9 @@ const Experiences = ({ id, title, ...props }: ExperiencesSectionProps) => {
               <WorkExperience/>
               <School/>
               <TimelineAlignment>
-                <ScrollRevealWrapper options={{origin: "top", scale: 0.5, delay: 200, distance: "5px"}}>
+                <Reveal origin="top" scale={0.5} delay={200} distance="5px">
                   <TerminalIcon style={{left: "calc(50% - 11px)", position: "absolute", top: "20px", color: theme.colors.neutral.emphasized}}/>
-                </ScrollRevealWrapper>
+                </Reveal>
               </TimelineAlignment>
             </StyledExperiencesContent>
           </div>
@@ -477,7 +446,7 @@ const Testimonial = ({content, attribution}: TestimonialProps) => {
 const Testimonials = ({ testimonials, ...props }: TestimonialSectionProps) => {
   return (
       <StyledTestimonialSection {...props}>
-        <ScrollRevealWrapper>
+        <Reveal>
           <StyledTestimonialRow>
             {
               testimonials.map(({key, ...testimonial}) => (
@@ -485,7 +454,7 @@ const Testimonials = ({ testimonials, ...props }: TestimonialSectionProps) => {
               ))
             }
           </StyledTestimonialRow>
-        </ScrollRevealWrapper>
+        </Reveal>
       </StyledTestimonialSection>
   )
 };
@@ -533,7 +502,7 @@ const AnchorOverlay = (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => 
 
 const Project = () => {
   return (
-    <ScrollRevealWrapper>
+    <Reveal>
       <StyledProjectCard>
         <AnchorOverlay href="https://css-tricks.com/almanac/properties/j/justify-content/"/>
         <div style={{display: "flex", flexDirection: "row", flexWrap: "wrap-reverse", columnGap: "20px"}}>
@@ -549,7 +518,7 @@ const Project = () => {
           </div>
         </div>
       </StyledProjectCard>
-    </ScrollRevealWrapper>
+    </Reveal>
   )
 }
 
@@ -557,9 +526,9 @@ const Projects = ({ id, title, ...props }: ProjectsSectionProps) => {
   return (
     <StyledProjectsSection id={id} {...props}>
       <StyledProjectsContent>
-        <ScrollRevealWrapper>
+        <Reveal>
           <h2>{title}</h2>
-        </ScrollRevealWrapper>
+        </Reveal>
         {
           Array.from({length: 6}).map((_, i) => (
               <Project key={i}/>
