@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-import Reveal from 'src/components/reveal';
 import { sectionSize, sectionLayout, wideContentSize } from "src/styles/section";
 import { usePropsWithConfig } from 'src/config';
 import { useContent, TestimonialContent } from 'src/content';
@@ -60,11 +59,9 @@ const Testimonials = () => {
   const content = useContent();
   return (
       <StyledTestimonialSection>
-        <Reveal>
-          <StyledTestimonialRow>
-            {content.testimonials.list.map((testimonial, index) => (<Testimonial testimonial={testimonial} key={index}/>))}
-          </StyledTestimonialRow>
-        </Reveal>
+        <StyledTestimonialRow>
+          {content.testimonials.list.map((testimonial, index) => (<Testimonial testimonial={testimonial} key={index}/>))}
+        </StyledTestimonialRow>
       </StyledTestimonialSection>
   )
 };
