@@ -39,16 +39,24 @@ const StyledExperienceCardDateRange = withStylesOnTimelineCollapseAndExpand({
   cssOnExpand: 'display: none;',
 })(styled.p``);
 
+const StyledPositionAndOrganizationHeading = styled.h3``;
+
+const StyledExperienceBrief = styled.p``;
+
+const StyledAchievementContainer = styled.ul``;
+
+const StyledAchievementItem = styled.li``;
+
 const Position = (position: PositionContent) => {
   return (
     <Reveal origin="bottom">
       <TimelineAndContentSegment
         content={
           <StyledExperienceCard emphasize>
-            <h3>{position.position}, {position.organization}</h3>
+            <StyledPositionAndOrganizationHeading>{position.position}, {position.organization}</StyledPositionAndOrganizationHeading>
             <StyledExperienceCardDateRange>{position.duration}</StyledExperienceCardDateRange>
-            {position.brief && <p>{position.brief}</p>}
-            {position.achievements && <ul>{position.achievements.map(achievement => <li>{achievement}</li>)}</ul>}
+            {position.brief && <StyledExperienceBrief>{position.brief}</StyledExperienceBrief>}
+            {position.achievements && <StyledAchievementContainer>{position.achievements.map(achievement => <StyledAchievementItem>{achievement}</StyledAchievementItem>)}</StyledAchievementContainer>}
           </StyledExperienceCard>
         }
         annotation={position.duration}
@@ -64,7 +72,7 @@ const Aside = (aside: AsideContent) => {
       <TimelineAndContentSegment
         content={
           <StyledExperienceCard>
-            <p>{aside.brief}</p>
+            <StyledExperienceBrief>{aside.brief}</StyledExperienceBrief>
           </StyledExperienceCard>
         }
         annotation={aside.duration}
