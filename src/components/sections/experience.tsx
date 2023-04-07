@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components';
-import { Terminal as TerminalIcon, SchoolOutlined as SchoolIcon } from "@mui/icons-material";
+import { Terminal as TerminalIcon } from "@mui/icons-material";
 
 import Reveal from 'src/components/reveal';
-import { useContent } from 'src/content';
+import { useContent, PositionContent, AsideContent } from 'src/content';
 import { useConfig, usePropsWithConfig } from 'src/config';
 import { sectionSize, sectionLayout, regularContentSize } from 'src/styles/section';
 import { cardBorder, cardHover, cardSize, cardPadding } from 'src/styles/card';
@@ -39,47 +39,40 @@ const StyledExperienceCardDateRange = withStylesOnTimelineCollapseAndExpand({
   cssOnExpand: 'display: none;',
 })(styled.p``);
 
-const WorkExperience = () => {
+const Position = (position: PositionContent) => {
   return (
     <Reveal origin="bottom">
       <TimelineAndContentSegment
         content={
           <StyledExperienceCard emphasize>
-            <h3>Software Engineering</h3>
-            <StyledExperienceCardDateRange>May 2019 - Sep 2021</StyledExperienceCardDateRange>
-            <p>At Ubisoft Quebec from 2019 to 2021</p>
-            <p>Working on Assassin's Creed Valhalla</p>
+            <h3>{position.position}, {position.organization}</h3>
+            <StyledExperienceCardDateRange>{position.duration}</StyledExperienceCardDateRange>
+            {position.brief && <p>{position.brief}</p>}
+            {position.achievements && <ul>{position.achievements.map(achievement => <li>{achievement}</li>)}</ul>}
           </StyledExperienceCard>
         }
-        annotation={"May 2019 - Sep 2021"}
+        annotation={position.duration}
+        icon={position.icon}
       />
     </Reveal>
   )
 }
 
-const NonWorkExperience = ({ icon }: { icon?: React.ReactNode }) => {
+const Aside = (aside: AsideContent) => {
   return (
     <Reveal origin="bottom">
       <TimelineAndContentSegment
         content={
           <StyledExperienceCard>
-            <p>Continuing: Software Engineering at the University of Victoria</p>
+            <p>{aside.brief}</p>
           </StyledExperienceCard>
         }
-        annotation={"May 2019 - Sep 2021"}
-        icon={icon}
+        annotation={aside.duration}
+        icon={aside.icon}
         hiddenWhenNarrow
       />
     </Reveal>
-  );
-}
-
-const School = () => {
-  return (
-    <NonWorkExperience
-      icon={<SchoolIcon />}
-    />
-  );
+  )
 }
 
 const Experience = () => {
@@ -89,11 +82,7 @@ const Experience = () => {
     <StyledExperienceSection id={config.ids.experience}>
       <StyledExperienceContent>
         <StyledExperienceHeading>{content.experience.heading}</StyledExperienceHeading>
-        <School />
-        <WorkExperience />
-        <School />
-        <WorkExperience />
-        <School />
+        {content.experience.history.map(content => "position" in content ? Position(content) : Aside(content))}
         <Reveal origin="top" distance="5px">
           <TimelineStart icon={<TerminalIcon />} />
         </Reveal>
