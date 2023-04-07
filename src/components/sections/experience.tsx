@@ -47,7 +47,7 @@ const StyledAchievementContainer = styled.ul``;
 
 const StyledAchievementItem = styled.li``;
 
-const Position = (position: PositionContent) => {
+const Position = ({position}: {position: PositionContent}) => {
   return (
     <Reveal origin="bottom">
       <TimelineAndContentSegment
@@ -56,7 +56,7 @@ const Position = (position: PositionContent) => {
             <StyledPositionAndOrganizationHeading>{position.position}, {position.organization}</StyledPositionAndOrganizationHeading>
             <StyledExperienceCardDateRange>{position.duration}</StyledExperienceCardDateRange>
             {position.brief && <StyledExperienceBrief>{position.brief}</StyledExperienceBrief>}
-            {position.achievements && <StyledAchievementContainer>{position.achievements.map(achievement => <StyledAchievementItem>{achievement}</StyledAchievementItem>)}</StyledAchievementContainer>}
+            {position.achievements && <StyledAchievementContainer>{position.achievements.map((achievement, index) => <StyledAchievementItem key={index}>{achievement}</StyledAchievementItem>)}</StyledAchievementContainer>}
           </StyledExperienceCard>
         }
         annotation={position.duration}
@@ -66,7 +66,7 @@ const Position = (position: PositionContent) => {
   )
 }
 
-const Aside = (aside: AsideContent) => {
+const Aside = ({aside}: {aside: AsideContent}) => {
   return (
     <Reveal origin="bottom">
       <TimelineAndContentSegment
@@ -90,7 +90,7 @@ const Experience = () => {
     <StyledExperienceSection id={config.ids.experience}>
       <StyledExperienceContent>
         <StyledExperienceHeading>{content.experience.heading}</StyledExperienceHeading>
-        {content.experience.history.map(content => "position" in content ? Position(content) : Aside(content))}
+        {content.experience.history.map((content, index) => "position" in content ? <Position position={content} key={index} /> : <Aside aside={content} key={index} />)}
         <Reveal origin="top" distance="5px">
           <TimelineStart icon={<TerminalIcon />} />
         </Reveal>
