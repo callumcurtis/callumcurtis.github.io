@@ -13,7 +13,7 @@ const cardHover = css<PropsWithConfig<{movement?: boolean, hoverTarget?: StyledC
   ${props => props.hoverTarget ? css`${props.hoverTarget}:hover &&` : css`&&:hover`} {
     ${props => props.movement && 'transform: translateY(-5px);'}
     border-color: ${props => props.config.colors.border.emphasized};
-    box-shadow: ${props => props.config.shadow.default};
+    box-shadow: 0 6px 20px ${props => props.config.colors.accent.muted};
   }
 `;
 

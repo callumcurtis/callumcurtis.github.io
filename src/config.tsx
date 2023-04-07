@@ -56,9 +56,6 @@ const defaultConfig = {
     },
   },
   colors: { ...defaultColors },
-  shadow: {
-    default: `0 6px 20px ${defaultColors.accent.muted}`,
-  },
   text: {
     weight: {
       semibold: 600,

@@ -167,7 +167,7 @@ const StyledProjectCard = styled.div.attrs(usePropsWithConfig)`
   transition: all 0.2s ease-in-out;
   &:hover {
     transform: translateY(-5px);
-    box-shadow: ${props => props.config.shadow.default};
+    box-shadow: 0 6px 20px ${props => props.config.colors.accent.muted};
     border: 1px solid ${props => props.config.colors.border.emphasized};
   }
 `;
