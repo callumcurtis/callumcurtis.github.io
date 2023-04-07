@@ -1,4 +1,4 @@
-import { css } from 'styled-components';
+import { css, StyledComponent } from 'styled-components';
 
 import { PropsWithConfig } from 'src/config';
 
@@ -8,9 +8,9 @@ const cardBorder = css<PropsWithConfig<{}>>`
   border: 1px solid ${props => props.config.colors.border.default};
 `;
 
-const cardHover = css<PropsWithConfig<{movement?: boolean}>>`
+const cardHover = css<PropsWithConfig<{movement?: boolean, hoverTarget?: StyledComponent<any, any> }>>`
   transition: all 0.2s ease-in-out;
-  &:hover {
+  ${props => props.hoverTarget ? css`${props.hoverTarget}:hover &&` : css`&&:hover`} {
     ${props => props.movement && 'transform: translateY(-5px);'}
     border-color: ${props => props.config.colors.border.emphasized};
     box-shadow: ${props => props.config.shadow.default};
@@ -18,9 +18,12 @@ const cardHover = css<PropsWithConfig<{movement?: boolean}>>`
 `;
 
 const cardSize = css`
-  padding: 20px;
   width: 100%;
   height: 100%;
 `;
 
-export { cardBorder, cardSize, cardHover }
+const cardPadding = css`
+  padding: 20px;
+`;
+
+export { cardBorder, cardSize, cardPadding, cardHover }

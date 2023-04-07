@@ -333,8 +333,8 @@ const StyledFooter = styled.footer`
   margin-top: 80px;
   padding: 20px 0;
   text-align: center;
+  font-size: 14px;
   & p {
-    font-size: 14px;
     padding: 0 10px;
   }
 `;

@@ -62,6 +62,11 @@ const defaultConfig = {
   text: {
     weight: {
       semibold: 600,
+    },
+    body: {
+      size: {
+        small: "14px",
+      }
     }
   }
 }
