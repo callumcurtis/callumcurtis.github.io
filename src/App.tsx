@@ -1,4 +1,4 @@
-import React, { HTMLAttributes } from "react";
+import React from "react";
 import { scroller } from "react-scroll";
 import styled, { css } from "styled-components";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -14,6 +14,7 @@ import defaultContent, { ContentProvider } from 'src/content';
 import Hero from 'src/components/sections/hero';
 import About from 'src/components/sections/about';
 import Experience from 'src/components/sections/experience';
+import Testimonials from "./components/sections/testimonials";
 
 
 const StyledAnchor = styled.a.attrs(usePropsWithConfig)`
@@ -29,22 +30,6 @@ const circularBackgroundOnHover = css<PropsWithConfig<{}>>`
     background-color: ${props => props.config.colors.neutral.subtle};
     border-radius: 100%;
     cursor: pointer;
-  }
-`;
-
-const wideContentSize = css`
-  padding: 0px 200px;
-  width: 100%;
-  max-width: 1800px;
-  margin: 0 auto;
-  @media (max-width: 1300px) {
-    padding: 0px 100px;
-  }
-  @media (max-width: 768px) {
-    padding: 0px 50px;
-  }
-  @media (max-width: 480px) {
-    padding: 0px 20px;
   }
 `;
 
@@ -64,80 +49,6 @@ const regularContentSize = css`
 interface WithKey {
   key: React.Key | null | undefined;
 }
-
-interface TestimonialProps {
-  content: string,
-  attribution: string,
-}
-
-interface TestimonialSectionProps {
-  testimonials: (TestimonialProps & WithKey)[],
-}
-
-const StyledTestimonialSection = styled.div.attrs(usePropsWithConfig)`
-  min-height: calc(100vh - ${props => props.config.layout.nav.height});
-  padding: clamp(20px, 5vh, 50px) 0px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-`;
-
-const StyledTestimonialRow = styled.div`
-  ${wideContentSize}
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  column-gap: 100px;
-  max-height: 500px;
-  overflow: hidden;
-  text-align: left;
-`;
-
-const StyledTestimonial = styled.div`
-  flex-basis: 350px;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 500px;
-  max-width: 520px;
-`;
-
-const TestimonialQuotationMark = (props: HTMLAttributes<HTMLSpanElement>) => {
-  return <span {...props}>“</span>
-}
-
-const StyledTestimonialQuotationMark = styled(TestimonialQuotationMark)`
-  font-size: 48px;
-  font-family: "Arial Black";
-  height: 60px;
-`;
-
-const Testimonial = ({content, attribution}: TestimonialProps) => {
-  return (
-    <StyledTestimonial>
-      <StyledTestimonialQuotationMark/>
-      <h3>{content}</h3>
-      <p>{attribution}</p>
-    </StyledTestimonial>
-  )
-};
-
-const Testimonials = ({ testimonials, ...props }: TestimonialSectionProps) => {
-  return (
-      <StyledTestimonialSection {...props}>
-        <Reveal>
-          <StyledTestimonialRow>
-            {
-              testimonials.map(({key, ...testimonial}) => (
-                <Testimonial key={key} {...testimonial}/>
-              ))
-            }
-          </StyledTestimonialRow>
-        </Reveal>
-      </StyledTestimonialSection>
-  )
-};
 
 const StyledProjectsSection = styled.section.attrs(usePropsWithConfig)`
   min-height: calc(100vh - ${props => props.config.layout.nav.height});
@@ -433,26 +344,6 @@ const App: React.FC = () => {
     onClick: () => scroller.scrollTo(section.id, scrollOptions),
   }));
 
-  const testimonials = {
-    testimonials: [
-      {
-        key: "1",
-        content: "Callum is a big big helper and did a good job, all the time, yes indeed",
-        attribution: "Callum, Student",
-      },
-      {
-        key: "2",
-        content: "Callum is a big big helper and did a good job, all the time, yes indeed",
-        attribution: "Callum, Student",
-      },
-      {
-        key: "3",
-        content: "Callum is a big big helper and did a good job, all the time, yes indeed",
-        attribution: "Callum, Student",
-      },
-    ]
-  }
-
   const socials = [
     {
       key: "github",
@@ -488,7 +379,7 @@ const App: React.FC = () => {
           <Hero/>
           <About/>
           <Experience/>
-          <Testimonials {...testimonials}/>
+          <Testimonials/>
           <Projects {...projects}/>
         </StyledMainContainer>
         <FixedSocials {...fixedSocials}/>

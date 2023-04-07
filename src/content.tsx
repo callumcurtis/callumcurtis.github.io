@@ -21,6 +21,7 @@ interface AsideContent {
 }
 
 const experienceHistory: (PositionContent | AsideContent)[] = [
+  // order: most recent first
   {
     duration: "Jan 2022 - Present",
     brief: "Continuing: Software Engineering at the University of Victoria.",
@@ -62,6 +63,31 @@ const experienceHistory: (PositionContent | AsideContent)[] = [
   },
 ];
 
+interface TestimonialContent {
+  quote: string;
+  author: string;
+  position: string;
+}
+
+const testimonialList: TestimonialContent[] = [
+  // priority order: first is highest priority
+  {
+    quote: "Callum is a big big helper and did a good job, all the time, yes indeed.",
+    author: "John Doe",
+    position: "CEO of FooBar Inc.",
+  },
+  {
+    quote: "Callum is a super duper and did a good job, all the time, yes indeed.",
+    author: "Jane Doe",
+    position: "CEO of BazQux Inc.",
+  },
+  {
+    quote: "Callum is a good student, all the time, yes indeed.",
+    author: "John Smith",
+    position: "Professor of Software Engineering at the University of Victoria",
+  },
+]
+
 const defaultContent = {
   hero: {
     heading: "Hi, I'm Callum",
@@ -75,6 +101,10 @@ const defaultContent = {
     heading: "Experience",
     history: experienceHistory,
   },
+  testimonials: {
+    heading: "Testimonials",
+    list: testimonialList,
+  }
 }
 
 type Content = typeof defaultContent;
@@ -93,4 +123,4 @@ const useContent = () => React.useContext(ContentContext);
 
 export default defaultContent;
 export { ContentProvider, useContent };
-export type { Content, PositionContent, AsideContent };
+export type { Content, PositionContent, AsideContent, TestimonialContent };
