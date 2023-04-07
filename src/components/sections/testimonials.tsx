@@ -26,7 +26,7 @@ const StyledTestimonial = styled.div`
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   height: 500px;
   max-width: 520px;
 `;
