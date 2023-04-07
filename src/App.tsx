@@ -8,13 +8,13 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { GitHub as GitHubIcon, LinkedIn as LinkedInIcon} from "@mui/icons-material";
 
-import Reveal from 'src/components/reveal';
 import defaultConfig, { ConfigProvider, useConfig, usePropsWithConfig, PropsWithConfig } from 'src/config';
 import defaultContent, { ContentProvider } from 'src/content';
 import Hero from 'src/components/sections/hero';
 import About from 'src/components/sections/about';
 import Experience from 'src/components/sections/experience';
 import Testimonials from "./components/sections/testimonials";
+import Projects from "./components/sections/projects";
 
 
 const StyledAnchor = styled.a.attrs(usePropsWithConfig)`
@@ -33,102 +33,9 @@ const circularBackgroundOnHover = css<PropsWithConfig<{}>>`
   }
 `;
 
-const regularContentSize = css`
-  padding: 0px 100px;
-  width: 100%;
-  max-width: 1100px;
-  margin: 0 auto;
-  @media (max-width: 768px) {
-    padding: 0px 50px;
-  }
-  @media (max-width: 480px) {
-    padding: 0px 20px;
-  }
-`;
-
 interface WithKey {
   key: React.Key | null | undefined;
 }
-
-const StyledProjectsSection = styled.section.attrs(usePropsWithConfig)`
-  min-height: calc(100vh - ${props => props.config.layout.nav.height});
-  padding: clamp(20px, 5vh, 50px) 0px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-`;
-
-const StyledProjectsContent = styled.div`
-  ${regularContentSize}
-`;
-
-interface ProjectsSectionProps {
-  id: string,
-  title: string,
-  content: string,
-}
-
-const StyledProjectCard = styled.div.attrs(usePropsWithConfig)`
-  position: relative;
-  margin: 20px 0px;
-  padding: 20px;
-  border-radius: 10px;
-  border: 1px solid ${props => props.config.colors.border.default};
-  transition: all 0.2s ease-in-out;
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 20px ${props => props.config.colors.accent.muted};
-    border: 1px solid ${props => props.config.colors.border.emphasized};
-  }
-`;
-
-const AnchorOverlay = (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => {
-  return (
-    <StyledAnchor {...props}>
-      <span style={{width: "100%", height: "100%", zIndex: "1", position: "absolute", top: 0, left: 0}}/>
-    </StyledAnchor>
-  )
-}
-
-const Project = () => {
-  return (
-    <Reveal>
-      <StyledProjectCard>
-        <AnchorOverlay href="https://css-tricks.com/almanac/properties/j/justify-content/"/>
-        <div style={{display: "flex", flexDirection: "row", flexWrap: "wrap-reverse", columnGap: "20px"}}>
-          <div style={{flexGrow: 10, flexBasis: "400px"}}>
-            <div style={{display: "flex", flexDirection: "column", textAlign: "left", height: "100%", padding: "15px", justifyContent: "space-between"}}>
-              <h3 style={{marginBottom: "1rem"}}>Project Title</h3>
-              <p>Quisque mollis hendrerit risus, ut ullamcorper lorem porta id. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Integer vestibulum velit vel mauris aliquet ultrices. Donec pulvinar augue non sapien commodo viverra. Pellentesque eget facilisis purus. Integer dignissim urna felis, eget dictum arcu facilisis et. Pellentesque malesuada nibh ut sem maximus scelerisque. Donec suscipit massa ut purus mollis, a viverra tellus feugiat.</p>
-              <p>Keywords</p>
-            </div>
-          </div>
-          <div style={{alignSelf: "center", flexBasis: "400px", flexGrow: 1}}>
-            <img src="https://via.placeholder.com/600x400" style={{height: "auto", width: "100%", maxHeight: "100%"}}/>
-          </div>
-        </div>
-      </StyledProjectCard>
-    </Reveal>
-  )
-}
-
-const Projects = ({ id, title, ...props }: ProjectsSectionProps) => {
-  return (
-    <StyledProjectsSection id={id} {...props}>
-      <StyledProjectsContent>
-        <Reveal>
-          <h2>{title}</h2>
-        </Reveal>
-        {
-          Array.from({length: 6}).map((_, i) => (
-              <Project key={i}/>
-          ))
-        }
-      </StyledProjectsContent>
-    </StyledProjectsSection>
-  )
-};
 
 const Brand = styled(Navbar.Brand).attrs(usePropsWithConfig)`
   font-family: 'Kumbh Sans';
@@ -325,7 +232,6 @@ const App: React.FC = () => {
   const projects = {
     id: "projects",
     title: "Projects",
-    content: "Donec lobortis interdum faucibus. Etiam bibendum, nulla id eleifend congue, nisi nulla iaculis elit, sed eleifend elit elit vel elit. Fusce non dapibus velit. Nullam vel eros et augue commodo auctor vitae sed turpis. Duis euismod aliquet felis, at malesuada sapien vestibulum ac. Fusce sit amet lacinia dolor, vel bibendum nisl."
   }
 
   const brand = {
@@ -380,7 +286,7 @@ const App: React.FC = () => {
           <About/>
           <Experience/>
           <Testimonials/>
-          <Projects {...projects}/>
+          <Projects/>
         </StyledMainContainer>
         <FixedSocials {...fixedSocials}/>
         <Footer {...footer}/>

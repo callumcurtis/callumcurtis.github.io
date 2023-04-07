@@ -46,9 +46,11 @@ const defaultConfig = {
     hero: "hero",
     about: "about",
     experience: "experience",
+    projects: "projects",
   },
   layers: {
     background: -1,
+    overlay: 1,
   },
   layout: {
     nav: {

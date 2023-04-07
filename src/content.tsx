@@ -88,6 +88,39 @@ const testimonialList: TestimonialContent[] = [
   },
 ]
 
+interface ProjectContent {
+  name: string;
+  description: string;
+  link: string;
+  image: React.ReactNode;
+  tags: string[];
+}
+
+const projectList: ProjectContent[] = [
+  // priority order: first is highest priority
+  {
+    name: "Project 1",
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel nunc et enim efficitur feugiat a eget dolor. Ut pellentesque, quam id ultrices facilisis, nisi nulla finibus velit, id aliquam ipsum orci non nibh. Sed blandit non libero vitae bibendum. Donec a dolor turpis. Sed suscipit interdum mi, in elementum neque aliquam at. Aenean quis massa a magna egestas pellentesque. Sed tristique semper ante, a gravida ex auctor at.",
+    link: "https://www.google.com",
+    image: <img src="https://via.placeholder.com/600x400" alt="Project 1 Placeholder"/>,
+    tags: ["React", "TypeScript"],
+  },
+  {
+    name: "Project 2",
+    description: "Fusce nec lobortis purus. Maecenas sollicitudin leo ut tincidunt maximus. Phasellus at sem luctus, aliquet dui in, ultrices purus. Maecenas.",
+    link: "https://www.google.com",
+    image: <img src="https://via.placeholder.com/600x400" alt="Project 2 Placeholder"/>,
+    tags: ["Rust", "C++"],
+  },
+  {
+    name: "Project 3",
+    description: "Aliquam placerat, odio vel fermentum porttitor, velit nunc maximus nunc, in semper arcu sapien tempor turpis. Donec sed vulputate lacus.",
+    link: "https://www.google.com",
+    image: <img src="https://via.placeholder.com/600x400" alt="Project 3 Placeholder"/>,
+    tags: ["Python", "Django"],
+  },
+];
+
 const defaultContent = {
   hero: {
     heading: "Hi, I'm Callum",
@@ -104,6 +137,10 @@ const defaultContent = {
   testimonials: {
     heading: "Testimonials",
     list: testimonialList,
+  },
+  projects: {
+    heading: "Projects",
+    list: projectList,
   }
 }
 
@@ -123,4 +160,4 @@ const useContent = () => React.useContext(ContentContext);
 
 export default defaultContent;
 export { ContentProvider, useContent };
-export type { Content, PositionContent, AsideContent, TestimonialContent };
+export type { Content, PositionContent, AsideContent, TestimonialContent, ProjectContent };

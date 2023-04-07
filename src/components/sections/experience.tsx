@@ -25,7 +25,7 @@ const StyledExperienceHeading = styled.h2`
 const StyledExperienceCard = styled.div
   .attrs(usePropsWithConfig)
   .attrs(props => ({...props, hoverTarget: TimelineAndContentSegment}))
-  .attrs(props => ({ ...props, movement: false}))
+  .attrs(props => ({...props, movement: false}))
   <{ emphasize?: boolean }>`
   ${props => props.emphasize && cardBorder}
   ${props => props.emphasize && cardHover}
@@ -43,9 +43,9 @@ const StyledPositionAndOrganizationHeading = styled.h3``;
 
 const StyledExperienceBrief = styled.p``;
 
-const StyledAchievementContainer = styled.ul``;
+const StyledAchievementsContainer = styled.ul``;
 
-const StyledAchievementItem = styled.li``;
+const StyledAchievement = styled.li``;
 
 const Position = ({position}: {position: PositionContent}) => {
   return (
@@ -56,7 +56,7 @@ const Position = ({position}: {position: PositionContent}) => {
             <StyledPositionAndOrganizationHeading>{position.position}, {position.organization}</StyledPositionAndOrganizationHeading>
             <StyledExperienceCardDateRange>{position.duration}</StyledExperienceCardDateRange>
             {position.brief && <StyledExperienceBrief>{position.brief}</StyledExperienceBrief>}
-            {position.achievements && <StyledAchievementContainer>{position.achievements.map((achievement, index) => <StyledAchievementItem key={index}>{achievement}</StyledAchievementItem>)}</StyledAchievementContainer>}
+            {position.achievements && <StyledAchievementsContainer>{position.achievements.map((achievement, index) => <StyledAchievement key={index}>{achievement}</StyledAchievement>)}</StyledAchievementsContainer>}
           </StyledExperienceCard>
         }
         annotation={position.duration}
