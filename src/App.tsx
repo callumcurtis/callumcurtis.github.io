@@ -11,6 +11,7 @@ import Experience from 'src/components/sections/experience';
 import Testimonials from "./components/sections/testimonials";
 import Projects from "./components/sections/projects";
 import NavigationBar from "./components/navigation";
+import SideSocials from "./components/side-socials";
 
 import "./App.css";
 
@@ -21,49 +22,6 @@ const StyledAnchor = styled.a.attrs(usePropsWithConfig)`
   &:hover {
     color: ${props => props.config.colors.foreground.muted};
   }
-`;
-
-const StyledFixedSocials = styled.div.attrs(usePropsWithConfig)`
-  position: fixed;
-  display: flex;
-  margin: 0 50px 0 0;
-  align-items: center;
-  bottom: 0;
-  right: 0;
-  flex-direction: column;
-  & svg {
-    width: 35px;
-    height: auto;
-    color: ${props => props.config.colors.neutral.default};
-    transition: all 0.2s ease-in-out;
-    will-change: transform;
-  }
-  & a {
-    margin: 0 0 20px 0;
-  }
-  & svg:hover {
-    transform: translateY(-2px);
-  }
-  @media (max-width: 1300px) {
-    margin: 0 35px 0 0;
-  }
-  @media (max-width: 768px) {
-    display: none;
-`;
-
-const FixedSocials = ({ children, ...props }: React.HTMLAttributes<HTMLDivElement>) => {
-  return (
-    <StyledFixedSocials {...props}>
-      {children}
-      <StyledFixedSocialsToBottomOfViewportConnector/>
-    </StyledFixedSocials>
-  )
-}
-
-const StyledFixedSocialsToBottomOfViewportConnector = styled.div.attrs(usePropsWithConfig)`
-  height: calc(clamp(10px, 10vh, 100px) - 10px);
-  width: 0px;
-  border: 1px solid ${props => props.config.colors.neutral.default};
 `;
 
 const ExternalLink = ({ children, href, ...props }: React.AnchorHTMLAttributes<HTMLAnchorElement>) => {
@@ -93,7 +51,7 @@ const StyledFooter = styled.footer`
 `;
 
 const StyledFooterSocials = styled.div.attrs(usePropsWithConfig)`
-  display: flex;
+  display: none;
   margin: 0 0 20px 0;
   justify-content: center;
   flex-direction: row;
@@ -110,8 +68,8 @@ const StyledFooterSocials = styled.div.attrs(usePropsWithConfig)`
   & svg:hover {
     transform: translateY(-2px);
   }
-  @media (min-width: 768px) {
-    display: none;
+  @media (max-width: calc(${props => props.config.breakpoints.switchToSocialsOnSide} - 1px)) {
+    display: flex;
   }
 `;
 
@@ -158,10 +116,6 @@ const App: React.FC = () => {
     <Social key={social.key} href={social.href} icon={social.icon}/>
   ));
 
-  const fixedSocials = {
-    children: socials,
-  }
-
   const footer = {
     socials: socials,
     credits: {
@@ -181,7 +135,7 @@ const App: React.FC = () => {
           <Testimonials/>
           <Projects/>
         </StyledMainContainer>
-        <FixedSocials {...fixedSocials}/>
+        <SideSocials/>
         <Footer {...footer}/>
       </ContentProvider>
     </ConfigProvider>

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { usePropsWithConfig } from 'src/utils/config';
 
 
-const StyledAnchor = styled.a.attrs(usePropsWithConfig)`
+const Anchor = styled.a.attrs(usePropsWithConfig)`
   color: ${props => props.config.colors.foreground.muted};
   text-decoration: none;
 `;
@@ -19,10 +19,10 @@ const StyledSpanOverlay = styled.span.attrs(usePropsWithConfig)`
 
 const AnchorOverlay = (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => {
   return (
-    <StyledAnchor {...props}>
+    <Anchor {...props}>
       <StyledSpanOverlay/>
-    </StyledAnchor>
+    </Anchor>
   )
 }
 
-export { AnchorOverlay }
+export { Anchor, AnchorOverlay }

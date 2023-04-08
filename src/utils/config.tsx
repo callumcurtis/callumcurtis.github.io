@@ -73,6 +73,9 @@ const defaultConfig = {
       height: navHeight,
     },
   },
+  breakpoints: {
+    switchToSocialsOnSide: "1300px",
+  },
   nav: {
     destinations: [
       {

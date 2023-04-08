@@ -1,5 +1,9 @@
 import React from 'react';
-import { SchoolOutlined as SchoolIcon } from "@mui/icons-material";
+import {
+  SchoolOutlined as SchoolIcon,
+  GitHub as GitHubIcon,
+  LinkedIn as LinkedInIcon,
+ } from "@mui/icons-material";
 
 
 interface PositionContent {
@@ -141,7 +145,19 @@ const defaultContent = {
   projects: {
     heading: "Projects",
     list: projectList,
-  }
+  },
+  socials: [
+    {
+      name: "GitHub",
+      icon: <GitHubIcon />,
+      href: "https://github.com/callumcurtis"
+    },
+    {
+      name: "LinkedIn",
+      icon: <LinkedInIcon />,
+      href: "https://www.linkedin.com/in/callumcurtis/"
+    },
+  ],
 }
 
 type Content = typeof defaultContent;
