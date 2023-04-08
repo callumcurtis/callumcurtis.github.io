@@ -6,6 +6,9 @@ import { usePropsWithConfig } from 'src/context/config';
 const Anchor = styled.a.attrs(usePropsWithConfig)`
   color: ${props => props.config.colors.foreground.muted};
   text-decoration: none;
+  &:hover {
+    color: ${props => props.config.colors.foreground.muted};
+  }
 `;
 
 const StyledSpanOverlay = styled.span.attrs(usePropsWithConfig)`
