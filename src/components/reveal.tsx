@@ -1,7 +1,7 @@
 import React from 'react';
 import ScrollReveal from 'scrollreveal';
 
-import { useConfig } from 'src/config'
+import { useConfig } from 'src/utils/config'
 
 
 const useScrollReveal = <T extends HTMLElement>(options: scrollReveal.ScrollRevealObjectOptions) => {

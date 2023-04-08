@@ -5,8 +5,8 @@ import { AnchorOverlay } from 'src/components/links';
 import { cardHover, cardSize, cardPadding, cardBorder } from 'src/styles/card';
 import { regularContentSize } from 'src/styles/section';
 import { sectionSize, sectionLayout } from 'src/styles/section';
-import { usePropsWithConfig, useConfig } from 'src/config';
-import { useContent, ProjectContent } from 'src/content';
+import { usePropsWithConfig, useConfig } from 'src/utils/config';
+import { useContent, ProjectContent } from 'src/utils/content';
 
 
 const StyledProjectsSection = styled.section.attrs(usePropsWithConfig)`

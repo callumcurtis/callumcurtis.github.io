@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { backgroundContainer, backgroundFillContainer } from 'src/styles/background';
 import { withWaveAnimationBackground } from 'src/components/background';
 import { wideContentSize, sectionSize, sectionLayout } from 'src/styles/section';
-import { useConfig, usePropsWithConfig } from 'src/config';
-import { useContent } from 'src/content';
+import { useConfig, usePropsWithConfig } from 'src/utils/config';
+import { useContent } from 'src/utils/content';
 
 
 const StyledHeroSection = styled.section.attrs(usePropsWithConfig)`

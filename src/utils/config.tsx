@@ -10,6 +10,9 @@ const defaultColors = {
     default: "#6e7781",
     emphasized: "#060609",
   },
+  background: {
+    default: "#ffffff",
+  },
   border: {
     default: "#eaeaea",
     emphasized: "#c3c3c3",
@@ -24,7 +27,25 @@ const defaultColors = {
   }
 }
 
+const ids = {
+  hero: "hero",
+  about: "about",
+  experience: "experience",
+  projects: "projects",
+  navigation: "navigation",
+}
+
 const defaultConfig = {
+  autoScroll: {
+    defaults: {
+      offset: -parseInt(navHeight, 10),
+      duration: 300,
+      delay: 0.2,
+      smooth: true,
+      isDynamic: true,
+      ignoreCancelEvents: false,
+    }
+  },
   scrollReveal: {
     defaults: {
       viewOffset: { top: parseInt(navHeight) + 50, bottom: 50},
@@ -42,12 +63,7 @@ const defaultConfig = {
       gyroControls: false,
     }
   },
-  ids: {
-    hero: "hero",
-    about: "about",
-    experience: "experience",
-    projects: "projects",
-  },
+  ids: ids,
   layers: {
     background: -1,
     overlay: 1,
@@ -57,7 +73,23 @@ const defaultConfig = {
       height: navHeight,
     },
   },
-  colors: { ...defaultColors },
+  nav: {
+    destinations: [
+      {
+        id: ids.about,
+        name: "About",
+      },
+      {
+        id: ids.experience,
+        name: "Experience",
+      },
+      {
+        id: ids.projects,
+        name: "Projects",
+      },
+    ]
+  },
+  colors: defaultColors,
   text: {
     weight: {
       semibold: 600,

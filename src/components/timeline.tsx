@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { Interpolation, css } from 'styled-components';
 
-import { usePropsWithConfig } from 'src/config';
+import { usePropsWithConfig } from 'src/utils/config';
 import withCssSelectable from './selectable';
 
 

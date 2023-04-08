@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 import { sectionSize, sectionLayout, wideContentSize } from "src/styles/section";
-import { usePropsWithConfig } from 'src/config';
-import { useContent, TestimonialContent } from 'src/content';
+import { usePropsWithConfig } from 'src/utils/config';
+import { useContent, TestimonialContent } from 'src/utils/content';
 
 
 const StyledTestimonialSection = styled.div.attrs(usePropsWithConfig)`

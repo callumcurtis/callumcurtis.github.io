@@ -1,20 +1,18 @@
 import React from "react";
-import { scroller } from "react-scroll";
-import styled, { css } from "styled-components";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import "./App.css";
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
+import styled from "styled-components";
 import { GitHub as GitHubIcon, LinkedIn as LinkedInIcon} from "@mui/icons-material";
 
-import defaultConfig, { ConfigProvider, useConfig, usePropsWithConfig, PropsWithConfig } from 'src/config';
-import defaultContent, { ContentProvider } from 'src/content';
+import defaultConfig, { ConfigProvider, usePropsWithConfig } from 'src/utils/config';
+import defaultContent, { ContentProvider } from 'src/utils/content';
+import { useAutoScrollToHashOnMount } from "./utils/scroll";
 import Hero from 'src/components/sections/hero';
 import About from 'src/components/sections/about';
 import Experience from 'src/components/sections/experience';
 import Testimonials from "./components/sections/testimonials";
 import Projects from "./components/sections/projects";
+import NavigationBar from "./components/navigation";
+
+import "./App.css";
 
 
 const StyledAnchor = styled.a.attrs(usePropsWithConfig)`
@@ -24,59 +22,6 @@ const StyledAnchor = styled.a.attrs(usePropsWithConfig)`
     color: ${props => props.config.colors.foreground.muted};
   }
 `;
-
-const circularBackgroundOnHover = css<PropsWithConfig<{}>>`
-  &:hover {
-    background-color: ${props => props.config.colors.neutral.subtle};
-    border-radius: 100%;
-    cursor: pointer;
-  }
-`;
-
-interface WithKey {
-  key: React.Key | null | undefined;
-}
-
-const Brand = styled(Navbar.Brand).attrs(usePropsWithConfig)`
-  font-family: 'Kumbh Sans';
-  width: ${props => parseInt(props.config.layout.nav.height, 10) - 16}px;
-  height: ${props => parseInt(props.config.layout.nav.height, 10) - 16}px;
-  text-align: center;
-  ${circularBackgroundOnHover}
-`;
-
-interface NavigationBarElement {
-  children: React.ReactNode;
-  onClick: React.MouseEventHandler<HTMLElement>;
-  href?: string;
-}
-
-interface NavigationBarProps {
-  brand: NavigationBarElement;
-  sections: (NavigationBarElement & WithKey)[];
-}
-
-const NavigationBar = ({ brand, sections }: NavigationBarProps) => {
-  const config = useConfig();
-  return (
-    <>
-      <div style={{ height:  config.layout.nav.height}} />
-      <Navbar bg="light" expand="sm" fixed="top" style={{ minHeight: config.layout.nav.height }}>
-        <Container fluid style={{paddingLeft: "30px", paddingRight: "30px"}}>
-          <Brand className="Brand" onClick={brand.onClick} href={brand.href || "#"}>{brand.children}</Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="justify-content-end" style={{ width: "100%" }}>
-              {sections.map((section) => (
-                <Nav.Link {...(section.href && { href: section.href })} key={section.key} onClick={section.onClick} active={false}>{section.children}</Nav.Link>
-              ))}
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
-    </>
-  );
-}
 
 const StyledFixedSocials = styled.div.attrs(usePropsWithConfig)`
   position: fixed;
@@ -120,16 +65,6 @@ const StyledFixedSocialsToBottomOfViewportConnector = styled.div.attrs(usePropsW
   width: 0px;
   border: 1px solid ${props => props.config.colors.neutral.default};
 `;
-
-// TODO: define custom types for react-scroll options (Definitely Typed package uses any)
-const useScrollToHashOnMount = (options: any) => {
-  React.useEffect(() => {
-    const hash = window.location.hash;
-    if (hash && document.querySelector(hash)) {
-      scroller.scrollTo(hash.split("#")[1], options);
-    }
-  }, [options]);
-};
 
 const ExternalLink = ({ children, href, ...props }: React.AnchorHTMLAttributes<HTMLAnchorElement>) => {
   return (
@@ -206,49 +141,7 @@ const Footer = ({socials, credits}: {socials: React.ReactNode, credits: credits}
 
 const App: React.FC = () => {
 
-  const config = defaultConfig;
-
-  const scrollOptions = {
-    offset: -parseInt(config.layout.nav.height, 10),
-    duration: 300,
-    delay: 0.2,
-    smooth: true,
-    isDynamic: true,
-    ignoreCancelEvents: false,
-  };
-
-  useScrollToHashOnMount(scrollOptions);
-
-  const about = {
-    id: "about",
-    title: "About",
-  }
-
-  const experience = {
-    id: "experience",
-    title: "Experience",
-  }
-
-  const projects = {
-    id: "projects",
-    title: "Projects",
-  }
-
-  const brand = {
-    children: "C",
-    onClick: () => scroller.scrollTo(config.ids.hero, scrollOptions),
-  };
-
-  const sectionLinks = [
-    about,
-    experience,
-    projects,
-  ].map((section) => ({
-    key: section.id,
-    href: `#${section.id}`,
-    children: section.title,
-    onClick: () => scroller.scrollTo(section.id, scrollOptions),
-  }));
+  useAutoScrollToHashOnMount();
 
   const socials = [
     {
@@ -278,9 +171,9 @@ const App: React.FC = () => {
   }
 
   return (
-    <ConfigProvider config={config}>
+    <ConfigProvider config={defaultConfig}>
       <ContentProvider content={defaultContent}>
-        <NavigationBar brand={brand} sections={sectionLinks}/>
+        <NavigationBar/>
         <StyledMainContainer>
           <Hero/>
           <About/>
