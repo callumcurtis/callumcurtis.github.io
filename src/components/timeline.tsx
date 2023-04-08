@@ -5,9 +5,9 @@ import { usePropsWithConfig } from 'src/utils/config';
 import withCssSelectable from './selectable';
 
 
-const TimelineAndContentSegment = withCssSelectable(({content, annotation, icon, className, hiddenWhenNarrow = false}: {content?: React.ReactNode, annotation?: React.ReactNode, icon?: React.ReactNode, className?: string, hiddenWhenNarrow?: boolean}) => {
+const TimelineAndContentSegment = withCssSelectable(({content, annotation, icon, className, collapsedWhenNarrow = false}: {content?: React.ReactNode, annotation?: React.ReactNode, icon?: React.ReactNode, className?: string, collapsedWhenNarrow?: boolean}) => {
   return (
-    <StyledSegmentContainer hiddenWhenNarrow={hiddenWhenNarrow} className={className}>
+    <StyledSegmentContainer collapsedWhenNarrow={collapsedWhenNarrow} className={className}>
       <StyledTimelineContainer>
         <StyledTimelineStem />
         {icon ? <StyledTimelineNodeIconWrapper>{icon}</StyledTimelineNodeIconWrapper> : <StyledTimelineNodeCircle />}
@@ -23,7 +23,7 @@ const TimelineAndContentSegment = withCssSelectable(({content, annotation, icon,
 
 const TimelineStart = ({ annotation, icon }: { annotation?: React.ReactNode, icon?: React.ReactNode }) => {
   return (
-    <StyledSegmentContainer hiddenWhenNarrow>
+    <StyledSegmentContainer collapsedWhenNarrow>
       <StyledTimelineContainer>
         {icon ? <StyledTimelineNodeIconWrapper>{icon}</StyledTimelineNodeIconWrapper> : <StyledTimelineNodeCircle />}
         <StyledTimelineNodeAnnotation>
@@ -39,7 +39,7 @@ const breakpoints = {
   medium: "1450px",
 };
 
-const StyledSegmentContainer = styled.div<{hiddenWhenNarrow?: boolean}>`
+const StyledSegmentContainer = styled.div<{collapsedWhenNarrow?: boolean}>`
   position: relative;
   margin-top: 20px;
   margin-left: 150px;
@@ -48,7 +48,7 @@ const StyledSegmentContainer = styled.div<{hiddenWhenNarrow?: boolean}>`
   }
   @media (max-width: ${breakpoints.narrow}) {
     margin-left: 0;
-    ${props => props.hiddenWhenNarrow && `display: none;`}
+    ${props => props.collapsedWhenNarrow && `display: none;`}
   }
 `;
 

@@ -77,7 +77,7 @@ const Aside = ({aside}: {aside: AsideContent}) => {
         }
         annotation={aside.duration}
         icon={aside.icon}
-        hiddenWhenNarrow
+        collapsedWhenNarrow
       />
     </Reveal>
   )
