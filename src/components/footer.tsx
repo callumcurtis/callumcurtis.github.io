@@ -4,6 +4,7 @@ import { Anchor } from 'src/components/link';
 import { SocialLink } from 'src/components/social';
 import { usePropsWithConfig } from 'src/utils/config';
 import { useContent } from 'src/utils/content';
+import { withStyleOnSideSocialsCollapse } from './side-socials';
 
 
 const StyledFooter = styled.footer`
@@ -12,7 +13,9 @@ const StyledFooter = styled.footer`
   text-align: center;
 `;
 
-const StyledFooterSocials = styled.div.attrs(usePropsWithConfig)`
+const StyledFooterSocials = withStyleOnSideSocialsCollapse({
+  styleOnSelect: 'display: flex;' 
+})(styled.div.attrs(usePropsWithConfig)`
   display: none;
   margin: 0 0 20px 0;
   justify-content: center;
@@ -20,10 +23,7 @@ const StyledFooterSocials = styled.div.attrs(usePropsWithConfig)`
   & > *:not(:last-child) {
     margin-right: 20px;
   }
-  @media (max-width: calc(${props => props.config.breakpoints.switchToSocialsOnSide} - 1px)) {
-    display: flex;
-  }
-`;
+`);
 
 const StyledFooterCredit = styled.p.attrs(usePropsWithConfig)`
   padding: 0 10px;
