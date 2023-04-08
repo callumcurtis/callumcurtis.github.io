@@ -31,7 +31,7 @@ const SideSocials = () => {
   const content = useContent();
   return (
     <StyledFixedBottomRightSideContainer>
-      {content.socials.map((social, index) => <SocialLink key={index} href={social.href}>{social.icon}</SocialLink>)}
+      {content.socials.map((social, index) => <SocialLink key={index} href={social.link}>{social.icon}</SocialLink>)}
       <StyledFixedBottomRightSideStem/>
     </StyledFixedBottomRightSideContainer>
   )

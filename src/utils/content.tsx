@@ -150,14 +150,18 @@ const defaultContent = {
     {
       name: "GitHub",
       icon: <GitHubIcon />,
-      href: "https://github.com/callumcurtis"
+      link: "https://github.com/callumcurtis"
     },
     {
       name: "LinkedIn",
       icon: <LinkedInIcon />,
-      href: "https://www.linkedin.com/in/callumcurtis/"
+      link: "https://www.linkedin.com/in/callumcurtis/"
     },
   ],
+  credit: {
+    brief: "Created by Callum Curtis using React and TypeScript.",
+    link: "https://github.com/callumcurtis/callumcurtis.github.io"
+  }
 }
 
 type Content = typeof defaultContent;
