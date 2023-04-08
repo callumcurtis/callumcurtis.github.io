@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { usePropsWithConfig } from 'src/utils/config';
+import { usePropsWithConfig } from 'src/context/config';
 
 
 const Anchor = styled.a.attrs(usePropsWithConfig)`

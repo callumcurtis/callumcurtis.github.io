@@ -1,6 +1,6 @@
 import { css } from 'styled-components';
 
-import { PropsWithConfig } from 'src/utils/config';
+import { PropsWithConfig } from 'src/context/config';
 
 
 const sectionSize = css<PropsWithConfig<{}>>`

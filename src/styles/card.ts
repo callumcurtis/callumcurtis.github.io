@@ -1,6 +1,6 @@
 import { css, StyledComponent } from 'styled-components';
 
-import { PropsWithConfig } from 'src/utils/config';
+import { PropsWithConfig } from 'src/context/config';
 
 
 const cardBorder = css<PropsWithConfig<{}>>`

@@ -1,7 +1,7 @@
 import React from 'react';
 import { scroller } from 'react-scroll';
 
-import { useConfig } from 'src/utils/config';
+import { useConfig } from 'src/context/config';
 
 
 // TODO: define custom types for react-scroll options (Definitely Typed package uses any)

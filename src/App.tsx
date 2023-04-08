@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-import defaultConfig, { ConfigProvider } from 'src/utils/config';
-import defaultContent, { ContentProvider } from 'src/utils/content';
-import { useOpenExternalLinksInNewPageWithProtection } from 'src/utils/link';
-import { useAutoScrollToHashOnMount } from "src/utils/scroll";
+import defaultConfig, { ConfigProvider } from 'src/context/config';
+import defaultContent, { ContentProvider } from 'src/context/content';
+import { useOpenExternalLinksInNewPageWithProtection } from 'src/hooks/link';
+import { useAutoScrollToHashOnMount } from "src/hooks/scroll";
 import Hero from 'src/components/sections/hero';
 import About from 'src/components/sections/about';
 import Experience from 'src/components/sections/experience';

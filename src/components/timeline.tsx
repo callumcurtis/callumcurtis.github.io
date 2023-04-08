@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-import { usePropsWithConfig } from 'src/utils/config';
+import { usePropsWithConfig } from 'src/context/config';
 import { withCssSelectable, withStyleOnSelect } from 'src/components/select';
 
 

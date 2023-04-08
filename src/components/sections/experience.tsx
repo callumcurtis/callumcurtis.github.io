@@ -2,8 +2,8 @@ import styled, { css } from 'styled-components';
 import { Terminal as TerminalIcon } from "@mui/icons-material";
 
 import Reveal from 'src/components/reveal';
-import { useContent, PositionContent, AsideContent } from 'src/utils/content';
-import { useConfig, usePropsWithConfig } from 'src/utils/config';
+import { useContent, PositionContent, AsideContent } from 'src/context/content';
+import { useConfig, usePropsWithConfig } from 'src/context/config';
 import { sectionSize, sectionLayout, regularContentSize } from 'src/styles/section';
 import { cardBorder, cardHover, cardSize, cardPadding } from 'src/styles/card';
 import { TimelineAndContentSegment, TimelineStart, withStyleOnTimelineCollapse } from 'src/components/timeline';

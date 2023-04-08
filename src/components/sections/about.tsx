@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 import Reveal from 'src/components/reveal';
-import { useContent } from 'src/utils/content';
-import { useConfig, usePropsWithConfig } from 'src/utils/config';
+import { useContent } from 'src/context/content';
+import { useConfig, usePropsWithConfig } from 'src/context/config';
 import { sectionSize, sectionLayout, regularContentSize } from 'src/styles/section';
 
 

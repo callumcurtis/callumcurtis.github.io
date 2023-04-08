@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components';
 
 import { SocialLink } from 'src/components/social';
-import { usePropsWithConfig } from 'src/utils/config';
-import { useContent } from 'src/utils/content';
+import { usePropsWithConfig } from 'src/context/config';
+import { useContent } from 'src/context/content';
 import { withStyleOnSelect } from 'src/components/select';
 
 

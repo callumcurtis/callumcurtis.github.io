@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import { Container, Nav, Navbar } from 'react-bootstrap';
 
 import Brand from 'src/components/brand';
-import { useScrollTo } from 'src/utils/scroll';
-import { usePropsWithConfig, useConfig } from 'src/utils/config';
+import { useScrollTo } from 'src/hooks/scroll';
+import { usePropsWithConfig, useConfig } from 'src/context/config';
 import { circularBackgroundOnHover } from 'src/styles/button';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
