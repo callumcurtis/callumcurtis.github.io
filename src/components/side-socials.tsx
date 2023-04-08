@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 import { SocialLink } from "src/components/social";
 import { usePropsWithConfig } from "src/context/config";
@@ -48,9 +48,7 @@ const SideSocials = () => {
 };
 
 const withStyleOnSideSocialsCollapse = withStyleOnSelect(
-  css`
-    @media (max-width: ${breakpoints.collapse});
-  `
+  `@media (max-width: ${breakpoints.collapse})`
 );
 
 export default SideSocials;

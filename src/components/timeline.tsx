@@ -188,9 +188,7 @@ const StyledTimelineNodeToContentAnimatedConnector = styled.div.attrs(
 `;
 
 const withStyleOnTimelineCollapse = withStyleOnSelect(
-  css`
-    @media (max-width: ${breakpoints.narrow});
-  `
+  `@media (max-width: ${breakpoints.narrow})`
 );
 
 export {
