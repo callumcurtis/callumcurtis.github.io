@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Reveal from 'src/components/reveal';
 import { useContent } from 'src/context/content';
 import { useConfig, usePropsWithConfig } from 'src/context/config';
-import { sectionSize, sectionLayout, regularContentSize } from 'src/styles/section';
+import { sectionSize, sectionLayout, regularContentSize } from 'src/styles/mixins/section';
 
 
 const StyledAboutSection = styled.section.attrs(usePropsWithConfig)`

@@ -4,8 +4,8 @@ import { Terminal as TerminalIcon } from "@mui/icons-material";
 import Reveal from 'src/components/reveal';
 import { useContent, PositionContent, AsideContent } from 'src/context/content';
 import { useConfig, usePropsWithConfig } from 'src/context/config';
-import { sectionSize, sectionLayout, regularContentSize } from 'src/styles/section';
-import { cardBorder, cardHover, cardSize, cardPadding } from 'src/styles/card';
+import { sectionSize, sectionLayout, regularContentSize } from 'src/styles/mixins/section';
+import { cardBorder, cardHover, cardSize, cardPadding } from 'src/styles/mixins/card';
 import { TimelineAndContentSegment, TimelineStart, withStyleOnTimelineCollapse } from 'src/components/timeline';
 
 

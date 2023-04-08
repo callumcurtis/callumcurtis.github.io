@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-import { backgroundContainer, backgroundFillContainer } from 'src/styles/background';
+import { backgroundContainer, backgroundFillContainer } from 'src/styles/mixins/background';
 import { withWaveAnimationBackground } from 'src/components/background';
-import { wideContentSize, sectionSize, sectionLayout } from 'src/styles/section';
+import { wideContentSize, sectionSize, sectionLayout } from 'src/styles/mixins/section';
 import { useConfig, usePropsWithConfig } from 'src/context/config';
 import { useContent } from 'src/context/content';
 

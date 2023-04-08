@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { sectionSize, sectionLayout, wideContentSize } from "src/styles/section";
+import { sectionSize, sectionLayout, wideContentSize } from "src/styles/mixins/section";
 import { usePropsWithConfig } from 'src/context/config';
 import { useContent, TestimonialContent } from 'src/context/content';
 
