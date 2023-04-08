@@ -6,7 +6,7 @@ import { useContent, PositionContent, AsideContent } from 'src/utils/content';
 import { useConfig, usePropsWithConfig } from 'src/utils/config';
 import { sectionSize, sectionLayout, regularContentSize } from 'src/styles/section';
 import { cardBorder, cardHover, cardSize, cardPadding } from 'src/styles/card';
-import { TimelineAndContentSegment, TimelineStart, withStylesOnTimelineCollapseAndExpand } from 'src/components/timeline';
+import { TimelineAndContentSegment, TimelineStart, withStyleOnTimelineCollapse } from 'src/components/timeline';
 
 
 const StyledExperienceSection = styled.section.attrs(usePropsWithConfig)`
@@ -34,10 +34,11 @@ const StyledExperienceCard = styled.div
   ${props => !props.emphasize && css`font-size: ${props.config.text.body.size.small};`}
 `;
 
-const StyledExperienceCardDateRange = withStylesOnTimelineCollapseAndExpand({
-  cssOnCollapse: 'display: block;',
-  cssOnExpand: 'display: none;',
-})(styled.p``);
+const StyledExperienceCardDateRange = withStyleOnTimelineCollapse({
+  styleOnSelect: 'display: block;',
+})(styled.p`
+  display: none;
+`);
 
 const StyledPositionAndOrganizationHeading = styled.h3``;
 

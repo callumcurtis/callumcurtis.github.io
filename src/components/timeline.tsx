@@ -1,8 +1,8 @@
 import React from 'react';
-import styled, { Interpolation, css } from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { usePropsWithConfig } from 'src/utils/config';
-import withCssSelectable from './selectable';
+import { withCssSelectable, withStyleOnSelect } from 'src/components/select';
 
 
 const TimelineAndContentSegment = withCssSelectable(({content, annotation, icon, className, collapsedWhenNarrow = false}: {content?: React.ReactNode, annotation?: React.ReactNode, icon?: React.ReactNode, className?: string, collapsedWhenNarrow?: boolean}) => {
@@ -149,11 +149,6 @@ const StyledTimelineNodeToContentAnimatedConnector = styled.div.attrs(usePropsWi
   }
 `;
 
-const withStylesOnTimelineCollapseAndExpand = ({cssOnExpand, cssOnCollapse}: {cssOnExpand: Interpolation<any>, cssOnCollapse: Interpolation<any>}) => (Component: React.ComponentType<any>) => styled(Component)`
-  ${cssOnExpand}
-  @media (max-width: ${breakpoints.narrow}) {
-    ${cssOnCollapse}
-  }
-`;
+const withStyleOnTimelineCollapse = withStyleOnSelect(css`@media (max-width: ${breakpoints.narrow})`)
 
-export { TimelineAndContentSegment, TimelineStart, withStylesOnTimelineCollapseAndExpand }
+export { TimelineAndContentSegment, TimelineStart, withStyleOnTimelineCollapse }
