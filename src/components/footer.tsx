@@ -4,7 +4,7 @@ import { Anchor } from 'src/components/link';
 import { SocialLink } from 'src/components/social';
 import { usePropsWithConfig } from 'src/utils/config';
 import { useContent } from 'src/utils/content';
-import { withStyleOnSideSocialsCollapse } from './side-socials';
+import { withStyleOnSideSocialsCollapse } from 'src/components/side-socials';
 
 
 const StyledFooter = styled.footer`

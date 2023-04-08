@@ -2,17 +2,17 @@ import styled from "styled-components";
 
 import defaultConfig, { ConfigProvider } from 'src/utils/config';
 import defaultContent, { ContentProvider } from 'src/utils/content';
-import { useAutoScrollToHashOnMount } from "./utils/scroll";
+import { useAutoScrollToHashOnMount } from "src/utils/scroll";
 import Hero from 'src/components/sections/hero';
 import About from 'src/components/sections/about';
 import Experience from 'src/components/sections/experience';
-import Testimonials from "./components/sections/testimonials";
-import Projects from "./components/sections/projects";
-import NavigationBar from "./components/navigation";
-import SideSocials from "./components/side-socials";
-import Footer from "./components/footer";
+import Testimonials from "src/components/sections/testimonials";
+import Projects from "src/components/sections/projects";
+import NavigationBar from "src/components/navigation";
+import SideSocials from "src/components/side-socials";
+import Footer from "src/components/footer";
 
-import "./App.css";
+import "src/App.css";
 
 
 const StyledMainContainer = styled.main``;
