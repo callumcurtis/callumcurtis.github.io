@@ -1,7 +1,6 @@
-import { css } from 'styled-components';
+import { css } from "styled-components";
 
-import { PropsWithConfig } from 'src/context/config';
-
+import { PropsWithConfig } from "src/context/config";
 
 const backgroundContainer = css`
   position: relative;
@@ -12,7 +11,7 @@ const backgroundPosition = css`
 `;
 
 const backgroundLayer = css<PropsWithConfig<{}>>`
-  z-index: ${props => props.config.layers.background};
+  z-index: ${(props) => props.config.layers.background};
 `;
 
 const backgroundFillContainer = css`
@@ -24,4 +23,4 @@ const backgroundFillContainer = css`
   ${backgroundLayer}
 `;
 
-export { backgroundContainer, backgroundFillContainer }
+export { backgroundContainer, backgroundFillContainer };

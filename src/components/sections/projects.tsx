@@ -1,13 +1,17 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import Reveal from 'src/components/reveal';
-import { AnchorOverlay } from 'src/components/link';
-import { cardHover, cardSize, cardPadding, cardBorder } from 'src/styles/mixins/card';
-import { regularContentSize } from 'src/styles/mixins/section';
-import { sectionSize, sectionLayout } from 'src/styles/mixins/section';
-import { usePropsWithConfig, useConfig } from 'src/context/config';
-import { useContent, ProjectContent } from 'src/context/content';
-
+import Reveal from "src/components/reveal";
+import { AnchorOverlay } from "src/components/link";
+import {
+  cardHover,
+  cardSize,
+  cardPadding,
+  cardBorder,
+} from "src/styles/mixins/card";
+import { regularContentSize } from "src/styles/mixins/section";
+import { sectionSize, sectionLayout } from "src/styles/mixins/section";
+import { usePropsWithConfig, useConfig } from "src/context/config";
+import { useContent, ProjectContent } from "src/context/content";
 
 const StyledProjectsSection = styled.section.attrs(usePropsWithConfig)`
   ${sectionSize}
@@ -24,7 +28,7 @@ const StyledProjectsHeading = styled.h2`
 
 const StyledProjectCard = styled.div
   .attrs(usePropsWithConfig)
-  .attrs(props => ({...props, movement: true}))`
+  .attrs((props) => ({ ...props, movement: true }))`
   position: relative;
   margin: 20px 0px;
   ${cardSize}
@@ -71,8 +75,8 @@ const StyledTagsContainer = styled.ul.attrs(usePropsWithConfig)`
   list-style: none;
   padding: 0;
   margin: 0;
-  font-size: ${props => props.config.text.body.size.small};
-  color: ${props => props.config.colors.foreground.muted};
+  font-size: ${(props) => props.config.text.body.size.small};
+  color: ${(props) => props.config.colors.foreground.muted};
 `;
 
 const StyledTag = styled.li`
@@ -80,16 +84,22 @@ const StyledTag = styled.li`
   margin-right: 20px;
 `;
 
-const Project = ({project}: {project: ProjectContent}) => {
+const Project = ({ project }: { project: ProjectContent }) => {
   return (
     <Reveal>
       <StyledProjectCard>
-        <AnchorOverlay href={project.link}/>
+        <AnchorOverlay href={project.link} />
         <StyledProjectCardContent>
           <StyledProjectCardTextContainer>
             <ProjectHeading>{project.name}</ProjectHeading>
-            <StyledProjectDescription>{project.description}</StyledProjectDescription>
-            <StyledTagsContainer>{project.tags.map((tag, index) => <StyledTag key={index}>{tag}</StyledTag>)}</StyledTagsContainer>
+            <StyledProjectDescription>
+              {project.description}
+            </StyledProjectDescription>
+            <StyledTagsContainer>
+              {project.tags.map((tag, index) => (
+                <StyledTag key={index}>{tag}</StyledTag>
+              ))}
+            </StyledTagsContainer>
           </StyledProjectCardTextContainer>
           <StyledProjectCardImageContainer>
             {project.image}
@@ -97,8 +107,8 @@ const Project = ({project}: {project: ProjectContent}) => {
         </StyledProjectCardContent>
       </StyledProjectCard>
     </Reveal>
-  )
-}
+  );
+};
 
 const Projects = () => {
   const content = useContent();
@@ -107,12 +117,16 @@ const Projects = () => {
     <StyledProjectsSection id={config.ids.projects}>
       <StyledProjectsContent>
         <Reveal>
-          <StyledProjectsHeading>{content.projects.heading}</StyledProjectsHeading>
+          <StyledProjectsHeading>
+            {content.projects.heading}
+          </StyledProjectsHeading>
         </Reveal>
-        {content.projects.list.map((project, index) => <Project project={project} key={index}/>)}
+        {content.projects.list.map((project, index) => (
+          <Project project={project} key={index} />
+        ))}
       </StyledProjectsContent>
     </StyledProjectsSection>
-  )
+  );
 };
 
 export default Projects;

@@ -1,9 +1,12 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import { sectionSize, sectionLayout, wideContentSize } from "src/styles/mixins/section";
-import { usePropsWithConfig } from 'src/context/config';
-import { useContent, TestimonialContent } from 'src/context/content';
-
+import {
+  sectionSize,
+  sectionLayout,
+  wideContentSize,
+} from "src/styles/mixins/section";
+import { usePropsWithConfig } from "src/context/config";
+import { useContent, TestimonialContent } from "src/context/content";
 
 const StyledTestimonialSection = styled.div.attrs(usePropsWithConfig)`
   ${sectionSize}
@@ -31,9 +34,11 @@ const StyledTestimonial = styled.div`
   max-width: 520px;
 `;
 
-const TestimonialQuotationMark = (props: React.HTMLAttributes<HTMLSpanElement>) => {
-  return <span {...props}>“</span>
-}
+const TestimonialQuotationMark = (
+  props: React.HTMLAttributes<HTMLSpanElement>
+) => {
+  return <span {...props}>“</span>;
+};
 
 const StyledTestimonialQuotationMark = styled(TestimonialQuotationMark)`
   font-size: 48px;
@@ -45,25 +50,29 @@ const StyledTestimonialQuote = styled.h3``;
 
 const StyledTestimonialAttribution = styled.p``;
 
-const Testimonial = ({testimonial}: {testimonial: TestimonialContent}) => {
+const Testimonial = ({ testimonial }: { testimonial: TestimonialContent }) => {
   return (
     <StyledTestimonial>
-      <StyledTestimonialQuotationMark/>
+      <StyledTestimonialQuotationMark />
       <StyledTestimonialQuote>{testimonial.quote}</StyledTestimonialQuote>
-      <StyledTestimonialAttribution>{testimonial.author}, {testimonial.position}</StyledTestimonialAttribution>
+      <StyledTestimonialAttribution>
+        {testimonial.author}, {testimonial.position}
+      </StyledTestimonialAttribution>
     </StyledTestimonial>
-  )
+  );
 };
 
 const Testimonials = () => {
   const content = useContent();
   return (
-      <StyledTestimonialSection>
-        <StyledTestimonialRow>
-          {content.testimonials.list.map((testimonial, index) => (<Testimonial testimonial={testimonial} key={index}/>))}
-        </StyledTestimonialRow>
-      </StyledTestimonialSection>
-  )
+    <StyledTestimonialSection>
+      <StyledTestimonialRow>
+        {content.testimonials.list.map((testimonial, index) => (
+          <Testimonial testimonial={testimonial} key={index} />
+        ))}
+      </StyledTestimonialRow>
+    </StyledTestimonialSection>
+  );
 };
 
 export default Testimonials;

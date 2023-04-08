@@ -1,13 +1,25 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from "styled-components";
 import { Terminal as TerminalIcon } from "@mui/icons-material";
 
-import Reveal from 'src/components/reveal';
-import { useContent, PositionContent, AsideContent } from 'src/context/content';
-import { useConfig, usePropsWithConfig } from 'src/context/config';
-import { sectionSize, sectionLayout, regularContentSize } from 'src/styles/mixins/section';
-import { cardBorder, cardHover, cardSize, cardPadding } from 'src/styles/mixins/card';
-import { TimelineAndContentSegment, TimelineStart, withStyleOnTimelineCollapse } from 'src/components/timeline';
-
+import Reveal from "src/components/reveal";
+import { useContent, PositionContent, AsideContent } from "src/context/content";
+import { useConfig, usePropsWithConfig } from "src/context/config";
+import {
+  sectionSize,
+  sectionLayout,
+  regularContentSize,
+} from "src/styles/mixins/section";
+import {
+  cardBorder,
+  cardHover,
+  cardSize,
+  cardPadding,
+} from "src/styles/mixins/card";
+import {
+  TimelineAndContentSegment,
+  TimelineStart,
+  withStyleOnTimelineCollapse,
+} from "src/components/timeline";
 
 const StyledExperienceSection = styled.section.attrs(usePropsWithConfig)`
   ${sectionSize}
@@ -24,18 +36,21 @@ const StyledExperienceHeading = styled.h2`
 
 const StyledExperienceCard = styled.div
   .attrs(usePropsWithConfig)
-  .attrs(props => ({...props, hoverTarget: TimelineAndContentSegment}))
-  .attrs(props => ({...props, movement: false}))
-  <{ emphasize?: boolean }>`
-  ${props => props.emphasize && cardBorder}
-  ${props => props.emphasize && cardHover}
+  .attrs((props) => ({ ...props, hoverTarget: TimelineAndContentSegment }))
+  .attrs((props) => ({ ...props, movement: false }))<{ emphasize?: boolean }>`
+  ${(props) => props.emphasize && cardBorder}
+  ${(props) => props.emphasize && cardHover}
   ${cardSize}
   ${cardPadding}
-  ${props => !props.emphasize && css`font-size: ${props.config.text.body.size.small};`}
+  ${(props) =>
+    !props.emphasize &&
+    css`
+      font-size: ${props.config.text.body.size.small};
+    `}
 `;
 
 const StyledExperienceCardDateRange = withStyleOnTimelineCollapse({
-  styleOnSelect: 'display: block;',
+  styleOnSelect: "display: block;",
 })(styled.p`
   display: none;
 `);
@@ -48,26 +63,40 @@ const StyledAchievementsContainer = styled.ul``;
 
 const StyledAchievement = styled.li``;
 
-const Position = ({position}: {position: PositionContent}) => {
+const Position = ({ position }: { position: PositionContent }) => {
   return (
     <Reveal origin="bottom">
       <TimelineAndContentSegment
         content={
           <StyledExperienceCard emphasize>
-            <StyledPositionAndOrganizationHeading>{position.position}, {position.organization}</StyledPositionAndOrganizationHeading>
-            <StyledExperienceCardDateRange>{position.duration}</StyledExperienceCardDateRange>
-            {position.brief && <StyledExperienceBrief>{position.brief}</StyledExperienceBrief>}
-            {position.achievements && <StyledAchievementsContainer>{position.achievements.map((achievement, index) => <StyledAchievement key={index}>{achievement}</StyledAchievement>)}</StyledAchievementsContainer>}
+            <StyledPositionAndOrganizationHeading>
+              {position.position}, {position.organization}
+            </StyledPositionAndOrganizationHeading>
+            <StyledExperienceCardDateRange>
+              {position.duration}
+            </StyledExperienceCardDateRange>
+            {position.brief && (
+              <StyledExperienceBrief>{position.brief}</StyledExperienceBrief>
+            )}
+            {position.achievements && (
+              <StyledAchievementsContainer>
+                {position.achievements.map((achievement, index) => (
+                  <StyledAchievement key={index}>
+                    {achievement}
+                  </StyledAchievement>
+                ))}
+              </StyledAchievementsContainer>
+            )}
           </StyledExperienceCard>
         }
         annotation={position.duration}
         icon={position.icon}
       />
     </Reveal>
-  )
-}
+  );
+};
 
-const Aside = ({aside}: {aside: AsideContent}) => {
+const Aside = ({ aside }: { aside: AsideContent }) => {
   return (
     <Reveal origin="bottom">
       <TimelineAndContentSegment
@@ -81,8 +110,8 @@ const Aside = ({aside}: {aside: AsideContent}) => {
         collapsedWhenNarrow
       />
     </Reveal>
-  )
-}
+  );
+};
 
 const Experience = () => {
   const content = useContent();
@@ -90,14 +119,22 @@ const Experience = () => {
   return (
     <StyledExperienceSection id={config.ids.experience}>
       <StyledExperienceContent>
-        <StyledExperienceHeading>{content.experience.heading}</StyledExperienceHeading>
-        {content.experience.history.map((content, index) => "position" in content ? <Position position={content} key={index} /> : <Aside aside={content} key={index} />)}
+        <StyledExperienceHeading>
+          {content.experience.heading}
+        </StyledExperienceHeading>
+        {content.experience.history.map((content, index) =>
+          "position" in content ? (
+            <Position position={content} key={index} />
+          ) : (
+            <Aside aside={content} key={index} />
+          )
+        )}
         <Reveal origin="top" distance="5px">
           <TimelineStart icon={<TerminalIcon />} />
         </Reveal>
       </StyledExperienceContent>
     </StyledExperienceSection>
-  )
-}
+  );
+};
 
 export default Experience;

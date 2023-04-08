@@ -1,5 +1,4 @@
-import React from 'react';
-
+import React from "react";
 
 const navHeight = "56px";
 
@@ -24,8 +23,8 @@ const defaultColors = {
   },
   accent: {
     muted: "#387dff4b",
-  }
-}
+  },
+};
 
 const ids = {
   hero: "hero",
@@ -33,7 +32,7 @@ const ids = {
   experience: "experience",
   projects: "projects",
   navigation: "navigation",
-}
+};
 
 const defaultConfig = {
   autoScroll: {
@@ -44,24 +43,24 @@ const defaultConfig = {
       smooth: true,
       isDynamic: true,
       ignoreCancelEvents: false,
-    }
+    },
   },
   scrollReveal: {
     defaults: {
-      viewOffset: { top: parseInt(navHeight) + 50, bottom: 50},
-      distance: '30px',
+      viewOffset: { top: parseInt(navHeight) + 50, bottom: 50 },
+      distance: "30px",
       duration: 500,
-      easing: 'cubic-bezier(.4,-0.01,.3,.37)',
+      easing: "cubic-bezier(.4,-0.01,.3,.37)",
       origin: "left",
       reset: true,
-    }
+    },
   },
   vanta: {
     defaults: {
       mouseControls: true,
       touchControls: true,
       gyroControls: false,
-    }
+    },
   },
   ids: ids,
   layers: {
@@ -87,7 +86,7 @@ const defaultConfig = {
         id: ids.projects,
         name: "Projects",
       },
-    ]
+    ],
   },
   colors: defaultColors,
   text: {
@@ -97,22 +96,23 @@ const defaultConfig = {
     body: {
       size: {
         small: "14px",
-      }
-    }
-  }
-}
+      },
+    },
+  },
+};
 
 type Config = typeof defaultConfig;
 
 const ConfigContext = React.createContext(defaultConfig);
 
-const ConfigProvider = ({ children, config = defaultConfig }: React.PropsWithChildren<{ config?: Config }>) => {
+const ConfigProvider = ({
+  children,
+  config = defaultConfig,
+}: React.PropsWithChildren<{ config?: Config }>) => {
   return (
-    <ConfigContext.Provider value={config}>
-      {children}
-    </ConfigContext.Provider>
-  )
-}
+    <ConfigContext.Provider value={config}>{children}</ConfigContext.Provider>
+  );
+};
 
 const useConfig = () => React.useContext(ConfigContext);
 
@@ -122,8 +122,8 @@ const usePropsWithConfig = <P extends {}>(props: P): PropsWithConfig<P> => {
   return {
     ...props,
     config: useConfig(),
-  }
-}
+  };
+};
 
 export default defaultConfig;
 export { ConfigProvider, useConfig, usePropsWithConfig };

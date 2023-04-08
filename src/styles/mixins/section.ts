@@ -1,10 +1,9 @@
-import { css } from 'styled-components';
+import { css } from "styled-components";
 
-import { PropsWithConfig } from 'src/context/config';
-
+import { PropsWithConfig } from "src/context/config";
 
 const sectionSize = css<PropsWithConfig<{}>>`
-  min-height: calc(100vh - ${props => props.config.layout.nav.height});
+  min-height: calc(100vh - ${(props) => props.config.layout.nav.height});
   padding: clamp(20px, 5vh, 50px) 0px;
 `;
 
@@ -18,7 +17,7 @@ const breakpoints = {
   narrow: "480px",
   medium: "768px",
   wide: "1300px",
-}
+};
 
 const regularContentSize = css`
   padding: 0px 100px;
@@ -49,4 +48,4 @@ const wideContentSize = css`
   }
 `;
 
-export { regularContentSize, wideContentSize, sectionSize, sectionLayout }
+export { regularContentSize, wideContentSize, sectionSize, sectionLayout };

@@ -1,10 +1,9 @@
-import React from 'react';
+import React from "react";
 import {
   SchoolOutlined as SchoolIcon,
   GitHub as GitHubIcon,
   LinkedIn as LinkedInIcon,
- } from "@mui/icons-material";
-
+} from "@mui/icons-material";
 
 interface PositionContent {
   position: string;
@@ -76,12 +75,14 @@ interface TestimonialContent {
 const testimonialList: TestimonialContent[] = [
   // priority order: first is highest priority
   {
-    quote: "Callum is a big big helper and did a good job, all the time, yes indeed.",
+    quote:
+      "Callum is a big big helper and did a good job, all the time, yes indeed.",
     author: "John Doe",
     position: "CEO of FooBar Inc.",
   },
   {
-    quote: "Callum is a super duper and did a good job, all the time, yes indeed.",
+    quote:
+      "Callum is a super duper and did a good job, all the time, yes indeed.",
     author: "Jane Doe",
     position: "CEO of BazQux Inc.",
   },
@@ -90,7 +91,7 @@ const testimonialList: TestimonialContent[] = [
     author: "John Smith",
     position: "Professor of Software Engineering at the University of Victoria",
   },
-]
+];
 
 interface ProjectContent {
   name: string;
@@ -104,23 +105,41 @@ const projectList: ProjectContent[] = [
   // priority order: first is highest priority
   {
     name: "Project 1",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel nunc et enim efficitur feugiat a eget dolor. Ut pellentesque, quam id ultrices facilisis, nisi nulla finibus velit, id aliquam ipsum orci non nibh. Sed blandit non libero vitae bibendum. Donec a dolor turpis. Sed suscipit interdum mi, in elementum neque aliquam at. Aenean quis massa a magna egestas pellentesque. Sed tristique semper ante, a gravida ex auctor at.",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel nunc et enim efficitur feugiat a eget dolor. Ut pellentesque, quam id ultrices facilisis, nisi nulla finibus velit, id aliquam ipsum orci non nibh. Sed blandit non libero vitae bibendum. Donec a dolor turpis. Sed suscipit interdum mi, in elementum neque aliquam at. Aenean quis massa a magna egestas pellentesque. Sed tristique semper ante, a gravida ex auctor at.",
     link: "https://www.google.com",
-    image: <img src="https://via.placeholder.com/600x400" alt="Project 1 Placeholder"/>,
+    image: (
+      <img
+        src="https://via.placeholder.com/600x400"
+        alt="Project 1 Placeholder"
+      />
+    ),
     tags: ["React", "TypeScript"],
   },
   {
     name: "Project 2",
-    description: "Fusce nec lobortis purus. Maecenas sollicitudin leo ut tincidunt maximus. Phasellus at sem luctus, aliquet dui in, ultrices purus. Maecenas.",
+    description:
+      "Fusce nec lobortis purus. Maecenas sollicitudin leo ut tincidunt maximus. Phasellus at sem luctus, aliquet dui in, ultrices purus. Maecenas.",
     link: "https://www.google.com",
-    image: <img src="https://via.placeholder.com/600x400" alt="Project 2 Placeholder"/>,
+    image: (
+      <img
+        src="https://via.placeholder.com/600x400"
+        alt="Project 2 Placeholder"
+      />
+    ),
     tags: ["Rust", "C++"],
   },
   {
     name: "Project 3",
-    description: "Aliquam placerat, odio vel fermentum porttitor, velit nunc maximus nunc, in semper arcu sapien tempor turpis. Donec sed vulputate lacus.",
+    description:
+      "Aliquam placerat, odio vel fermentum porttitor, velit nunc maximus nunc, in semper arcu sapien tempor turpis. Donec sed vulputate lacus.",
     link: "https://www.google.com",
-    image: <img src="https://via.placeholder.com/600x400" alt="Project 3 Placeholder"/>,
+    image: (
+      <img
+        src="https://via.placeholder.com/600x400"
+        alt="Project 3 Placeholder"
+      />
+    ),
     tags: ["Python", "Django"],
   },
 ];
@@ -128,11 +147,13 @@ const projectList: ProjectContent[] = [
 const defaultContent = {
   hero: {
     heading: "Hi, I'm Callum",
-    brief: "I'm a software engineering student, passionate about solving problems, challenging my skills, and pushing my expectations of myself. Currently, I'm continuing my studies at the University of Victoria.",
+    brief:
+      "I'm a software engineering student, passionate about solving problems, challenging my skills, and pushing my expectations of myself. Currently, I'm continuing my studies at the University of Victoria.",
   },
   about: {
     heading: "About",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel nunc et enim efficitur feugiat a eget dolor. Ut pellentesque, quam id ultrices facilisis, nisi nulla finibus velit, id aliquam ipsum orci non nibh. Sed blandit non libero vitae bibendum. Donec a dolor turpis. Sed suscipit interdum mi, in elementum neque aliquam at. Aenean quis massa a magna egestas pellentesque. Sed tristique semper ante, a gravida ex auctor at.",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel nunc et enim efficitur feugiat a eget dolor. Ut pellentesque, quam id ultrices facilisis, nisi nulla finibus velit, id aliquam ipsum orci non nibh. Sed blandit non libero vitae bibendum. Donec a dolor turpis. Sed suscipit interdum mi, in elementum neque aliquam at. Aenean quis massa a magna egestas pellentesque. Sed tristique semper ante, a gravida ex auctor at.",
   },
   experience: {
     heading: "Experience",
@@ -150,34 +171,43 @@ const defaultContent = {
     {
       name: "GitHub",
       icon: <GitHubIcon />,
-      link: "https://github.com/callumcurtis"
+      link: "https://github.com/callumcurtis",
     },
     {
       name: "LinkedIn",
       icon: <LinkedInIcon />,
-      link: "https://www.linkedin.com/in/callumcurtis/"
+      link: "https://www.linkedin.com/in/callumcurtis/",
     },
   ],
   credit: {
     brief: "Created by Callum Curtis using React and TypeScript.",
-    link: "https://github.com/callumcurtis/callumcurtis.github.io"
-  }
-}
+    link: "https://github.com/callumcurtis/callumcurtis.github.io",
+  },
+};
 
 type Content = typeof defaultContent;
 
 const ContentContext = React.createContext(defaultContent);
 
-const ContentProvider = ({ children, content = defaultContent }: React.PropsWithChildren<{ content?: Content }>) => {
+const ContentProvider = ({
+  children,
+  content = defaultContent,
+}: React.PropsWithChildren<{ content?: Content }>) => {
   return (
     <ContentContext.Provider value={content}>
       {children}
     </ContentContext.Provider>
-  )
-}
+  );
+};
 
 const useContent = () => React.useContext(ContentContext);
 
 export default defaultContent;
 export { ContentProvider, useContent };
-export type { Content, PositionContent, AsideContent, TestimonialContent, ProjectContent };
+export type {
+  Content,
+  PositionContent,
+  AsideContent,
+  TestimonialContent,
+  ProjectContent,
+};

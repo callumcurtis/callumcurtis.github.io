@@ -31,7 +31,6 @@ body {
   }
 }
 
-
 .App {
   position: relative;
   overflow-x: hidden;
@@ -62,7 +61,7 @@ body {
 }
 
 .Header__logo-text {
-  font-family: 'Kumbh Sans', sans-serif;
+  font-family: "Kumbh Sans", sans-serif;
   font-size: 2rem;
   font-weight: 300;
   color: #333;
