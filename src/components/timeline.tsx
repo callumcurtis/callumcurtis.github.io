@@ -34,14 +34,19 @@ const TimelineStart = ({ annotation, icon }: { annotation?: React.ReactNode, ico
   )
 }
 
+const breakpoints = {
+  narrow: "1079px",
+  medium: "1450px",
+};
+
 const StyledSegmentContainer = styled.div<{hiddenWhenNarrow?: boolean}>`
   position: relative;
   margin-top: 20px;
   margin-left: 150px;
-  @media (max-width: 1450px) {
+  @media (max-width: ${breakpoints.medium}) {
     margin-left: 200px;
   }
-  @media (max-width: 1079px) {
+  @media (max-width: ${breakpoints.narrow}) {
     margin-left: 0;
     ${props => props.hiddenWhenNarrow && `display: none;`}
   }
@@ -52,10 +57,10 @@ const StyledTimelineContainer = styled.div`
   height: 100%;
   left: -100px;
   top: 0;
-  @media (max-width: 1450px) {
+  @media (max-width: ${breakpoints.medium}) {
     left: -100px;
   }
-  @media (max-width: 1079px) {
+  @media (max-width: ${breakpoints.narrow}) {
     display: none;
   }
 `;
@@ -146,7 +151,7 @@ const StyledTimelineNodeToContentAnimatedConnector = styled.div.attrs(usePropsWi
 
 const withStylesOnTimelineCollapseAndExpand = ({cssOnExpand, cssOnCollapse}: {cssOnExpand: Interpolation<any>, cssOnCollapse: Interpolation<any>}) => (Component: React.ComponentType<any>) => styled(Component)`
   ${cssOnExpand}
-  @media (max-width: 1079px) {
+  @media (max-width: ${breakpoints.narrow}) {
     ${cssOnCollapse}
   }
 `;
