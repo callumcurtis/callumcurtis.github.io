@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 import defaultConfig, { ConfigProvider } from 'src/utils/config';
 import defaultContent, { ContentProvider } from 'src/utils/content';
+import { useOpenExternalLinksInNewPageWithProtection } from 'src/utils/link';
 import { useAutoScrollToHashOnMount } from "src/utils/scroll";
 import Hero from 'src/components/sections/hero';
 import About from 'src/components/sections/about';
@@ -20,6 +21,7 @@ const StyledMainContainer = styled.main``;
 const App = () => {
 
   useAutoScrollToHashOnMount();
+  useOpenExternalLinksInNewPageWithProtection();
 
   return (
     <ConfigProvider config={defaultConfig}>
