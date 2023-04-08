@@ -14,15 +14,21 @@ const sectionLayout = css`
   justify-content: center;
 `;
 
+const breakpoints = {
+  narrow: "480px",
+  medium: "768px",
+  wide: "1300px",
+}
+
 const regularContentSize = css`
   padding: 0px 100px;
   width: 100%;
   max-width: 1100px;
   margin: 0 auto;
-  @media (max-width: 768px) {
+  @media (max-width: ${breakpoints.medium}) {
     padding: 0px 50px;
   }
-  @media (max-width: 480px) {
+  @media (max-width: ${breakpoints.narrow}) {
     padding: 0px 20px;
   }
 `;
@@ -32,13 +38,13 @@ const wideContentSize = css`
   width: 100%;
   max-width: 1800px;
   margin: 0 auto;
-  @media (max-width: 1300px) {
+  @media (max-width: ${breakpoints.wide}) {
     padding: 0px 100px;
   }
-  @media (max-width: 768px) {
+  @media (max-width: ${breakpoints.medium}) {
     padding: 0px 50px;
   }
-  @media (max-width: 480px) {
+  @media (max-width: ${breakpoints.narrow}) {
     padding: 0px 20px;
   }
 `;
