@@ -4,6 +4,13 @@
   padding: 0;
 }
 
+body {
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333;
+}
+
 p:last-child {
   margin-bottom: 0;
 }
@@ -15,13 +22,6 @@ h2 {
   font-size: 48px;
 }
 
-body {
-  font-family: "Open Sans", sans-serif;
-  font-size: 16px;
-  line-height: 1.5;
-  color: #333;
-}
-
 @media (max-width: 768px) {
   h1 {
     font-size: 48px;
@@ -29,120 +29,4 @@ body {
   h2 {
     font-size: 30px;
   }
-}
-
-.App {
-  position: relative;
-  overflow-x: hidden;
-}
-
-.Header {
-  position: fixed;
-  top: 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem;
-  width: 100%;
-  background-color: white;
-  z-index: 1;
-}
-
-.Header--show {
-  opacity: 1;
-  visibility: visible;
-}
-
-.Header__logo {
-  margin-right: auto;
-  margin-left: 30px;
-  padding-right: 1rem;
-  white-space: nowrap;
-}
-
-.Header__logo-text {
-  font-family: "Kumbh Sans", sans-serif;
-  font-size: 2rem;
-  font-weight: 300;
-  color: #333;
-  text-decoration: none;
-}
-
-.Header__nav {
-  margin-right: 30px;
-}
-
-.Header__nav-buttons {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.Header__nav-buttons > * + * {
-  margin-left: 1rem;
-}
-
-.Header__button {
-  margin-left: 20px;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  font-weight: 600;
-  color: #333;
-  background-color: transparent;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.Header__button:hover,
-.Header__button--active {
-  color: #fff;
-  background-color: #333;
-}
-
-.Hero {
-  position: relative;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #fff;
-  text-align: center;
-  background-color: #333;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.Hero__name {
-  margin-bottom: 20px;
-  font-size: 48px;
-  font-weight: 700;
-  text-shadow: 2px 2px #000;
-}
-
-.Hero__content {
-  align-items: left;
-}
-
-.Section__background {
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-}
-
-.Section__background {
-  outline: none;
-}
-
-.Section__title {
-  margin-bottom: 20px;
-  font-size: 36px;
-  font-weight: 600;
-}
-
-.Section__content {
-  max-width: 800px;
-  margin: 0 auto;
-  font-size: 20px;
 }
