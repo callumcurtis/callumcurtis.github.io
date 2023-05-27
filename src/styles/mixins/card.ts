@@ -14,14 +14,14 @@ const cardHover = css<
   }>
 >`
   transition: all 0.2s ease-in-out;
-  ${(props) =>
+  ${
+    (props) =>
     props.hoverTarget
       ? css`
           ${props.hoverTarget}:hover &&
         `
-      : css`
-          &&: hover;
-        `} {
+      : css`&&:hover` // prettier-ignore
+  } {
     ${(props) => props.movement && "transform: translateY(-5px);"}
     border-color: ${(props) => props.config.colors.border.emphasized};
     box-shadow: 0 6px 20px ${(props) => props.config.colors.accent.muted};
