@@ -1,4 +1,4 @@
-# [Work In Progress] Personal Portfolio
+# Personal Portfolio
 
 ## Dependencies
 
