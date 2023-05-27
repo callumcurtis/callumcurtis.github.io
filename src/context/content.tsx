@@ -26,41 +26,56 @@ interface AsideContent {
 const experienceHistory: (PositionContent | AsideContent)[] = [
   // order: most recent first
   {
-    duration: "Jan 2022 - Present",
+    duration: "May 2023 - Present",
     brief: "Continuing: Software Engineering at the University of Victoria.",
     icon: <SchoolIcon />,
     showInExperience: true,
   },
   {
-    position: "Software Engineering Intern",
-    organization: "FooBar Inc.",
-    location: "Vancouver, BC, Canada",
+    duration: "Jan 2023 - Apr 2023",
+    brief:
+      "Self-Directed Term: personal projects, academic research, and online courses/certifications.",
+    showInExperience: true,
+  },
+  {
+    duration: "Jan 2022 - Dec 2022",
+    brief: "Continuing: Software Engineering at the University of Victoria.",
+    icon: <SchoolIcon />,
+    showInExperience: true,
+  },
+  {
+    position: "Software Engineer Intern",
+    organization: "Garmin",
+    location: "Cochrane, AB, Canada",
     duration: "May 2021 - Dec 2021",
     achievements: [
-      "Donec a dolor turpis.",
-      "Aenean quis massa a magna egestas pellentesque.",
-      "Sed tristique semper ante, a gravida ex auctor at.",
+      "Diagnosed inconsistent virtual memory usage in a parallel workload run frequently across a high-performance computing (HPC) cluster with 15+ nodes and 200+ CPU cores, reducing mean virtual memory usage by 30%.",
+      "Optimized an extract, transform, and load (ETL) tool in Python that prepared embedded device logs for analysis, reducing mean batch processing time by more than five hours – a 40% improvement.",
+      "Developed modular data analytics tools in Python that consumed ETL tool output and produced detailed reports on defect, usage, and performance metrics for engineers, product managers, and quality assurance personnel.",
+      "Effectively communicated ideas during team brainstorming sessions for key large-scale data processing projects.",
+      "Implemented a multi-threaded Python library that submitted resource usage telemetry from an HPC cluster to a PostgreSQL server, informing hardware requirements and tracking changing resource demands.",
+      "Received the highest possible rating for all twelve technical and non-technical criteria in final performance evaluation.",
     ],
     showInExperience: true,
   },
   {
-    position: "Software Engineering Intern",
-    organization: "BazQux Inc.",
-    location: "Toronto, ON, Canada",
-    duration: "Aug 2020 - May 2021",
-    brief: "Developed a web application in a team of three.",
-    achievements: [
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      "Nullam vel nunc et enim efficitur feugiat a eget dolor.",
-      "Ut pellentesque, quam id ultrices facilisis, nisi nulla finibus velit, id aliquam ipsum orci non nibh.",
-      "Sed blandit non libero vitae bibendum.",
-      "Sed suscipit interdum mi, in elementum neque aliquam at.",
-    ],
-    showInExperience: true,
-  },
-  {
-    duration: "Jan 2019 - July 2020",
+    duration: "Sep 2020 - Apr 2021",
     brief: "Continuing: Software Engineering at the University of Victoria.",
+    icon: <SchoolIcon />,
+    showInExperience: true,
+  },
+  {
+    position: "Software Developer Intern",
+    organization: "OGMA Consulting",
+    location: "Victoria, BC, Canada",
+    duration: "May 2020 - Sep 2020",
+    brief:
+      "Built a data visualization web application leveraging Python, Dash, pandas, NumPy, HTML5, and CSS3.",
+    showInExperience: true,
+  },
+  {
+    duration: "Sep 2019 - Apr 2020",
+    brief: "Beginning: Software Engineering at the University of Victoria.",
     icon: <SchoolIcon />,
     showInExperience: true,
   },
@@ -76,20 +91,21 @@ const testimonialList: TestimonialContent[] = [
   // priority order: first is highest priority
   {
     quote:
-      "Callum is a big big helper and did a good job, all the time, yes indeed.",
-    author: "John Doe",
-    position: "CEO of FooBar Inc.",
+      "Callum quickly became an integral part of the Rally team.... He is consistently performing above intern level with his code quality and thoroughness.",
+    author: "Final Performance Review",
+    position: "Garmin",
   },
   {
     quote:
-      "Callum is a super duper and did a good job, all the time, yes indeed.",
-    author: "Jane Doe",
-    position: "CEO of BazQux Inc.",
+      "Callum often raised questions about software design best practices to improve his knowledge on the subject. He consistently came prepared with thoughts on different approaches to solving a problem, and asked for feedback on his designs.",
+    author: "Final Performance Review",
+    position: "Garmin",
   },
   {
-    quote: "Callum is a good student, all the time, yes indeed.",
-    author: "John Smith",
-    position: "Professor of Software Engineering at the University of Victoria",
+    quote:
+      "Callum always has a positive attitude even in challenging situations and is respectful towards other teammates.",
+    author: "Final Performance Review",
+    position: "Garmin",
   },
 ];
 
@@ -104,43 +120,30 @@ interface ProjectContent {
 const projectList: ProjectContent[] = [
   // priority order: first is highest priority
   {
-    name: "Project 1",
+    name: "LLM Retrieval Stack",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel nunc et enim efficitur feugiat a eget dolor. Ut pellentesque, quam id ultrices facilisis, nisi nulla finibus velit, id aliquam ipsum orci non nibh. Sed blandit non libero vitae bibendum. Donec a dolor turpis. Sed suscipit interdum mi, in elementum neque aliquam at. Aenean quis massa a magna egestas pellentesque. Sed tristique semper ante, a gravida ex auctor at.",
-    link: "https://www.google.com",
+      "Cloud-based system to embed and store arbitrary user data, facilitating semantic search and retrieval of personal or organizational knowledge for input to GPT-4 and other language models.",
+    link: "https://github.com/callumcurtis/llm-retrieval-stack",
     image: (
       <img
-        src="https://via.placeholder.com/600x400"
-        alt="Project 1 Placeholder"
+        src="./images/projects/llm-retrieval-stack/aws-system-architecture.png"
+        alt="System Architecture Diagram"
       />
     ),
-    tags: ["React", "TypeScript"],
+    tags: ["AWS", "Python", "OpenAI API", "Pinecone API"],
   },
   {
-    name: "Project 2",
+    name: "ML Battlesnake",
     description:
-      "Fusce nec lobortis purus. Maecenas sollicitudin leo ut tincidunt maximus. Phasellus at sem luctus, aliquet dui in, ultrices purus. Maecenas.",
-    link: "https://www.google.com",
+      "Applying reinforcement learning to the competitive multiplayer game Battlesnake, where developers around the world compete to build the best AI-controlled snake.",
+    link: "https://github.com/callumcurtis/ml-battlesnake",
     image: (
       <img
-        src="https://via.placeholder.com/600x400"
-        alt="Project 2 Placeholder"
+        src="./images/projects/ml-battlesnake/battlesnake-gameplay.gif"
+        alt="Battlesnake Gameplay GIF"
       />
     ),
-    tags: ["Rust", "C++"],
-  },
-  {
-    name: "Project 3",
-    description:
-      "Aliquam placerat, odio vel fermentum porttitor, velit nunc maximus nunc, in semper arcu sapien tempor turpis. Donec sed vulputate lacus.",
-    link: "https://www.google.com",
-    image: (
-      <img
-        src="https://via.placeholder.com/600x400"
-        alt="Project 3 Placeholder"
-      />
-    ),
-    tags: ["Python", "Django"],
+    tags: ["Python", "PyTorch", "NumPy", "PettingZoo"],
   },
 ];
 
@@ -148,12 +151,17 @@ const defaultContent = {
   hero: {
     heading: "Hi, I'm Callum",
     brief:
-      "I'm a software engineering student, passionate about solving problems, challenging my skills, and pushing my expectations of myself. Currently, I'm continuing my studies at the University of Victoria.",
+      "I'm a fourth-year software engineering student, passionate about solving problems, challenging my skills, and pushing my expectations of myself.",
   },
   about: {
     heading: "About",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vel nunc et enim efficitur feugiat a eget dolor. Ut pellentesque, quam id ultrices facilisis, nisi nulla finibus velit, id aliquam ipsum orci non nibh. Sed blandit non libero vitae bibendum. Donec a dolor turpis. Sed suscipit interdum mi, in elementum neque aliquam at. Aenean quis massa a magna egestas pellentesque. Sed tristique semper ante, a gravida ex auctor at.",
+      "My passion for software comes from a place of curiosity and problem-solving: " +
+      "I love thinking hard and creatively and am continuously searching for better ways to design and develop code. " +
+      "I am driven by a keen desire for excellence, both academically and professionally. " +
+      "With twelve months of internships completed, I've had the opportunity to develop and optimize data pipelines, " +
+      "offline data analytics tools, and data visualization applications. " +
+      "I am excited to grow, now and during my entire career, and can't wait to see where my journey takes me in the wide world of tech.",
   },
   experience: {
     heading: "Experience",
@@ -171,7 +179,7 @@ const defaultContent = {
     {
       name: "GitHub",
       icon: <GitHubIcon />,
-      link: "https://github.com/callumcurtis",
+      link: "https://github.com/callumcurtis?tab=repositories",
     },
     {
       name: "LinkedIn",
