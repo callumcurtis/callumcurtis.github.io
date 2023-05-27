@@ -11,6 +11,10 @@ body {
   color: #333;
 }
 
+li:not(:last-child) {
+  margin-bottom: 8px;
+}
+
 p:last-child {
   margin-bottom: 0;
 }
