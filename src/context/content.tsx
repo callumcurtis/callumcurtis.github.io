@@ -34,7 +34,7 @@ const experienceHistory: (PositionContent | AsideContent)[] = [
   {
     duration: "Jan 2023 - Apr 2023",
     brief:
-      "Self-Directed Term: personal projects, academic research, and online courses/certifications.",
+      "Self-Directed Term: personal projects, grant-funded research, and online courses/certifications.",
     showInExperience: true,
   },
   {
