@@ -151,7 +151,7 @@ const defaultContent = {
   hero: {
     heading: "Hi, I'm Callum",
     brief:
-      "I'm a fourth-year software engineering student, passionate about solving problems, challenging my skills, and pushing my expectations of myself.",
+      "I'm a fourth-year software engineering student, passionate about solving problems, challenging my skills, and pushing the expectations I set for myself.",
   },
   about: {
     heading: "About",
