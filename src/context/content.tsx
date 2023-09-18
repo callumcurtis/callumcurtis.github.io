@@ -26,7 +26,19 @@ interface AsideContent {
 const experienceHistory: (PositionContent | AsideContent)[] = [
   // order: most recent first
   {
-    duration: "May 2023 - Present",
+    position: "Full-Stack Developer Intern",
+    organization: "Barnacle Systems",
+    location: "Victoria, BC, Canada",
+    duration: "Sep 2023 - Present",
+    brief:
+      "Development of Internet of things (IoT) hub products for remote security and monitoring of recreational, industrial, and government vessels using C, Python, TypeScript, React, Node.js, and Google Cloud.",
+    achievements: [
+      "Established continuous delivery processes using GitHub Actions workflows, automatically updating changelogs, bumping version numbers, building services, and staging services for deployment to production.",
+    ],
+    showInExperience: true,
+  },
+  {
+    duration: "May 2023 - Aug 2023",
     brief: "Continuing: Software Engineering at the University of Victoria.",
     icon: <SchoolIcon />,
     showInExperience: true,
