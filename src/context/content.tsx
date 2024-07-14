@@ -26,10 +26,30 @@ interface AsideContent {
 const experienceHistory: (PositionContent | AsideContent)[] = [
   // order: most recent first
   {
+    position: "Machine Learning Intern",
+    organization: "OpenText",
+    location: "Kanata, ON, Canada",
+    duration: "May 2024 - Dec 2024",
+    brief:
+      "Building unsupervised machine learning models and managing data to detect threats within customers' digital systems.",
+    achievements: [
+      "Traced erroneous output from an inference pipeline involving hundreds of millions of events and multiple steps, addressing the root cause and protecting the integrity of security threat detections used by downstream services.",
+      "Productionized data science prototypes as incremental batch processing jobs using Apache Spark, Scala, and S3.",
+      "Developed automations and dashboards to capture cloud costs of analytics across Databricks and AWS infrastructure.",
+    ],
+    showInExperience: true,
+  },
+  {
+    duration: "Jan 2024 - Apr 2024",
+    brief: "Continuing: Software Engineering at the University of Victoria.",
+    icon: <SchoolIcon />,
+    showInExperience: true,
+  },
+  {
     position: "Full-Stack Developer Intern",
     organization: "Barnacle Systems",
     location: "Victoria, BC, Canada",
-    duration: "Sep 2023 - Present",
+    duration: "Sep 2023 - Dec 2023",
     brief:
       "Development of Internet of things (IoT) hub products for remote security and monitoring of recreational, industrial, and government vessels using C, Python, TypeScript, React, Node.js, and Google Cloud.",
     achievements: [
