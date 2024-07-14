@@ -51,9 +51,12 @@ const experienceHistory: (PositionContent | AsideContent)[] = [
     location: "Victoria, BC, Canada",
     duration: "Sep 2023 - Dec 2023",
     brief:
-      "Development of Internet of things (IoT) hub products for remote security and monitoring of recreational, industrial, and government vessels using C, Python, TypeScript, React, Node.js, and Google Cloud.",
+      "Contributed to customer-facing data platforms and web applications for real-time collection, analysis, and visualization of data from sensors aboard recreational, industry, and government ships.",
     achievements: [
-      "Established continuous delivery processes using GitHub Actions workflows, automatically updating changelogs, bumping version numbers, building services, and staging services for deployment to production.",
+      "Designed and implemented RESTful APIs for managing integrations with sensors using Node.js and TypeScript.",
+      "Maintained and evolved frontend views in collaboration with product managers using React and TypeScript.",
+      "Leveraged object-oriented design principles and patterns in Python to ingest and process data from remote sensors.",
+      "Led a full-stack project to construct new integrations, satisfying multiple contracts with Canadian federal agencies.",
     ],
     showInExperience: true,
   },
