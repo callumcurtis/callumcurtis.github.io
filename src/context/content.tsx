@@ -153,6 +153,26 @@ interface ProjectContent {
 const projectList: ProjectContent[] = [
   // priority order: first is highest priority
   {
+    name: "RestauWants",
+    description:
+      "Track, review, wishlist, and share restaurants with friends. A more trustworthy, private, and personal approach to reviewing.",
+    link: "https://www.restauwants.com/",
+    image: (
+      <img
+        src="./images/projects/restauwants/hero.png"
+        alt="RestauWants Landing Page"
+      />
+    ),
+    tags: [
+      "TypeScript",
+      "Drizzle ORM",
+      "MySQL",
+      "Tailwind CSS",
+      "React",
+      "Next.js",
+    ],
+  },
+  {
     name: "LLM Retrieval Stack",
     description:
       "Cloud-based system to embed and store arbitrary user data, facilitating semantic search and retrieval of personal or organizational knowledge for input to GPT-4 and other language models.",
