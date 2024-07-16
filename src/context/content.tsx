@@ -217,17 +217,14 @@ const defaultContent = {
   hero: {
     heading: "Hi, I'm Callum",
     brief:
-      "I'm a fourth-year software engineering student, passionate about solving problems, challenging my skills, and pushing the expectations I set for myself.",
+      "I'm a fourth-year software engineering student with 18+ months of internship experience who loves building data-intensive systems and working to become a better developer every day.",
   },
   about: {
     heading: "About",
     description:
-      "My passion for software comes from a place of curiosity and problem-solving: " +
-      "I love thinking hard and creatively and am continuously searching for better ways to design and develop code. " +
-      "I am driven by a keen desire for excellence, both academically and professionally. " +
-      "With twelve months of internships completed, I've had the opportunity to develop and optimize data pipelines, " +
-      "offline data analytics tools, and data visualization applications. " +
-      "I am excited to grow, now and during my entire career, and can't wait to see where my journey takes me in the wide world of tech.",
+      "My passion for software comes from a place of growth and problem-solving: " +
+      "I'm most fulfilled when I'm thinking hard, being creative, and challenging my own opinions on the best ways to do things. " +
+      "I love that there's always something to learn and an infinite number of things to build — all only a few keypresses away.",
   },
   experience: {
     heading: "Experience",

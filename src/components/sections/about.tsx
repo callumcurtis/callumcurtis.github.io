@@ -17,6 +17,7 @@ const StyledAboutSection = styled.section.attrs(usePropsWithConfig)`
 
 const StyledAboutContent = styled.div`
   ${regularContentSize}
+  white-space: pre-wrap;
 `;
 
 const StyledAboutHeading = styled.h2``;
