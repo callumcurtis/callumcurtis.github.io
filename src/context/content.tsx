@@ -198,6 +198,19 @@ const projectList: ProjectContent[] = [
     ),
     tags: ["Python", "PyTorch", "NumPy", "PettingZoo"],
   },
+  {
+    name: "Beeline Interpreter",
+    description:
+      "Tree-walk interpreter built from scratch using C++ for a custom language, supporting loops, logical operators, variables, and more.",
+    link: "https://github.com/callumcurtis/beeline-interpreter",
+    image: (
+      <img
+        src="./images/projects/beeline-interpreter/fibonnaci.png"
+        alt="Fibonnaci Sequence Implemented Using Beeline"
+      />
+    ),
+    tags: ["C++", "Boost", "Context-Free Grammar"],
+  },
 ];
 
 const defaultContent = {
