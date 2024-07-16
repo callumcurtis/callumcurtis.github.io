@@ -223,7 +223,7 @@ const defaultContent = {
   hero: {
     heading: "Hi, I'm Callum",
     brief:
-      "I'm a fourth-year software engineering student with 18+ months of internship experience who loves building data-intensive systems and working to become a better developer every day.",
+      "I'm a fourth-year software engineering student with 18+ months of internship experience who loves building data-intensive systems and becoming a better developer every day.",
   },
   about: {
     heading: "About",
