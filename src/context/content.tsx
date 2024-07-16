@@ -248,12 +248,12 @@ const defaultContent = {
     {
       name: "GitHub",
       icon: <GitHubIcon />,
-      link: "https://github.com/callumcurtis?tab=repositories",
+      link: "https://github.com/callumcurtis",
     },
     {
       name: "LinkedIn",
       icon: <LinkedInIcon />,
-      link: "https://www.linkedin.com/in/callumcurtis/",
+      link: "https://www.linkedin.com/in/callumcurtis",
     },
   ],
   credit: {
