@@ -130,6 +130,12 @@ const testimonialList: TestimonialContent[] = [
   },
   {
     quote:
+      "Callum's ability to research, adapt, collaborate, and meet deadlines was excellent.",
+    author: "Final Performance Review",
+    position: "Barnacle Systems",
+  },
+  {
+    quote:
       "Callum often raised questions about software design best practices to improve his knowledge on the subject. He consistently came prepared with thoughts on different approaches to solving a problem, and asked for feedback on his designs.",
     author: "Final Performance Review",
     position: "Garmin",
