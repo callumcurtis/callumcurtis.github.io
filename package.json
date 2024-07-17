@@ -1,7 +1,7 @@
 {
   "name": "callum-curtis-portfolio",
   "version": "0.1.0",
-  "homepage": "https://callumcurtis.github.io",
+  "homepage": "https://www.callumcurtis.com",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.6",

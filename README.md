@@ -1,5 +1,7 @@
 # Personal Portfolio
 
+The code behind my [personal portfolio](https://www.callumcurtis.com).
+
 ## Dependencies
 
 The website is built with React and uses several libraries and packages, including:
