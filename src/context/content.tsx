@@ -230,7 +230,7 @@ const defaultContent = {
     description:
       "My passion for software comes from a place of growth and problem-solving: " +
       "I'm most fulfilled when I'm thinking hard, being creative, and challenging my own opinions on the best ways to do things. " +
-      "I love that there's always something to learn and an infinite number of things to build — all only a few keypresses away.",
+      "I love that there's always something to learn and an infinite number of things to build — all only a few (or more...) keypresses away.",
   },
   experience: {
     heading: "Experience",
