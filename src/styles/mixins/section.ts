@@ -3,8 +3,8 @@ import { css } from "styled-components";
 import { PropsWithConfig } from "src/context/config";
 
 const sectionSize = css<PropsWithConfig<{}>>`
-  min-height: calc(100vh - ${(props) => props.config.layout.nav.height});
-  padding: clamp(20px, 5vh, 50px) 0px;
+  min-height: calc(100svh - ${(props) => props.config.layout.nav.height});
+  padding: clamp(20px, 5svh, 50px) 0px;
 `;
 
 const sectionLayout = css`

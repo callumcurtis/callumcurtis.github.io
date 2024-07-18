@@ -28,7 +28,7 @@ const StyledFixedBottomRightSideContainer = styled.div.attrs(
 `;
 
 const StyledFixedBottomRightSideStem = styled.div.attrs(usePropsWithConfig)`
-  height: calc(clamp(50px, 20vh, 200px) - 50px);
+  height: calc(clamp(50px, 20svh, 200px) - 50px);
   width: 1px;
   background-color: ${(props) => props.config.colors.neutral.default};
 `;
