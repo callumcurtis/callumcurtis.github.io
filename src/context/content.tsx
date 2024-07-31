@@ -34,8 +34,8 @@ const experienceHistory: (PositionContent | AsideContent)[] = [
       "Building unsupervised machine learning models and managing data to detect threats within customers' digital systems.",
     achievements: [
       "Traced erroneous output from an inference pipeline involving hundreds of millions of events and multiple steps, addressing the root cause and protecting the integrity of security threat detections used by downstream services.",
-      "Productionized data science prototypes as incremental batch processing jobs using Apache Spark, Scala, and S3.",
-      "Developed automations and dashboards to capture cloud costs of analytics across Databricks and AWS infrastructure.",
+      "Productionized data science prototypes as distributed jobs using Apache Spark, Scala, S3, and Delta Lake.",
+      "Owned development of pipelines and workflows to capture costs of analytics across Databricks and AWS, using Apache Airflow for orchestration, Pulumi for infrastructure as code, and Polars for efficient single-node processing.",
     ],
     showInExperience: true,
   },
