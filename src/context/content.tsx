@@ -11,7 +11,7 @@ interface PositionContent {
   location: string;
   duration: string;
   brief?: string;
-  achievements?: string[];
+  achievements?: string[] | React.ReactNode[];
   icon?: React.ReactNode;
   showInExperience: boolean;
 }
@@ -27,53 +27,105 @@ const experienceHistory: (PositionContent | AsideContent)[] = [
   // order: most recent first
   {
     position: "Machine Learning Intern",
-    organization: "OpenText",
-    location: "Kanata, ON, Canada",
-    duration: "May 2024 - Dec 2024",
-    brief:
-      "Building unsupervised machine learning models and managing data to detect threats within customers' digital systems.",
+    organization: "Shopify",
+    location: "Toronto, ON, Canada",
+    duration: "Jan. 2025 - April 2025",
     achievements: [
-      "Traced erroneous output from an inference pipeline involving hundreds of millions of events and multiple steps, addressing the root cause and protecting the integrity of security threat detections used by downstream services.",
-      "Productionized data science prototypes as distributed jobs using Apache Spark, Scala, S3, and Delta Lake.",
-      "Owned development of pipelines and workflows to capture costs of analytics across Databricks and AWS, using Apache Airflow for orchestration, Pulumi for infrastructure as code, and Polars for efficient single-node processing.",
+      <p>
+        Implemented a deep learning recommendation system to enhance home feed
+        personalization for the Shop app using PyTorch, BigQuery, Airflow, and
+        Kubernetes.
+      </p>,
+      <p>
+        Built a matrix factorization recommendation system using Spark and
+        Vertex AI.
+      </p>,
+      <p>
+        Created a data pipeline producing product embeddings daily for LLM
+        recommendation systems.
+      </p>,
+      <p>
+        Personally ideated and prototyped a tool for comparing internal
+        recommendation systems using Streamlit over a weekend, driving
+        company-wide adoption and executive-level visibility, including demos to
+        the <strong>CEO</strong> and <strong>CTO</strong>.
+      </p>,
+      <p>
+        Tuned, trained, and evaluated multiple baselines for recommendation
+        systems including matrix factorization and linear models.
+      </p>,
     ],
     showInExperience: true,
   },
   {
-    duration: "Jan 2024 - Apr 2024",
+    position: "Machine Learning Intern",
+    organization: "OpenText",
+    location: "Ottawa, ON, Canada",
+    duration: "May 2024 - Dec. 2024",
+    achievements: [
+      <p>
+        Evolved distributed pipelines responsible for detecting security threats
+        in customers' digital systems through unsupervised machine learning
+        methods using Spark.
+      </p>,
+      <p>
+        Created a service for fine-grained monitoring of data workload costs.
+      </p>,
+      <p>Constructed a REST API for third-party integrations.</p>,
+      <p>
+        Established CI workflows and developer tools to audit data pipeline
+        results.
+      </p>,
+    ],
+    showInExperience: true,
+  },
+  {
+    duration: "Jan. 2024 - April 2024",
     brief: "Continuing: Software Engineering at the University of Victoria.",
     icon: <SchoolIcon />,
     showInExperience: true,
   },
   {
-    position: "Full-Stack Developer Intern",
+    position: "Full-Stack Intern",
     organization: "Barnacle Systems",
     location: "Victoria, BC, Canada",
-    duration: "Sep 2023 - Dec 2023",
-    brief:
-      "Contributed to customer-facing data platforms and web applications for real-time collection, analysis, and visualization of data from sensors aboard recreational, industry, and government ships.",
+    duration: "Sept. 2023 - Dec. 2023",
     achievements: [
-      "Designed and implemented RESTful APIs for managing integrations with sensors using Node.js and TypeScript.",
-      "Maintained and evolved frontend views in collaboration with product managers using React and TypeScript.",
-      "Leveraged object-oriented design principles and patterns in Python to ingest and process data from remote sensors.",
-      "Led a full-stack project to construct new integrations, satisfying multiple contracts with Canadian federal agencies.",
+      <p>
+        Developed full-stack features for fleets of sensor hubs sold by{" "}
+        <strong>100+</strong> retailers, allowing end-users to remotely monitor
+        their property from anywhere in the world through real-time video and
+        sensor readings.
+      </p>,
+      <p>Implemented support for an additional third-party sensor type.</p>,
+      <p>
+        Architected a unified framework for implementing persistence, analytics,
+        and REST APIs for sensor integrations using Express, Node.js,
+        TypeScript, and SQLite.
+      </p>,
+      <p>
+        Constructed front-end views for sensor configuration and data monitoring
+        using React and TypeScript, achieving performant video playback and
+        dashboards with <strong>80k+</strong> data points hosted by
+        resource-constrained edge devices.
+      </p>,
     ],
     showInExperience: true,
   },
   {
-    duration: "May 2023 - Aug 2023",
+    duration: "May 2023 - Aug. 2023",
     brief: "Continuing: Software Engineering at the University of Victoria.",
     icon: <SchoolIcon />,
     showInExperience: true,
   },
   {
-    duration: "Jan 2023 - Apr 2023",
+    duration: "Jan. 2023 - April 2023",
     brief:
       "Self-Directed Term: personal projects, grant-funded research, and online courses/certifications.",
     showInExperience: true,
   },
   {
-    duration: "Jan 2022 - Dec 2022",
+    duration: "Jan. 2022 - Dec. 2022",
     brief: "Continuing: Software Engineering at the University of Victoria.",
     icon: <SchoolIcon />,
     showInExperience: true,
@@ -82,32 +134,46 @@ const experienceHistory: (PositionContent | AsideContent)[] = [
     position: "Software Engineer Intern",
     organization: "Garmin",
     location: "Cochrane, AB, Canada",
-    duration: "May 2021 - Dec 2021",
+    duration: "May 2021 - Dec. 2021",
     achievements: [
-      "Troubleshot inconsistent virtual memory usage in an automated data pipeline run frequently across a distributed high-performance computing (HPC) cluster, improving mean virtual memory usage by 30%.",
-      "Optimized an extract, transform, and load (ETL) job in Python that prepared data from embedded devices for analysis, reducing mean batch processing time by more than five hours – a 40% improvement.",
-      "Developed data analytics services in Python that performed batch processing on ETL results, producing high-level reports for decision makers, and enriched views for developers and quality assurance.",
-      "Received the highest possible rating for all twelve technical and non-technical criteria in final performance evaluation.",
+      <p>
+        Expanded pipelines for processing data from <strong>110k+</strong> hours
+        of device telemetry, generating high-level reports for team leads and
+        enriched views for engineers and quality assurance.
+      </p>,
+      <p>
+        Wrote a simulator for embedded software algorithms, reducing resolution
+        time for a release-blocking bug by <strong>70%+</strong>.
+      </p>,
+      <p>
+        Traced performance degradation in a compute cluster back to BLAS
+        libraries used by third-party dependencies, addressing the root cause
+        and reducing memory usage by <strong>30%</strong>.
+      </p>,
+      <p>
+        Received <strong>100%</strong> performance ratings, including commitment
+        to quality and ability to handle ambiguity.
+      </p>,
     ],
     showInExperience: true,
   },
   {
-    duration: "Sep 2020 - Apr 2021",
+    duration: "Sept. 2020 - April 2021",
     brief: "Continuing: Software Engineering at the University of Victoria.",
     icon: <SchoolIcon />,
     showInExperience: true,
   },
   {
     position: "Software Developer Intern",
-    organization: "OGMA Consulting",
+    organization: "OGMA",
     location: "Victoria, BC, Canada",
-    duration: "May 2020 - Sep 2020",
+    duration: "May 2020 - Aug. 2020",
     brief:
-      "Built a data visualization web application leveraging Python, Dash, pandas, NumPy, HTML5, and CSS3.",
+      "Built a data visualization web application leveraging TypeScript, Python, Flask, and Dash.",
     showInExperience: true,
   },
   {
-    duration: "Sep 2019 - Apr 2020",
+    duration: "Sept. 2019 - April 2020",
     brief: "Beginning: Software Engineering at the University of Victoria.",
     icon: <SchoolIcon />,
     showInExperience: true,
@@ -162,7 +228,7 @@ const projectList: ProjectContent[] = [
     name: "RestauWants",
     description:
       "Track, review, wishlist, and share restaurants with friends. A more trustworthy, private, and personal approach to reviewing.",
-    link: "https://www.restauwants.com/",
+    link: "https://www.restauwants.com",
     image: (
       <img
         src="./images/projects/restauwants/hero.png"
@@ -171,7 +237,7 @@ const projectList: ProjectContent[] = [
     ),
     tags: [
       "TypeScript",
-      "Drizzle ORM",
+      "Drizzle",
       "MySQL",
       "Tailwind CSS",
       "React",
@@ -179,9 +245,9 @@ const projectList: ProjectContent[] = [
     ],
   },
   {
-    name: "LLM Retrieval Stack",
+    name: "RAG Stack",
     description:
-      "Cloud-based system to embed and store arbitrary user data, facilitating semantic search and retrieval of personal or organizational knowledge for input to GPT-4 and other language models.",
+      "Cloud-hosted API to embed and store text uploads, facilitating semantic search and retrieval of personal or organizational knowledge for input to GPT-4 and other language models.",
     link: "https://github.com/callumcurtis/llm-retrieval-stack",
     image: (
       <img
@@ -189,7 +255,7 @@ const projectList: ProjectContent[] = [
         alt="System Architecture Diagram"
       />
     ),
-    tags: ["AWS", "Python", "OpenAI API", "Pinecone API"],
+    tags: ["AWS (Lambda, SQS, S3, API Gateway)", "Pinecone", "Python"],
   },
   {
     name: "ML Battlesnake",
@@ -202,7 +268,7 @@ const projectList: ProjectContent[] = [
         alt="Battlesnake Gameplay GIF"
       />
     ),
-    tags: ["Python", "PyTorch", "NumPy", "PettingZoo"],
+    tags: ["Python", "Go", "PyTorch", "PettingZoo"],
   },
   {
     name: "Beeline Interpreter",
@@ -215,7 +281,7 @@ const projectList: ProjectContent[] = [
         alt="Fibonnaci Sequence Implemented Using Beeline"
       />
     ),
-    tags: ["C++", "Boost", "Context-Free Grammar"],
+    tags: ["C++"],
   },
 ];
 
@@ -228,9 +294,7 @@ const defaultContent = {
   about: {
     heading: "About",
     description:
-      "My passion for software comes from a place of growth and problem-solving: " +
-      "I'm most fulfilled when I'm thinking hard, being creative, and challenging my own opinions on the best ways to do things. " +
-      "I love that there's always something to learn and an infinite number of things to build — all only a few (or more...) keypresses away.",
+      "My passion for software comes from a place of growth and problem-solving. I'm most fulfilled when I'm thinking hard, being creative, and challenging my own opinions on the best ways to do things. I love that there's always something to learn and an infinite number of things to build \u2014 all only a few (or more...) keypresses away. ",
   },
   experience: {
     heading: "Experience",
