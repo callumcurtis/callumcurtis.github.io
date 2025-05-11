@@ -26,10 +26,19 @@ interface AsideContent {
 const experienceHistory: (PositionContent | AsideContent)[] = [
   // order: most recent first
   {
+    position: "Software Engineer Intern",
+    organization: "Skyflow",
+    location: "Palo Alto, CA, United States",
+    duration: "May 2025 - Aug. 2025",
+    brief: "Developing a data privacy vault.",
+    showInExperience: true,
+  },
+  {
     position: "Machine Learning Intern",
     organization: "Shopify",
     location: "Toronto, ON, Canada",
     duration: "Jan. 2025 - April 2025",
+    brief: "Built recommendation systems for the Shop app.",
     achievements: [
       <p>
         Implemented a deep learning recommendation system to enhance home feed
@@ -52,7 +61,7 @@ const experienceHistory: (PositionContent | AsideContent)[] = [
       </p>,
       <p>
         Tuned, trained, and evaluated multiple baselines for recommendation
-        systems including matrix factorization and linear models.
+        systems, including matrix factorization and linear models.
       </p>,
     ],
     showInExperience: true,
@@ -62,6 +71,8 @@ const experienceHistory: (PositionContent | AsideContent)[] = [
     organization: "OpenText",
     location: "Ottawa, ON, Canada",
     duration: "May 2024 - Dec. 2024",
+    brief:
+      "Developed machine learning models and managed data to detect threats within customers\u2019 digital environments.",
     achievements: [
       <p>
         Evolved distributed pipelines responsible for detecting security threats
@@ -90,6 +101,8 @@ const experienceHistory: (PositionContent | AsideContent)[] = [
     organization: "Barnacle Systems",
     location: "Victoria, BC, Canada",
     duration: "Sept. 2023 - Dec. 2023",
+    brief:
+      "Contributed to full-stack applications for real-time collection, analysis, and visualization of data from sensors aboard recreational, industrial, and government ships.",
     achievements: [
       <p>
         Developed full-stack features for fleets of sensor hubs sold by{" "}
@@ -135,6 +148,8 @@ const experienceHistory: (PositionContent | AsideContent)[] = [
     organization: "Garmin",
     location: "Cochrane, AB, Canada",
     duration: "May 2021 - Dec. 2021",
+    brief:
+      "Constructed data workloads analyzing sessions from embedded devices.",
     achievements: [
       <p>
         Expanded pipelines for processing data from <strong>110k+</strong> hours
