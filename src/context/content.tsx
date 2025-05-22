@@ -30,7 +30,7 @@ const experienceHistory: (PositionContent | AsideContent)[] = [
     organization: "Skyflow",
     location: "Palo Alto, CA, United States",
     duration: "May 2025 - Aug. 2025",
-    brief: "Developing a data privacy vault.",
+    brief: "Developing data privacy vaults.",
     showInExperience: true,
   },
   {
@@ -41,17 +41,18 @@ const experienceHistory: (PositionContent | AsideContent)[] = [
     brief: "Built recommendation systems for the Shop app.",
     achievements: [
       <p>
-        Implemented a deep learning recommendation system to enhance home feed
+        Implemented a deep learning recommendation model to enhance home feed
         personalization for the Shop app using PyTorch, BigQuery, Airflow, and
         Kubernetes.
       </p>,
+      <p>Experimented with models for recommending ads to cold-start users.</p>,
       <p>
-        Built a matrix factorization recommendation system using Spark and
-        Vertex AI.
+        Built a matrix factorization recommendation model using Spark and Vertex
+        AI.
       </p>,
       <p>
         Created a data pipeline producing product embeddings daily for LLM
-        recommendation systems.
+        recommendation models.
       </p>,
       <p>
         Personally ideated and prototyped a tool for comparing internal
@@ -61,7 +62,7 @@ const experienceHistory: (PositionContent | AsideContent)[] = [
       </p>,
       <p>
         Tuned, trained, and evaluated multiple baselines for recommendation
-        systems, including matrix factorization and linear models.
+        models, including matrix factorization and linear models.
       </p>,
     ],
     showInExperience: true,
@@ -97,12 +98,12 @@ const experienceHistory: (PositionContent | AsideContent)[] = [
     showInExperience: true,
   },
   {
-    position: "Full-Stack Intern",
+    position: "Software Engineer Intern",
     organization: "Barnacle Systems",
     location: "Victoria, BC, Canada",
     duration: "Sept. 2023 - Dec. 2023",
     brief:
-      "Contributed to full-stack applications for real-time collection, analysis, and visualization of data from sensors aboard recreational, industrial, and government ships.",
+      "Contributed to web applications for real-time collection, analysis, and visualization of data from sensors aboard recreational, industrial, and government ships.",
     achievements: [
       <p>
         Developed full-stack features for fleets of sensor hubs sold by{" "}
@@ -242,7 +243,7 @@ const projectList: ProjectContent[] = [
   {
     name: "RestauWants",
     description:
-      "Track, review, wishlist, and share restaurants with friends. A more trustworthy, private, and personal approach to reviewing.",
+      "Review, wishlist, and share restaurants with friends. A more trustworthy, private, and personal approach to reviewing.",
     link: "https://www.restauwants.com",
     image: (
       <img
