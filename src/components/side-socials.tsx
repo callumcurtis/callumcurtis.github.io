@@ -1,7 +1,7 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 import { SocialLink } from "src/components/social";
-import { usePropsWithConfig } from "src/context/config";
+import { usePropsWithConfig, PropsWithConfig } from "src/context/config";
 import { useContent } from "src/context/content";
 import { withStyleOnSelect } from "src/components/select";
 
@@ -13,12 +13,12 @@ const StyledFixedBottomRightSideContainer = styled.div.attrs(
   usePropsWithConfig
 )`
   position: fixed;
-  display: flex;
   margin: 0 50px 0 0;
   align-items: center;
   bottom: 0;
   right: 0;
   flex-direction: column;
+  display: ${(props) => (props.config.socials.side.enable ? "flex" : "none")};
   & > *:not(:last-child) {
     margin-bottom: 20px;
   }
@@ -48,7 +48,12 @@ const SideSocials = () => {
 };
 
 const withStyleOnSideSocialsCollapse = withStyleOnSelect(
-  `@media (max-width: ${breakpoints.collapse})`
+  css<PropsWithConfig<{}>>`
+    ${(props) =>
+      props.config.socials.side.enable
+        ? `@media (max-width: ${breakpoints.collapse}`
+        : "@media (min-width: 0px)"}
+  `
 );
 
 export default SideSocials;

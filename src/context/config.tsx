@@ -108,6 +108,11 @@ const defaultConfig = {
       },
     },
   },
+  socials: {
+    side: {
+      enable: false,
+    },
+  },
 };
 
 type Config = typeof defaultConfig;
