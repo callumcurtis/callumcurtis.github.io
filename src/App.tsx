@@ -1,6 +1,9 @@
 import styled from "styled-components";
 
-import defaultConfig, { ConfigProvider } from "src/context/config";
+import defaultConfig, {
+  ConfigProvider,
+  usePropsWithConfig,
+} from "src/context/config";
 import defaultContent, { ContentProvider } from "src/context/content";
 import { useOpenExternalLinksInNewPageWithProtection } from "src/hooks/link";
 import { useAutoScrollToHashOnMount } from "src/hooks/scroll";
@@ -15,7 +18,9 @@ import Footer from "src/components/footer";
 
 import "src/App.css";
 
-const StyledMainContainer = styled.main``;
+const StyledMainContainer = styled.main.attrs(usePropsWithConfig)`
+  background-color: ${(props) => props.config.colors.background.muted};
+`;
 
 const App = () => {
   useAutoScrollToHashOnMount();
@@ -25,8 +30,8 @@ const App = () => {
     <ConfigProvider config={defaultConfig}>
       <ContentProvider content={defaultContent}>
         <NavigationBar />
+        <Hero />
         <StyledMainContainer>
-          <Hero />
           <About />
           <Experience />
           <Testimonials />

@@ -21,6 +21,12 @@ const StyledProjectsSection = styled.section.attrs(usePropsWithConfig)`
   ${sectionSize}
   ${sectionLayout}
   ${sectionBackground}
+  border-bottom-left-radius: 40px;
+  border-bottom-right-radius: 40px;
+  @media (max-width: 1024px) {
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+  }
 `;
 
 const StyledProjectsContent = styled.div`
