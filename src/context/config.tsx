@@ -10,6 +10,7 @@ const defaultColors = {
     emphasized: "#060609",
   },
   background: {
+    muted: "#060609",
     default: "#ffffff",
   },
   border: {
@@ -64,6 +65,10 @@ const defaultConfig = {
   },
   ids: ids,
   layers: {
+    footer: {
+      background: -3,
+      foreground: -2,
+    },
     background: -1,
     overlay: 1,
   },

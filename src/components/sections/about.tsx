@@ -6,6 +6,7 @@ import { useConfig, usePropsWithConfig } from "src/context/config";
 import {
   sectionSize,
   sectionLayout,
+  sectionBackground,
   regularContentSize,
 } from "src/styles/mixins/section";
 
@@ -13,6 +14,7 @@ const StyledAboutSection = styled.section.attrs(usePropsWithConfig)`
   text-align: center;
   ${sectionSize}
   ${sectionLayout}
+  ${sectionBackground}
 `;
 
 const StyledAboutContent = styled.div`

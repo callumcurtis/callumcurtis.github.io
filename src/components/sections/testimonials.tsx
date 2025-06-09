@@ -3,14 +3,16 @@ import styled from "styled-components";
 import {
   sectionSize,
   sectionLayout,
+  sectionBackground,
   wideContentSize,
 } from "src/styles/mixins/section";
 import { usePropsWithConfig } from "src/context/config";
 import { useContent, TestimonialContent } from "src/context/content";
 
-const StyledTestimonialSection = styled.div.attrs(usePropsWithConfig)`
+const StyledTestimonialSection = styled.section.attrs(usePropsWithConfig)`
   ${sectionSize}
   ${sectionLayout}
+  ${sectionBackground}
 `;
 
 const StyledTestimonialRow = styled.div`

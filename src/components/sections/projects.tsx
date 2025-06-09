@@ -9,13 +9,18 @@ import {
   cardBorder,
 } from "src/styles/mixins/card";
 import { regularContentSize } from "src/styles/mixins/section";
-import { sectionSize, sectionLayout } from "src/styles/mixins/section";
+import {
+  sectionSize,
+  sectionLayout,
+  sectionBackground,
+} from "src/styles/mixins/section";
 import { usePropsWithConfig, useConfig } from "src/context/config";
 import { useContent, ProjectContent } from "src/context/content";
 
 const StyledProjectsSection = styled.section.attrs(usePropsWithConfig)`
   ${sectionSize}
   ${sectionLayout}
+  ${sectionBackground}
 `;
 
 const StyledProjectsContent = styled.div`

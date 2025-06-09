@@ -13,6 +13,10 @@ const sectionLayout = css`
   justify-content: center;
 `;
 
+const sectionBackground = css<PropsWithConfig<{}>>`
+  background-color: ${(props) => props.config.colors.background.default};
+`;
+
 const breakpoints = {
   narrow: "480px",
   medium: "768px",
@@ -48,4 +52,10 @@ const wideContentSize = css`
   }
 `;
 
-export { regularContentSize, wideContentSize, sectionSize, sectionLayout };
+export {
+  regularContentSize,
+  wideContentSize,
+  sectionSize,
+  sectionLayout,
+  sectionBackground,
+};
