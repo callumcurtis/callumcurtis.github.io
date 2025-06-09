@@ -9,6 +9,7 @@ import {
   wideContentSize,
   sectionSize,
   sectionLayout,
+  sectionLayer,
 } from "src/styles/mixins/section";
 import { useConfig, usePropsWithConfig } from "src/context/config";
 import { useContent } from "src/context/content";
@@ -19,15 +20,18 @@ const StyledHeroSection = styled.section.attrs(usePropsWithConfig)`
   ${sectionSize}
   ${sectionLayout}
   ${backgroundContainer}
+  ${sectionLayer}
 `;
 
 const StyledHeroBackground = withWaveAnimationBackground(styled.div.attrs(
   usePropsWithConfig
 )`
+  z-index: ${(props) => props.config.layers.hero.background};
   ${backgroundFillContainer}
 `);
 
-const StyledHeroContent = styled.div`
+const StyledHeroContent = styled.div.attrs(usePropsWithConfig)`
+  z-index: ${(props) => props.config.layers.hero.foreground};
   ${wideContentSize}
 `;
 

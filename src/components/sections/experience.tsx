@@ -8,6 +8,7 @@ import {
   sectionSize,
   sectionLayout,
   sectionBackground,
+  sectionLayer,
   regularContentSize,
 } from "src/styles/mixins/section";
 import {
@@ -26,6 +27,7 @@ const StyledExperienceSection = styled.section.attrs(usePropsWithConfig)`
   ${sectionSize}
   ${sectionLayout}
   ${sectionBackground}
+  ${sectionLayer}
 `;
 
 const StyledExperienceContent = styled.div`

@@ -65,11 +65,15 @@ const defaultConfig = {
   },
   ids: ids,
   layers: {
-    footer: {
-      background: -3,
-      foreground: -2,
+    section: 0,
+    hero: {
+      background: -2,
+      foreground: -1,
     },
-    background: -1,
+    footer: {
+      background: -2,
+      foreground: -1,
+    },
     overlay: 1,
   },
   layout: {

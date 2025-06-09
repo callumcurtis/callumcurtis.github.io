@@ -30,8 +30,8 @@ const App = () => {
     <ConfigProvider config={defaultConfig}>
       <ContentProvider content={defaultContent}>
         <NavigationBar />
-        <Hero />
         <StyledMainContainer>
+          <Hero />
           <About />
           <Experience />
           <Testimonials />

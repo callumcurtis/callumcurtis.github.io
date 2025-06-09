@@ -13,20 +13,22 @@ import {
   sectionSize,
   sectionLayout,
   sectionBackground,
+  sectionLayer,
 } from "src/styles/mixins/section";
 import { usePropsWithConfig, useConfig } from "src/context/config";
 import { useContent, ProjectContent } from "src/context/content";
 
 const StyledProjectsSection = styled.section.attrs(usePropsWithConfig)`
-  ${sectionSize}
-  ${sectionLayout}
-  ${sectionBackground}
   border-bottom-left-radius: 40px;
   border-bottom-right-radius: 40px;
   @media (max-width: 1024px) {
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
   }
+  ${sectionSize}
+  ${sectionLayout}
+  ${sectionBackground}
+  ${sectionLayer}
 `;
 
 const StyledProjectsContent = styled.div`

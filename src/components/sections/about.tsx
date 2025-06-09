@@ -7,14 +7,23 @@ import {
   sectionSize,
   sectionLayout,
   sectionBackground,
+  sectionLayer,
   regularContentSize,
 } from "src/styles/mixins/section";
 
 const StyledAboutSection = styled.section.attrs(usePropsWithConfig)`
   text-align: center;
+  margin-top: -20px;
+  border-top-left-radius: 40px;
+  border-top-right-radius: 40px;
+  @media (max-width: 1024px) {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+  }
   ${sectionSize}
   ${sectionLayout}
   ${sectionBackground}
+  ${sectionLayer}
 `;
 
 const StyledAboutContent = styled.div`

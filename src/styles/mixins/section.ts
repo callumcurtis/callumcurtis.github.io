@@ -17,6 +17,10 @@ const sectionBackground = css<PropsWithConfig<{}>>`
   background-color: ${(props) => props.config.colors.background.default};
 `;
 
+const sectionLayer = css<PropsWithConfig<{}>>`
+  z-index: ${(props) => props.config.layers.section};
+`;
+
 const breakpoints = {
   narrow: "480px",
   medium: "768px",
@@ -58,4 +62,5 @@ export {
   sectionSize,
   sectionLayout,
   sectionBackground,
+  sectionLayer,
 };
