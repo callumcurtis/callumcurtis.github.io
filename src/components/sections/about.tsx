@@ -13,16 +13,17 @@ import {
 
 const StyledAboutSection = styled.section.attrs(usePropsWithConfig)`
   text-align: center;
-  margin-top: -20px;
+  margin-top: -40px;
   border-top-left-radius: 40px;
   border-top-right-radius: 40px;
   @media (max-width: 1024px) {
+    margin-top: -20px;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
   }
+  background-image: ${(props) => props.config.colors.about.background};
   ${sectionSize}
   ${sectionLayout}
-  ${sectionBackground}
   ${sectionLayer}
 `;
 

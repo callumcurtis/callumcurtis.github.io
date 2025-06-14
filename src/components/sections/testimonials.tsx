@@ -45,8 +45,7 @@ const TestimonialQuotationMark = (
 };
 
 const StyledTestimonialQuotationMark = styled(TestimonialQuotationMark)`
-  font-size: 48px;
-  font-family: "Arial Black";
+  font-size: 64px;
   height: 60px;
 `;
 

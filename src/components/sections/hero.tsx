@@ -4,7 +4,7 @@ import {
   backgroundContainer,
   backgroundFillContainer,
 } from "src/styles/mixins/background";
-import { withWaveAnimationBackground } from "src/components/background";
+import { withFogAnimationBackground } from "src/components/background";
 import {
   wideContentSize,
   sectionSize,
@@ -16,14 +16,14 @@ import { useContent } from "src/context/content";
 
 const StyledHeroSection = styled.section.attrs(usePropsWithConfig)`
   text-align: left;
-  color: ${(props) => props.config.colors.foreground.emphasizedOnEmphasized};
+  color: ${(props) => props.config.colors.hero.foreground};
   ${sectionSize}
   ${sectionLayout}
   ${backgroundContainer}
   ${sectionLayer}
 `;
 
-const StyledHeroBackground = withWaveAnimationBackground(styled.div.attrs(
+const StyledHeroBackground = withFogAnimationBackground(styled.div.attrs(
   usePropsWithConfig
 )`
   z-index: ${(props) => props.config.layers.hero.background};
@@ -32,6 +32,7 @@ const StyledHeroBackground = withWaveAnimationBackground(styled.div.attrs(
 
 const StyledHeroContent = styled.div.attrs(usePropsWithConfig)`
   z-index: ${(props) => props.config.layers.hero.foreground};
+  mix-blend-mode: overlay;
   ${wideContentSize}
 `;
 
@@ -40,7 +41,6 @@ const StyledHeroHeading = styled.h1.attrs(usePropsWithConfig)`
 `;
 
 const StyledHeroBrief = styled.p.attrs(usePropsWithConfig)`
-  color: ${(props) => props.config.colors.foreground.mutedOnEmphasized};
   max-width: 750px;
   margin-top: 25px;
 `;
@@ -48,20 +48,21 @@ const StyledHeroBrief = styled.p.attrs(usePropsWithConfig)`
 const Hero = () => {
   const config = useConfig();
   const content = useContent();
-  const waveOptions = {
+  const fogOptions = {
     ...config.vanta.defaults,
     minHeight: 200.0,
     minWidth: 200.0,
-    scale: 1.0,
-    scaleMobile: 1.0,
-    color: config.colors.neutral.emphasized,
-    shininess: 48.0,
-    waveHeight: 12.0,
-    zoom: 0.88,
+    highlightColor: config.colors.hero.fog.highlight,
+    midtoneColor: config.colors.hero.fog.midtone,
+    lowlightColor: config.colors.hero.fog.lowlight,
+    baseColor: config.colors.hero.fog.base,
+    blurFactor: 0.65,
+    speed: 2.1,
+    zoom: 0.6,
   };
   return (
     <StyledHeroSection id={config.ids.hero}>
-      <StyledHeroBackground waveOptions={waveOptions} />
+      <StyledHeroBackground fogOptions={fogOptions} />
       <StyledHeroContent>
         <StyledHeroHeading>{content.hero.heading}</StyledHeroHeading>
         <StyledHeroBrief>{content.hero.brief}</StyledHeroBrief>

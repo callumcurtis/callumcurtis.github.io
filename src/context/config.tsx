@@ -5,26 +5,39 @@ const navHeight = "56px";
 const defaultColors = {
   neutral: {
     subtle: "#eaeaea",
-    muted: "#c3c3c3",
     default: "#6e7781",
-    emphasized: "#060609",
   },
   background: {
     muted: "#060609",
-    default: "#ffffff",
+    default: "#a6d6de",
   },
   border: {
-    default: "#eaeaea",
-    emphasized: "#c3c3c3",
+    default: "#000000",
   },
   foreground: {
     muted: "#656d76",
-    emphasizedOnEmphasized: "#ffffff",
-    mutedOnEmphasized: "#dddddd",
   },
-  accent: {
-    muted: "#387dff4b",
+  hero: {
+    foreground: "#ffffff",
+    fog: {
+      highlight: "#3b89bb",
+      midtone: "#08748e",
+      lowlight: "#0fd42f",
+      base: "#b295cd",
+    },
   },
+  about: {
+    background: "linear-gradient(to bottom in oklab, #f0f4f5 0, #a6d6de 100%)",
+  },
+  nav: {
+    background: "#ffffff",
+  },
+  experience: {
+    cards: {
+      background: "#ffffff",
+    },
+  },
+  timeline: "#000000",
 };
 
 const ids = {

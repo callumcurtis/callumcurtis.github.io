@@ -44,6 +44,11 @@ const StyledExperienceCard = styled.div
   .attrs((props) => ({ ...props, movement: false }))<{ emphasize?: boolean }>`
   ${(props) => props.emphasize && cardBorder}
   ${(props) => props.emphasize && cardHover}
+  ${(props) =>
+    props.emphasize &&
+    css`
+      background-color: ${props.config.colors.experience.cards.background};
+    `}
   ${cardSize}
   ${cardPadding}
   ${(props) =>

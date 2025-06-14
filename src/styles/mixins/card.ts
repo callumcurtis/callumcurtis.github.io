@@ -3,8 +3,9 @@ import { css, StyledComponent } from "styled-components";
 import { PropsWithConfig } from "src/context/config";
 
 const cardBorder = css<PropsWithConfig<{}>>`
-  border-radius: 10px;
+  border-radius: 15px;
   border: 1px solid ${(props) => props.config.colors.border.default};
+  box-shadow: -5px 5px 0px ${(props) => props.config.colors.border.default};
 `;
 
 const cardHover = css<
@@ -23,8 +24,6 @@ const cardHover = css<
       : css`&&:hover` // prettier-ignore
   } {
     ${(props) => props.movement && "transform: translateY(-5px);"}
-    border-color: ${(props) => props.config.colors.border.emphasized};
-    box-shadow: 0 6px 20px ${(props) => props.config.colors.accent.muted};
   }
 `;
 

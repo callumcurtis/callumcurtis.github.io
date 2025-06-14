@@ -101,7 +101,7 @@ const StyledTimelineContainer = styled.div`
 
 const StyledTimelineStem = styled.div.attrs(usePropsWithConfig)`
   position: absolute;
-  background-color: ${(props) => props.config.colors.neutral.muted};
+  background-color: ${(props) => props.config.colors.timeline};
   height: calc(100% - 20px);
   top: 50px;
   left: 0;
@@ -122,13 +122,13 @@ const StyledTimelineNode = styled.div.attrs(usePropsWithConfig)`
 
 const StyledTimelineNodeCircle = styled(StyledTimelineNode)`
   border-radius: 50%;
-  background-color: ${(props) => props.config.colors.neutral.default};
+  background-color: ${(props) => props.config.colors.timeline};
   width: 19px;
   height: 19px;
 `;
 
 const StyledTimelineNodeIconWrapper = styled(StyledTimelineNode)`
-  color: ${(props) => props.config.colors.neutral.default};
+  color: ${(props) => props.config.colors.timeline};
   width: 25px;
   height: 25px;
   svg {
@@ -152,7 +152,7 @@ const StyledTimelineNodeToContentAnimatedConnector = styled.div.attrs(
   usePropsWithConfig
 )<{ socketToNode?: boolean }>`
   position: absolute;
-  background-color: ${(props) => props.config.colors.neutral.default};
+  background-color: ${(props) => props.config.colors.timeline};
   top: 28px;
   padding-left: ${(props) => (props.socketToNode ? "20px" : "0px")};
   background-clip: content-box;
@@ -171,7 +171,7 @@ const StyledTimelineNodeToContentAnimatedConnector = styled.div.attrs(
         background-color: transparent;
         width: 18px;
         height: 35px;
-        border: 0px solid ${props.config.colors.neutral.default};
+        border: 0px solid ${props.config.colors.timeline};
         border-top-right-radius: 16px;
         border-bottom-right-radius: 16px;
         border-left: 0;

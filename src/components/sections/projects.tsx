@@ -48,6 +48,8 @@ const StyledProjectCard = styled.div
   ${cardPadding}
   ${cardBorder}
   ${cardHover}
+  background-color: ${(props) =>
+    props.config.colors.experience.cards.background};
 `;
 
 const StyledProjectCardContent = styled.div`

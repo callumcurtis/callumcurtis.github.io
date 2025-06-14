@@ -24,7 +24,7 @@ const StyledNavigationBarReservedSpace = styled.div.attrs(usePropsWithConfig)`
 
 const StyledNavigationBar = styled(Navbar).attrs(usePropsWithConfig)`
   min-height: ${(props) => props.config.layout.nav.height};
-  background-color: ${(props) => props.config.colors.background.default};
+  background-color: ${(props) => props.config.colors.nav.background};
   border-bottom: 1px solid ${(props) => props.config.colors.neutral.subtle};
 `;
 
