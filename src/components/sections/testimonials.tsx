@@ -3,7 +3,6 @@ import styled from "styled-components";
 import {
   sectionSize,
   sectionLayout,
-  sectionBackground,
   sectionLayer,
   wideContentSize,
 } from "src/styles/mixins/section";
@@ -13,8 +12,8 @@ import { useContent, TestimonialContent } from "src/context/content";
 const StyledTestimonialSection = styled.section.attrs(usePropsWithConfig)`
   ${sectionSize}
   ${sectionLayout}
-  ${sectionBackground}
   ${sectionLayer}
+  background-color: ${(props) => props.config.colors.testimonials.background};
 `;
 
 const StyledTestimonialRow = styled.div`

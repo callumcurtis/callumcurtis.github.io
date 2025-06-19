@@ -1,15 +1,21 @@
 import React from "react";
 
-const navHeight = "56px";
+const scrollGradientCssVariable = "--scroll-gradient";
+const scrollGradientColors: [number, number, number][] = [
+  // r,   g,   b
+  [166, 214, 222],
+  [235, 220, 245],
+  [191, 222, 206],
+];
+const initialScrollColor = `rgb(${scrollGradientColors[0].join(", ")})`;
 
-const defaultColors = {
+const colors = {
   neutral: {
     subtle: "#eaeaea",
     default: "#6e7781",
   },
   background: {
     muted: "#060609",
-    default: "#a6d6de",
   },
   border: {
     default: "#000000",
@@ -26,8 +32,9 @@ const defaultColors = {
       base: "#b295cd",
     },
   },
+  scrollGradient: scrollGradientColors,
   about: {
-    background: "linear-gradient(to bottom in oklab, #f0f4f5 0, #a6d6de 100%)",
+    background: `linear-gradient(to bottom in oklab, #f0f4f5 0, ${initialScrollColor} 100%)`,
   },
   nav: {
     background: "#ffffff",
@@ -36,8 +43,15 @@ const defaultColors = {
     cards: {
       background: "#ffffff",
     },
+    background: `var(${scrollGradientCssVariable}, ${initialScrollColor})`,
   },
   timeline: "#000000",
+  testimonials: {
+    background: `var(${scrollGradientCssVariable}, ${initialScrollColor})`,
+  },
+  projects: {
+    background: `var(${scrollGradientCssVariable}, ${initialScrollColor})`,
+  },
 };
 
 const ids = {
@@ -48,16 +62,19 @@ const ids = {
   navigation: "navigation",
 };
 
+const navHeight = "56px";
+
 const defaultConfig = {
   autoScroll: {
-    defaults: {
-      offset: -parseInt(navHeight, 10),
-      duration: 300,
-      delay: 0.2,
-      smooth: true,
-      isDynamic: true,
-      ignoreCancelEvents: false,
-    },
+    offset: -parseInt(navHeight, 10),
+    duration: 300,
+    delay: 0.2,
+    smooth: true,
+    isDynamic: true,
+    ignoreCancelEvents: false,
+  },
+  scrollGradient: {
+    cssVariable: scrollGradientCssVariable,
   },
   scrollReveal: {
     defaults: {
@@ -110,7 +127,7 @@ const defaultConfig = {
       },
     ],
   },
-  colors: defaultColors,
+  colors: colors,
   text: {
     weight: {
       semibold: 600,

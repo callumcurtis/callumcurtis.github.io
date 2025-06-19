@@ -12,7 +12,6 @@ import { regularContentSize } from "src/styles/mixins/section";
 import {
   sectionSize,
   sectionLayout,
-  sectionBackground,
   sectionLayer,
 } from "src/styles/mixins/section";
 import { usePropsWithConfig, useConfig } from "src/context/config";
@@ -27,8 +26,8 @@ const StyledProjectsSection = styled.section.attrs(usePropsWithConfig)`
   }
   ${sectionSize}
   ${sectionLayout}
-  ${sectionBackground}
   ${sectionLayer}
+  background-color: ${(props) => props.config.colors.projects.background};
 `;
 
 const StyledProjectsContent = styled.div`

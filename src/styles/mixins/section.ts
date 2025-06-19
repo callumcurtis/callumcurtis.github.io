@@ -13,10 +13,6 @@ const sectionLayout = css`
   justify-content: center;
 `;
 
-const sectionBackground = css<PropsWithConfig<{}>>`
-  background-color: ${(props) => props.config.colors.background.default};
-`;
-
 const sectionLayer = css<PropsWithConfig<{}>>`
   z-index: ${(props) => props.config.layers.section};
 `;
@@ -61,6 +57,5 @@ export {
   wideContentSize,
   sectionSize,
   sectionLayout,
-  sectionBackground,
   sectionLayer,
 };

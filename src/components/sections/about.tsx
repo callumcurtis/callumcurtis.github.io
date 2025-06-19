@@ -6,7 +6,6 @@ import { useConfig, usePropsWithConfig } from "src/context/config";
 import {
   sectionSize,
   sectionLayout,
-  sectionBackground,
   sectionLayer,
   regularContentSize,
 } from "src/styles/mixins/section";

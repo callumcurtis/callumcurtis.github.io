@@ -6,7 +6,11 @@ import defaultConfig, {
 } from "src/context/config";
 import defaultContent, { ContentProvider } from "src/context/content";
 import { useOpenExternalLinksInNewPageWithProtection } from "src/hooks/link";
-import { useAutoScrollToHashOnMount } from "src/hooks/scroll";
+import {
+  useAutoScrollToHashOnMount,
+  useScrollGradient,
+  linearScrollGradient,
+} from "src/hooks/scroll";
 import Hero from "src/components/sections/hero";
 import About from "src/components/sections/about";
 import Experience from "src/components/sections/experience";
@@ -25,6 +29,18 @@ const StyledMainContainer = styled.main.attrs(usePropsWithConfig)`
 const App = () => {
   useAutoScrollToHashOnMount();
   useOpenExternalLinksInNewPageWithProtection();
+  useScrollGradient(
+    linearScrollGradient({
+      getStart: () =>
+        document.getElementById(defaultConfig.ids.experience)?.offsetTop,
+      getEnd: () =>
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight,
+      getProgress: () => window.scrollY || window.pageYOffset,
+      regions: defaultConfig.colors.scrollGradient,
+    }),
+    defaultConfig.scrollGradient.cssVariable
+  );
 
   return (
     <ConfigProvider config={defaultConfig}>
