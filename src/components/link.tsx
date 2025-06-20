@@ -4,6 +4,7 @@ import { usePropsWithConfig } from "src/context/config";
 
 const Anchor = styled.a.attrs(usePropsWithConfig)`
   color: ${(props) => props.config.colors.foreground.muted};
+  position: initial;
   text-decoration: none;
   &:hover {
     color: ${(props) => props.config.colors.foreground.muted};
