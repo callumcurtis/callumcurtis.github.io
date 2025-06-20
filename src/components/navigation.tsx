@@ -26,6 +26,7 @@ const StyledNavigationBar = styled(Navbar).attrs(usePropsWithConfig)`
   min-height: ${(props) => props.config.layout.nav.height};
   background-color: ${(props) => props.config.colors.nav.background};
   border-bottom: 1px solid ${(props) => props.config.colors.neutral.subtle};
+  text-align: end;
 `;
 
 const StyledNavigationBarContainer = styled(Container)`
