@@ -40,7 +40,7 @@ const StyledExperienceHeading = styled.h2`
 const StyledExperienceCard = styled.div
   .attrs(usePropsWithConfig)
   .attrs((props) => ({ ...props, hoverTarget: TimelineAndContentSegment }))
-  .attrs((props) => ({ ...props, movement: false }))<{ emphasize?: boolean }>`
+  .attrs((props) => ({ ...props, movement: true }))<{ emphasize?: boolean }>`
   ${(props) => props.emphasize && cardBorder}
   ${(props) => props.emphasize && cardHover}
   ${(props) =>
