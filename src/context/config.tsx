@@ -129,12 +129,10 @@ const defaultConfig = {
   },
   colors: colors,
   text: {
-    weight: {
-      semibold: 600,
-    },
     body: {
       size: {
         small: "14px",
+        medium: "18px",
       },
     },
   },

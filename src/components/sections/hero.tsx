@@ -36,13 +36,12 @@ const StyledHeroContent = styled.div.attrs(usePropsWithConfig)`
   ${wideContentSize}
 `;
 
-const StyledHeroHeading = styled.h1.attrs(usePropsWithConfig)`
-  font-weight: ${(props) => props.config.text.weight.semibold};
-`;
+const StyledHeroHeading = styled.h1.attrs(usePropsWithConfig)``;
 
 const StyledHeroBrief = styled.p.attrs(usePropsWithConfig)`
   max-width: 750px;
   margin-top: 25px;
+  font-size: ${(props) => props.config.text.body.size.medium};
 `;
 
 const Hero = () => {

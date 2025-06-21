@@ -38,9 +38,11 @@ p:last-child {
 
 h1 {
   font-size: 104px;
+  font-weight: 700;
 }
 h2 {
   font-size: 48px;
+  font-weight: 700;
 }
 
 @media (max-width: 1024px) {

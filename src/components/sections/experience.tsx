@@ -27,6 +27,7 @@ const StyledExperienceSection = styled.section.attrs(usePropsWithConfig)`
   ${sectionLayout}
   ${sectionLayer}
   background-color: ${(props) => props.config.colors.experience.background};
+  padding-bottom: 200px;
 `;
 
 const StyledExperienceContent = styled.div`

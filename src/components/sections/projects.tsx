@@ -131,11 +131,9 @@ const Projects = () => {
   return (
     <StyledProjectsSection id={config.ids.projects}>
       <StyledProjectsContent>
-        <Reveal>
-          <StyledProjectsHeading>
-            {content.projects.heading}
-          </StyledProjectsHeading>
-        </Reveal>
+        <StyledProjectsHeading>
+          {content.projects.heading}
+        </StyledProjectsHeading>
         {content.projects.list.map((project, index) => (
           <Project project={project} key={index} />
         ))}
