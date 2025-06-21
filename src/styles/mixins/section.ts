@@ -4,7 +4,8 @@ import { PropsWithConfig } from "src/context/config";
 
 const sectionSize = css<PropsWithConfig<{}>>`
   min-height: calc(100svh - ${(props) => props.config.layout.nav.height});
-  padding: clamp(20px, 5svh, 50px) 0px;
+  padding-top: clamp(20px, 5svh, 50px);
+  padding-bottom: clamp(20px, 5svh, 50px);
 `;
 
 const sectionLayout = css`
@@ -24,31 +25,38 @@ const breakpoints = {
 };
 
 const regularContentSize = css`
-  padding: 0px 100px;
+  padding-left: 100px;
+  padding-right: 100px;
   width: 100%;
   max-width: 1100px;
   margin: 0 auto;
   @media (max-width: ${breakpoints.medium}) {
-    padding: 0px 50px;
+    padding-left: 50px;
+    padding-right: 50px;
   }
   @media (max-width: ${breakpoints.narrow}) {
-    padding: 0px 20px;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 `;
 
 const wideContentSize = css`
-  padding: 0px 200px;
+  padding-left: 200px;
+  padding-right: 200px;
   width: 100%;
   max-width: 1800px;
   margin: 0 auto;
   @media (max-width: ${breakpoints.wide}) {
-    padding: 0px 100px;
+    padding-left: 100px;
+    padding-right: 100px;
   }
   @media (max-width: ${breakpoints.medium}) {
-    padding: 0px 50px;
+    padding-left: 50px;
+    padding-right: 50px;
   }
   @media (max-width: ${breakpoints.narrow}) {
-    padding: 0px 20px;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 `;
 

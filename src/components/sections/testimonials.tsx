@@ -14,6 +14,7 @@ const StyledTestimonialSection = styled.section.attrs(usePropsWithConfig)`
   ${sectionLayout}
   ${sectionLayer}
   background-color: ${(props) => props.config.colors.testimonials.background};
+  padding-top: 300px;
 `;
 
 const StyledTestimonialRow = styled.div`
