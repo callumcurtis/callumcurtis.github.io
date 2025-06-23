@@ -1,7 +1,5 @@
 import { css } from "styled-components";
 
-import { PropsWithConfig } from "src/context/config";
-
 const backgroundContainer = css`
   position: relative;
 `;
