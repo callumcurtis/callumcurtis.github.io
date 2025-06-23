@@ -33,7 +33,7 @@ const StyledAboutContent = styled.div.attrs(usePropsWithConfig)`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap-reverse;
-  row-gap: 20px;
+  row-gap: 40px;
   column-gap: 50px;
   justify-content: center;
   align-content: center;
@@ -56,7 +56,7 @@ const StyledAboutDescription = styled.p.attrs(usePropsWithConfig)`
 
 const StyledAboutImageContainer = styled.div`
   flex-grow: 1;
-  flex-basis: 300px;
+  flex-basis: 400px;
   height: 100%;
 `;
 

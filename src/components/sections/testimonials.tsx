@@ -49,7 +49,9 @@ const StyledTestimonialQuotationMark = styled(TestimonialQuotationMark)`
   height: 60px;
 `;
 
-const StyledTestimonialQuote = styled.h3``;
+const StyledTestimonialQuote = styled.h3`
+  font-weight: 400;
+`;
 
 const StyledTestimonialAttribution = styled.p``;
 
