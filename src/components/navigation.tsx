@@ -5,6 +5,7 @@ import Brand from "src/components/brand";
 import { useScrollTo } from "src/hooks/scroll";
 import { usePropsWithConfig, useConfig } from "src/context/config";
 import { circularBackgroundOnHover } from "src/styles/mixins/button";
+import { wideContentSize } from "src/styles/mixins/section";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -18,22 +19,14 @@ const StyledNavigationBarBrandContainer = styled(Navbar.Brand).attrs(
   ${circularBackgroundOnHover}
 `;
 
-const StyledNavigationBarReservedSpace = styled.div.attrs(usePropsWithConfig)`
-  height: ${(props) => props.config.layout.nav.height};
-`;
-
 const StyledNavigationBar = styled(Navbar).attrs(usePropsWithConfig)`
   min-height: ${(props) => props.config.layout.nav.height};
   background-color: ${(props) => props.config.colors.nav.background};
-  border-bottom: 1px solid ${(props) => props.config.colors.neutral.subtle};
+  backdrop-filter: blur(18px);
   text-align: end;
-`;
-
-const StyledNavigationBarContainer = styled(Container)`
-  padding: 0 30px;
-  @media (max-width: 1024px) {
-    padding: 0 15px;
-  }
+  display: flex;
+  justify-content: space-between;
+  ${wideContentSize}
 `;
 
 const NavigationBarBrand = () => {
@@ -48,19 +41,17 @@ const NavigationBarBrand = () => {
   );
 };
 
-const StyledNavigationBarToggle = styled(Navbar.Toggle).attrs(
-  usePropsWithConfig
-)``;
-
-const StyledCollapsableNavigation = styled(Navbar.Collapse).attrs(
-  usePropsWithConfig
-)`
+const StyledNavigation = styled(Nav).attrs(usePropsWithConfig)`
+  display: flex;
+  flex-direction: row;
   justify-content: flex-end;
+  column-gap: 0.5rem;
 `;
 
-const StyledNavigation = styled(Nav).attrs(usePropsWithConfig)``;
-
-const StyledNavigationLink = styled(Nav.Link).attrs(usePropsWithConfig)``;
+const StyledNavigationLink = styled(Nav.Link).attrs(usePropsWithConfig)`
+  color: ${(props) => props.config.colors.nav.foreground};
+  font-size: 0.9rem;
+`;
 
 const NavigationLink = ({
   destination,
@@ -83,19 +74,13 @@ const NavigationBar = () => {
 
   return (
     <>
-      <StyledNavigationBarReservedSpace />
       <StyledNavigationBar expand="sm" fixed="top">
-        <StyledNavigationBarContainer fluid>
-          <NavigationBarBrand />
-          <StyledNavigationBarToggle aria-controls={config.ids.navigation} />
-          <StyledCollapsableNavigation id={config.ids.navigation}>
-            <StyledNavigation>
-              {config.nav.destinations.map((destination, index) => (
-                <NavigationLink key={index} destination={destination} />
-              ))}
-            </StyledNavigation>
-          </StyledCollapsableNavigation>
-        </StyledNavigationBarContainer>
+        <NavigationBarBrand />
+        <StyledNavigation>
+          {config.nav.destinations.map((destination, index) => (
+            <NavigationLink key={index} destination={destination} />
+          ))}
+        </StyledNavigation>
       </StyledNavigationBar>
     </>
   );

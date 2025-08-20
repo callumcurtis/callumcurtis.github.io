@@ -24,6 +24,7 @@ const colors = {
     muted: "#656d76",
   },
   hero: {
+    nav: "#ffffff",
     foreground: "#ffffff",
     fog: {
       highlight: "#3b89bb",
@@ -37,7 +38,8 @@ const colors = {
     background: `linear-gradient(to bottom in oklab, #f0f4f5 0, ${initialScrollColor} 100%)`,
   },
   nav: {
-    background: "#ffffff",
+    background: `rgb(var(${scrollGradientCssVariable}, 0.35))`,
+    foreground: "#000000",
   },
   experience: {
     cards: {

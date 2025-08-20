@@ -15,12 +15,13 @@ import { useConfig, usePropsWithConfig } from "src/context/config";
 import { useContent } from "src/context/content";
 
 const StyledHeroSection = styled.section.attrs(usePropsWithConfig)`
+  position: relative;
   text-align: left;
   color: ${(props) => props.config.colors.hero.foreground};
   ${sectionSize}
-  ${sectionLayout}
   ${backgroundContainer}
   ${sectionLayer}
+  padding: 0;
 `;
 
 const StyledHeroBackground = withFogAnimationBackground(styled.div.attrs(
@@ -30,10 +31,15 @@ const StyledHeroBackground = withFogAnimationBackground(styled.div.attrs(
   ${backgroundFillContainer}
 `);
 
-const StyledHeroContent = styled.div.attrs(usePropsWithConfig)`
-  z-index: ${(props) => props.config.layers.hero.foreground};
-  mix-blend-mode: overlay;
+const StyledHeroContentContainer = styled.div`
+  ${sectionLayout}
   ${wideContentSize}
+  min-height: inherit;
+`;
+
+const StyledHeroContent = styled.div.attrs(usePropsWithConfig)`
+  mix-blend-mode: overlay;
+  z-index: ${(props) => props.config.layers.hero.foreground};
 `;
 
 const StyledHeroHeading = styled.h1.attrs(usePropsWithConfig)``;
@@ -42,6 +48,13 @@ const StyledHeroBrief = styled.p.attrs(usePropsWithConfig)`
   max-width: 750px;
   margin-top: 25px;
   font-size: ${(props) => props.config.text.body.size.medium};
+`;
+
+const StyledNavBackground = styled.div.attrs(usePropsWithConfig)`
+  position: sticky;
+  top: 0;
+  height: ${(props) => props.config.layout.nav.height};
+  background-color: ${(props) => props.config.colors.hero.nav};
 `;
 
 const Hero = () => {
@@ -61,11 +74,14 @@ const Hero = () => {
   };
   return (
     <StyledHeroSection id={config.ids.hero}>
+      <StyledNavBackground />
       <StyledHeroBackground fogOptions={fogOptions} />
-      <StyledHeroContent>
-        <StyledHeroHeading>{content.hero.heading}</StyledHeroHeading>
-        <StyledHeroBrief>{content.hero.brief}</StyledHeroBrief>
-      </StyledHeroContent>
+      <StyledHeroContentContainer>
+        <StyledHeroContent>
+          <StyledHeroHeading>{content.hero.heading}</StyledHeroHeading>
+          <StyledHeroBrief>{content.hero.brief}</StyledHeroBrief>
+        </StyledHeroContent>
+      </StyledHeroContentContainer>
     </StyledHeroSection>
   );
 };
