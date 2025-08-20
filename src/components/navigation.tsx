@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Container, Nav, Navbar } from "react-bootstrap";
+import { Nav, Navbar } from "react-bootstrap";
 
 import Brand from "src/components/brand";
 import { useScrollTo } from "src/hooks/scroll";
@@ -22,11 +22,13 @@ const StyledNavigationBarBrandContainer = styled(Navbar.Brand).attrs(
 const StyledNavigationBar = styled(Navbar).attrs(usePropsWithConfig)`
   min-height: ${(props) => props.config.layout.nav.height};
   background-color: ${(props) => props.config.colors.nav.background};
-  backdrop-filter: blur(18px);
-  text-align: end;
+  backdrop-filter: blur(12px);
+`;
+
+const StyledNavigationBarContent = styled.div.attrs(usePropsWithConfig)`
+  ${wideContentSize}
   display: flex;
   justify-content: space-between;
-  ${wideContentSize}
 `;
 
 const NavigationBarBrand = () => {
@@ -44,12 +46,11 @@ const NavigationBarBrand = () => {
 const StyledNavigation = styled(Nav).attrs(usePropsWithConfig)`
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
   column-gap: 0.5rem;
 `;
 
 const StyledNavigationLink = styled(Nav.Link).attrs(usePropsWithConfig)`
-  color: ${(props) => props.config.colors.nav.foreground};
+  color: ${(props) => props.config.colors.foreground.default};
   font-size: 0.9rem;
 `;
 
@@ -73,16 +74,16 @@ const NavigationBar = () => {
   const config = useConfig();
 
   return (
-    <>
-      <StyledNavigationBar expand="sm" fixed="top">
+    <StyledNavigationBar fixed="top">
+      <StyledNavigationBarContent>
         <NavigationBarBrand />
         <StyledNavigation>
           {config.nav.destinations.map((destination, index) => (
             <NavigationLink key={index} destination={destination} />
           ))}
         </StyledNavigation>
-      </StyledNavigationBar>
-    </>
+      </StyledNavigationBarContent>
+    </StyledNavigationBar>
   );
 };
 

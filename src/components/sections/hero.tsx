@@ -15,7 +15,6 @@ import { useConfig, usePropsWithConfig } from "src/context/config";
 import { useContent } from "src/context/content";
 
 const StyledHeroSection = styled.section.attrs(usePropsWithConfig)`
-  position: relative;
   text-align: left;
   color: ${(props) => props.config.colors.hero.foreground};
   ${sectionSize}

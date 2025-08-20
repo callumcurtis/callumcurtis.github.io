@@ -1,7 +1,10 @@
 import styled from "styled-components";
 
-const StyledBrand = styled.span`
+import { usePropsWithConfig } from "src/context/config";
+
+const StyledBrand = styled.span.attrs(usePropsWithConfig)`
   font-family: "Kumbh Sans";
+  color: ${(props) => props.config.colors.foreground.default};
 `;
 
 const Brand = (props: React.HTMLAttributes<HTMLSpanElement>) => {

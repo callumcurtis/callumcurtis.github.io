@@ -22,9 +22,10 @@ const colors = {
   },
   foreground: {
     muted: "#656d76",
+    default: "#333333",
   },
   hero: {
-    nav: "#ffffff",
+    nav: "#f0f4f5",
     foreground: "#ffffff",
     fog: {
       highlight: "#3b89bb",
@@ -39,7 +40,6 @@ const colors = {
   },
   nav: {
     background: `rgb(var(${scrollGradientCssVariable}, 0.35))`,
-    foreground: "#000000",
   },
   experience: {
     cards: {
