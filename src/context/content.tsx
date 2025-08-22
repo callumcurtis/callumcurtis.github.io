@@ -38,8 +38,18 @@ const experienceHistory: (PositionContent | AsideContent)[] = [
         vault service with $100M in VC funding.
       </p>,
       <p>
-        Delivered a BigQuery integration for a Fortune 10 customer using Go,
-        Gin, GCP Cloud Run, and Terraform.
+        Delivered a BigQuery integration for a Fortune <strong>10</strong>{" "}
+        customer using Go, Gin, GCP Cloud Run, and Terraform.
+      </p>,
+      <p>
+        Built an evaluation framework for named entity recognition (NER) models
+        responsible for redacting personally identifiable information (PII) in
+        unstructured data using seqeval, nervaluate, Hugging Face Tokenizers,
+        and spaCy.
+      </p>,
+      <p>
+        Instrumented cryptographic operations across <strong>4+</strong>{" "}
+        microservices using Go, Prometheus, and Grafana.
       </p>,
     ],
     showInExperience: true,
@@ -169,15 +179,15 @@ const experienceHistory: (PositionContent | AsideContent)[] = [
     achievements: [
       <p>
         Expanded pipelines for processing data from <strong>110k+</strong> hours
-        of device telemetry using C and Python, generating high-level reports
-        for team leads and enriched views for engineers and quality assurance.
+        of device telemetry, generating high-level reports for team leads and
+        enriched views for engineers and quality assurance.
       </p>,
       <p>
-        Wrote a simulator for embedded software using C, reducing resolution
-        time for a release-blocking bug by <strong>70%+</strong>.
+        Wrote a simulator for embedded software, reducing resolution time for a
+        release-blocking bug by <strong>70%+</strong>.
       </p>,
       <p>
-        Traced performance degradation in a compute cluster back to BLAS
+        Traced performance degradation in a computer cluster back to BLAS
         libraries used by third-party Python dependencies, addressing the root
         cause and reducing memory usage by <strong>30%</strong>.
       </p>,
@@ -256,6 +266,32 @@ interface ProjectContent {
 const projectList: ProjectContent[] = [
   // priority order: first is highest priority
   {
+    name: "TenaDiff",
+    description:
+      "Tensor library with dynamic computation graph generation and reverse-mode automatic differentiation written in C++23 with no extra dependencies, designed to mirror the API of popular deep learning frameworks like PyTorch.",
+    link: "https://github.com/callumcurtis/tenadiff",
+    image: (
+      <img
+        src="./images/projects/tenadiff/heightmap.gif"
+        alt="Model Training GIF"
+      />
+    ),
+    tags: ["C++"],
+  },
+  {
+    name: "BigQuery <> Skyflow",
+    description:
+      "Serverless function allowing customers to exchange secure tokens stored in BigQuery for sensitive data stored in Skyflow's data privacy vault.",
+    link: "https://github.com/skyflowapi/skyflow-integrations/tree/8a0338ae65c9f4f5755709bf58830fbf3f1d8a3c/bigquery/detokenize",
+    image: (
+      <img
+        src="./images/projects/bigquery-skyflow-integration/system-architecture.png"
+        alt="System Architecture Diagram"
+      />
+    ),
+    tags: ["Go", "Gin", "GCP Cloud Run", "BigQuery", "Terraform"],
+  },
+  {
     name: "RestauWants",
     description:
       "Review, wishlist, and share restaurants with friends. A more trustworthy, private, and personal approach to reviewing.",
@@ -304,7 +340,7 @@ const projectList: ProjectContent[] = [
   {
     name: "Beeline Interpreter",
     description:
-      "Interpreter built from scratch using C++ for a custom language, supporting loops, logical operators, variables, and more.",
+      "Interpreter built from scratch using C++20 for a custom programming language, supporting loops, logical operators, variables, and more.",
     link: "https://github.com/callumcurtis/beeline-interpreter",
     image: (
       <img
