@@ -27,19 +27,22 @@ interface AsideContent {
 const experienceHistory: (PositionContent | AsideContent)[] = [
   // order: most recent first
   {
+    duration: "Sept. 2025 - Dec. 2025",
+    brief: "Continuing: Software Engineering at the University of Victoria.",
+    icon: <SchoolIcon />,
+    showInExperience: true,
+  },
+  {
     position: "Software Engineering Intern",
     organization: "Skyflow",
     location: "Palo Alto, CA, United States",
     duration: "May 2025 - Aug. 2025",
-    brief: "Developing data privacy vaults.",
+    brief: "Developed data privacy vaults.",
     achievements: [
       <p>
-        Beginning contributions to privacy preservation algorithms for a data
-        vault service with $100M in VC funding.
-      </p>,
-      <p>
-        Delivered a BigQuery integration for a Fortune <strong>10</strong>{" "}
-        customer using Go, Gin, GCP Cloud Run, and Terraform.
+        Expanded support for Skyflow's data vault product by delivering a
+        BigQuery integration using Go, Gin, GCP Cloud Run, and Terraform for a
+        Fortune <strong>10</strong> customer.
       </p>,
       <p>
         Built an evaluation framework for named entity recognition (NER) models
@@ -93,18 +96,21 @@ const experienceHistory: (PositionContent | AsideContent)[] = [
     location: "Ottawa, ON, Canada",
     duration: "May 2024 - Dec. 2024",
     brief:
-      "Developed machine learning models and managed data to detect threats within customers\u2019 digital environments.",
+      "Implemented machine learning models and managed data to detect threats within customers\u2019 digital environments.",
     achievements: [
       <p>
-        Evolved pipelines for detecting threats in customer networks using Spark
-        and Scala.
+        Developed and scaled unsupervised machine learning models for detecting
+        insider threats across customer networks and devices through behavioral
+        analysis using Spark and Scala.
       </p>,
       <p>
         Constructed a fine-grained monitoring service for data pipeline and
         model serving costs.
       </p>,
       <p>
-        Built an API for LLM integration with threat detections using FastAPI.
+        Built an API for LLMs to interact with threat detections using FastAPI,
+        increasing monetization on the Azure Marketplace by enabling integration
+        with Microsoft Copilot for Security.
       </p>,
       <p>
         Established CI workflows and developer tools to validate data pipelines.
