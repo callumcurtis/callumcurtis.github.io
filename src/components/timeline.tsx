@@ -1,6 +1,7 @@
 import React from "react";
 import styled, { css } from "styled-components";
 
+import { motion } from "motion/react";
 import { usePropsWithConfig } from "src/context/config";
 import { withCssSelectable, withStyleOnSelect } from "src/components/select";
 
@@ -24,7 +25,11 @@ const TimelineAndContentSegment = withCssSelectable(
         className={className}
       >
         <StyledTimelineContainer>
-          <StyledTimelineStem />
+          <StyledTimelineStemWithMotion
+            initial={{ height: 0 }}
+            whileInView={{ height: "calc(100% - 20px)" }}
+            transition={{ duration: 1, ease: "easeInOut" }}
+          />
           {icon ? (
             <StyledTimelineNodeIconWrapper>
               {icon}
@@ -102,11 +107,12 @@ const StyledTimelineContainer = styled.div`
 const StyledTimelineStem = styled.div.attrs(usePropsWithConfig)`
   position: absolute;
   background-color: ${(props) => props.config.colors.timeline};
-  height: calc(100% - 20px);
   top: 50px;
   left: 0;
   width: 1px;
 `;
+
+const StyledTimelineStemWithMotion = motion.create(StyledTimelineStem);
 
 const StyledTimelineNode = styled.div.attrs(usePropsWithConfig)`
   position: absolute;
