@@ -24,6 +24,11 @@ body {
   pointer-events: none;
 }
 
+#root {
+  overflow-x: hidden;
+  position: relative;
+}
+
 #root * {
   pointer-events: auto;
 }

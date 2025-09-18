@@ -21,6 +21,7 @@ import {
   TimelineStart,
   withStyleOnTimelineCollapse,
 } from "src/components/timeline";
+import { AnimatedImage } from "src/components/image";
 
 const StyledExperienceSection = styled.section.attrs(usePropsWithConfig)`
   ${sectionSize}
@@ -74,34 +75,40 @@ const StyledAchievement = styled.li``;
 
 const Position = ({ position }: { position: PositionContent }) => {
   return (
-    <Reveal origin="bottom">
-      <TimelineAndContentSegment
-        content={
-          <StyledExperienceCard emphasize>
-            <StyledPositionAndOrganizationHeading>
-              {position.position}, {position.organization}
-            </StyledPositionAndOrganizationHeading>
-            <StyledExperienceCardDateRange>
-              {position.duration}
-            </StyledExperienceCardDateRange>
-            {position.brief && (
-              <StyledExperienceBrief>{position.brief}</StyledExperienceBrief>
-            )}
-            {position.achievements && (
-              <StyledAchievementsContainer>
-                {position.achievements.map((achievement, index) => (
-                  <StyledAchievement key={index}>
-                    {achievement}
-                  </StyledAchievement>
-                ))}
-              </StyledAchievementsContainer>
-            )}
-          </StyledExperienceCard>
-        }
-        annotation={position.duration}
-        icon={position.icon}
-      />
-    </Reveal>
+    <div style={{ position: "relative" }}>
+      {position.images &&
+        position.images.map((image, index) => (
+          <AnimatedImage {...image} key={index} />
+        ))}
+      <Reveal origin="bottom">
+        <TimelineAndContentSegment
+          content={
+            <StyledExperienceCard emphasize>
+              <StyledPositionAndOrganizationHeading>
+                {position.position}, {position.organization}
+              </StyledPositionAndOrganizationHeading>
+              <StyledExperienceCardDateRange>
+                {position.duration}
+              </StyledExperienceCardDateRange>
+              {position.brief && (
+                <StyledExperienceBrief>{position.brief}</StyledExperienceBrief>
+              )}
+              {position.achievements && (
+                <StyledAchievementsContainer>
+                  {position.achievements.map((achievement, index) => (
+                    <StyledAchievement key={index}>
+                      {achievement}
+                    </StyledAchievement>
+                  ))}
+                </StyledAchievementsContainer>
+              )}
+            </StyledExperienceCard>
+          }
+          annotation={position.duration}
+          icon={position.icon}
+        />
+      </Reveal>
+    </div>
   );
 };
 

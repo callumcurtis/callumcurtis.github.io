@@ -6,6 +6,22 @@ import {
   LightbulbOutlined as LightBulbIcon,
 } from "@mui/icons-material";
 
+interface AnimatedImage {
+  src: string;
+  alt: string;
+  position: {
+    top?: string;
+    bottom?: string;
+    left?: string;
+    right?: string;
+  };
+  animationType?: "float" | "pulse" | "rotate" | "sway" | "bounce" | "none";
+  delay?: number;
+  rotation: number;
+  size: number;
+  duration?: number;
+}
+
 interface PositionContent {
   position: string;
   organization: string;
@@ -15,6 +31,7 @@ interface PositionContent {
   achievements?: string[] | React.ReactNode[];
   icon?: React.ReactNode;
   showInExperience: boolean;
+  images?: AnimatedImage[];
 }
 
 interface AsideContent {
@@ -56,6 +73,34 @@ const experienceHistory: (PositionContent | AsideContent)[] = [
       </p>,
     ],
     showInExperience: true,
+    images: [
+      {
+        src: "./images/experience/skyflow/logo.svg",
+        alt: "Skyflow Logo",
+        position: { top: "10%", right: "-27rem" },
+        animationType: "float",
+        rotation: 10,
+        size: 20,
+        duration: 5,
+      },
+      {
+        src: "./images/golang-gopher.svg",
+        alt: "Golang Gopher",
+        position: { bottom: "10%", left: "-44rem" },
+        animationType: "bounce",
+        rotation: -6,
+        size: 15,
+      },
+      {
+        src: "./images/bigquery.svg",
+        alt: "BigQuery Logo",
+        position: { bottom: "-15%", right: "-50rem" },
+        animationType: "none",
+        rotation: 4,
+        duration: 6,
+        size: 12,
+      },
+    ],
   },
   {
     position: "Machine Learning Intern",
@@ -89,6 +134,26 @@ const experienceHistory: (PositionContent | AsideContent)[] = [
       </p>,
     ],
     showInExperience: true,
+    images: [
+      {
+        src: "./images/experience/shopify/logo.svg",
+        alt: "Shopify Logo",
+        position: { top: "28%", left: "-24rem" },
+        animationType: "sway",
+        rotation: 0,
+        duration: 20,
+        size: 15,
+      },
+      {
+        src: "./images/pytorch.svg",
+        alt: "PyTorch Logo",
+        position: { bottom: "-3%", right: "-27rem" },
+        animationType: "pulse",
+        rotation: -5,
+        duration: 5,
+        size: 14,
+      },
+    ],
   },
   {
     position: "Machine Learning Intern",
@@ -117,6 +182,17 @@ const experienceHistory: (PositionContent | AsideContent)[] = [
       </p>,
     ],
     showInExperience: true,
+    images: [
+      {
+        src: "./images/apache-spark.svg",
+        alt: "Apache Spark Logo",
+        position: { top: "28%", left: "-54rem" },
+        animationType: "none",
+        rotation: -5,
+        duration: 8,
+        size: 14,
+      },
+    ],
   },
   {
     duration: "Jan. 2024 - April 2024",
@@ -155,6 +231,35 @@ const experienceHistory: (PositionContent | AsideContent)[] = [
       </p>,
     ],
     showInExperience: true,
+    images: [
+      {
+        src: "./images/react.svg",
+        alt: "React Logo",
+        position: { bottom: "-3%", right: "-50rem" },
+        animationType: "float",
+        rotation: 2,
+        duration: 8,
+        size: 15,
+      },
+      {
+        src: "./images/nodejs.svg",
+        alt: "Node.js Logo",
+        position: { top: "-3%", left: "-24rem" },
+        animationType: "bounce",
+        rotation: 12,
+        duration: 5,
+        size: 16,
+      },
+      {
+        src: "./images/typescript.svg",
+        alt: "TypeScript Logo",
+        position: { top: "-3%", right: "-18rem" },
+        animationType: "none",
+        rotation: 12,
+        duration: 50,
+        size: 10,
+      },
+    ],
   },
   {
     duration: "May 2023 - Aug. 2023",
@@ -203,6 +308,26 @@ const experienceHistory: (PositionContent | AsideContent)[] = [
       </p>,
     ],
     showInExperience: true,
+    images: [
+      {
+        src: "./images/experience/garmin/logo.svg",
+        alt: "Garmin Logo",
+        position: { bottom: "-3%", right: "-30rem" },
+        animationType: "pulse",
+        rotation: 1,
+        duration: 10,
+        size: 15,
+      },
+      {
+        src: "./images/c.svg",
+        alt: "C Logo",
+        position: { top: "-3%", left: "-39rem" },
+        animationType: "rotate",
+        rotation: 0,
+        duration: 20,
+        size: 11,
+      },
+    ],
   },
   {
     duration: "Sept. 2020 - April 2021",
