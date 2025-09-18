@@ -21,7 +21,7 @@ import {
   TimelineStart,
   withStyleOnTimelineCollapse,
 } from "src/components/timeline";
-import { AnimatedImage } from "src/components/image";
+import { FloatingImage } from "src/components/image";
 
 const StyledExperienceSection = styled.section.attrs(usePropsWithConfig)`
   ${sectionSize}
@@ -78,7 +78,7 @@ const Position = ({ position }: { position: PositionContent }) => {
     <div style={{ position: "relative" }}>
       {position.images &&
         position.images.map((image, index) => (
-          <AnimatedImage {...image} key={index} />
+          <FloatingImage {...image} key={index} />
         ))}
       <Reveal origin="bottom">
         <TimelineAndContentSegment

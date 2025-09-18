@@ -1,7 +1,14 @@
-import React from "react";
 import { motion } from "motion/react";
 
-interface AnimatedImageProps {
+const FloatingImage = ({
+  src,
+  alt,
+  position,
+  animation,
+  duration,
+  rotation,
+  size,
+}: {
   src: string;
   alt: string;
   position: {
@@ -10,43 +17,29 @@ interface AnimatedImageProps {
     left?: string;
     right?: string;
   };
-  animationType?: "float" | "pulse" | "rotate" | "sway" | "bounce" | "none";
-  delay?: number;
+  animation?: "float" | "pulse" | "rotate" | "wave" | "bounce";
+  duration: number;
   rotation: number;
   size: number;
-  duration?: number;
-}
-
-export const AnimatedImage: React.FC<AnimatedImageProps> = ({
-  src,
-  alt,
-  position,
-  animationType = "float",
-  delay = 0,
-  duration,
-  rotation,
-  size,
 }) => {
   const getAnimation = () => {
-    switch (animationType) {
+    switch (animation) {
       case "float":
         return {
           y: [0, -15, 0],
           transition: {
-            duration: duration || 3,
+            duration,
             repeat: Infinity,
             ease: "easeInOut",
-            delay,
           },
         };
       case "pulse":
         return {
           scale: [1, 1.2, 1],
           transition: {
-            duration: duration || 2,
+            duration,
             repeat: Infinity,
             ease: "easeInOut",
-            delay,
           },
         };
       case "rotate":
@@ -54,31 +47,28 @@ export const AnimatedImage: React.FC<AnimatedImageProps> = ({
           rotate: [0, 360],
           y: [0, -10, 0],
           transition: {
-            duration: duration || 8,
+            duration,
             repeat: Infinity,
             ease: "linear",
-            delay,
           },
         };
-      case "sway":
+      case "wave":
         return {
           rotate: [-15, 15, -15],
           y: [0, -10, 0],
           transition: {
-            duration: duration || 8,
+            duration,
             repeat: Infinity,
             ease: "backInOut",
-            delay,
           },
         };
       case "bounce":
         return {
           y: [0, -15, 0],
           transition: {
-            duration: duration || 3,
+            duration,
             repeat: Infinity,
             ease: "easeOut",
-            delay,
           },
         };
       default:
@@ -88,10 +78,11 @@ export const AnimatedImage: React.FC<AnimatedImageProps> = ({
 
   const hoverAnimation = {
     scale: 1.3,
-    ...(!["rotate", "sway"].includes(animationType) && {
-      rotate:
-        rotation + (Math.random() * 8 + 5) * (Math.random() < 0.5 ? -1 : 1),
-    }),
+    ...(animation &&
+      !["rotate", "wave"].includes(animation) && {
+        rotate:
+          rotation + (Math.random() * 8 + 5) * (Math.random() < 0.5 ? -1 : 1),
+      }),
     transition: { duration: 0.3 },
   };
 
@@ -120,4 +111,4 @@ export const AnimatedImage: React.FC<AnimatedImageProps> = ({
   );
 };
 
-export default AnimatedImage;
+export { FloatingImage };

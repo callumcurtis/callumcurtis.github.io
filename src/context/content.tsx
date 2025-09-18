@@ -6,7 +6,7 @@ import {
   LightbulbOutlined as LightBulbIcon,
 } from "@mui/icons-material";
 
-interface AnimatedImage {
+interface FloatingImage {
   src: string;
   alt: string;
   position: {
@@ -15,11 +15,10 @@ interface AnimatedImage {
     left?: string;
     right?: string;
   };
-  animationType?: "float" | "pulse" | "rotate" | "sway" | "bounce" | "none";
-  delay?: number;
+  animation?: "float" | "pulse" | "rotate" | "wave" | "bounce";
+  duration: number;
   rotation: number;
   size: number;
-  duration?: number;
 }
 
 interface PositionContent {
@@ -31,7 +30,7 @@ interface PositionContent {
   achievements?: string[] | React.ReactNode[];
   icon?: React.ReactNode;
   showInExperience: boolean;
-  images?: AnimatedImage[];
+  images?: FloatingImage[];
 }
 
 interface AsideContent {
@@ -78,24 +77,24 @@ const experienceHistory: (PositionContent | AsideContent)[] = [
         src: "./images/experience/skyflow/logo.svg",
         alt: "Skyflow Logo",
         position: { top: "10%", right: "-27rem" },
-        animationType: "float",
+        animation: "float",
         rotation: 10,
         size: 20,
         duration: 5,
       },
       {
         src: "./images/golang-gopher.svg",
-        alt: "Golang Gopher",
+        alt: "Golang Logo",
         position: { bottom: "10%", left: "-44rem" },
-        animationType: "bounce",
+        animation: "bounce",
         rotation: -6,
         size: 15,
+        duration: 3,
       },
       {
         src: "./images/bigquery.svg",
         alt: "BigQuery Logo",
         position: { bottom: "-15%", right: "-50rem" },
-        animationType: "none",
         rotation: 4,
         duration: 6,
         size: 12,
@@ -139,7 +138,7 @@ const experienceHistory: (PositionContent | AsideContent)[] = [
         src: "./images/experience/shopify/logo.svg",
         alt: "Shopify Logo",
         position: { top: "28%", left: "-24rem" },
-        animationType: "sway",
+        animation: "wave",
         rotation: 0,
         duration: 20,
         size: 15,
@@ -148,7 +147,7 @@ const experienceHistory: (PositionContent | AsideContent)[] = [
         src: "./images/pytorch.svg",
         alt: "PyTorch Logo",
         position: { bottom: "-3%", right: "-27rem" },
-        animationType: "pulse",
+        animation: "pulse",
         rotation: -5,
         duration: 5,
         size: 14,
@@ -187,7 +186,6 @@ const experienceHistory: (PositionContent | AsideContent)[] = [
         src: "./images/apache-spark.svg",
         alt: "Apache Spark Logo",
         position: { top: "28%", left: "-54rem" },
-        animationType: "none",
         rotation: 10,
         duration: 8,
         size: 14,
@@ -236,7 +234,7 @@ const experienceHistory: (PositionContent | AsideContent)[] = [
         src: "./images/react.svg",
         alt: "React Logo",
         position: { bottom: "-3%", right: "-50rem" },
-        animationType: "float",
+        animation: "float",
         rotation: 2,
         duration: 8,
         size: 15,
@@ -245,7 +243,7 @@ const experienceHistory: (PositionContent | AsideContent)[] = [
         src: "./images/nodejs.svg",
         alt: "Node.js Logo",
         position: { top: "-3%", left: "-24rem" },
-        animationType: "bounce",
+        animation: "bounce",
         rotation: -2,
         duration: 5,
         size: 16,
@@ -254,7 +252,6 @@ const experienceHistory: (PositionContent | AsideContent)[] = [
         src: "./images/typescript.svg",
         alt: "TypeScript Logo",
         position: { top: "-3%", right: "-18rem" },
-        animationType: "none",
         rotation: 12,
         duration: 50,
         size: 10,
@@ -313,7 +310,7 @@ const experienceHistory: (PositionContent | AsideContent)[] = [
         src: "./images/experience/garmin/logo.svg",
         alt: "Garmin Logo",
         position: { bottom: "-3%", right: "-30rem" },
-        animationType: "pulse",
+        animation: "pulse",
         rotation: 1,
         duration: 10,
         size: 15,
@@ -322,7 +319,7 @@ const experienceHistory: (PositionContent | AsideContent)[] = [
         src: "./images/c.svg",
         alt: "C Logo",
         position: { top: "-3%", left: "-39rem" },
-        animationType: "rotate",
+        animation: "rotate",
         rotation: 0,
         duration: 20,
         size: 11,
