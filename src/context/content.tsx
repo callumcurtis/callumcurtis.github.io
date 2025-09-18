@@ -83,7 +83,7 @@ const experienceHistory: (PositionContent | AsideContent)[] = [
         duration: 5,
       },
       {
-        src: "./images/golang-gopher.svg",
+        src: "./images/golang.svg",
         alt: "Golang Logo",
         position: { bottom: "10%", left: "-44rem" },
         animation: "bounce",
