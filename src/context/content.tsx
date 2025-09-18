@@ -79,7 +79,7 @@ const experienceHistory: (PositionContent | AsideContent)[] = [
       </p>,
       <p>
         Created a pipeline producing product embeddings daily for LLM
-        recommendation models using Airflow.
+        recommendation models.
       </p>,
       <p>
         Personally ideated and prototyped a tool for comparing internal
