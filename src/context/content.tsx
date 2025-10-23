@@ -118,12 +118,14 @@ const experienceHistory: (PositionContent | AsideContent)[] = [
         cold-start users using co-purchase data and BigQuery.
       </p>,
       <p>
-        Trained, tuned, and evaluated an ALS recommendation model using Spark
-        and MLlib.
+        Trained, tuned, and evaluated large-scale ALS recommendation models
+        using Spark and MLlib, establishing baselines for research into
+        non-linear embedding models.
       </p>,
       <p>
-        Created a pipeline producing product embeddings daily for LLM
-        recommendation models.
+        Delivered a multi-stage pipeline producing fine-tuned product-based
+        nomic embeddings for LLMs and two-tower neural networks, powering
+        content-based product recommendations and advertisements in production.
       </p>,
       <p>
         Personally ideated and prototyped a tool for comparing internal
@@ -163,18 +165,19 @@ const experienceHistory: (PositionContent | AsideContent)[] = [
       "Implemented machine learning models and managed data to detect threats within customers\u2019 digital environments.",
     achievements: [
       <p>
-        Developed and scaled unsupervised machine learning models for detecting
-        insider threats across customer networks and devices through behavioral
-        analysis using Spark and Scala.
+        Constructed pipelines for detecting insider threats within customer
+        networks and devices through unsupervised machine learning methods for
+        behavioral analysis using Spark and Scala.
       </p>,
       <p>
-        Constructed a fine-grained monitoring service for data pipeline and
-        model serving costs.
+        Built multi-cloud monitoring for data pipeline and model serving costs
+        using Spark, AWS Athena, and AWS QuickSight.
       </p>,
       <p>
-        Built an API for LLMs to interact with threat detections using FastAPI,
-        increasing monetization on the Azure Marketplace by enabling integration
-        with Microsoft Copilot for Security.
+        Drove a subscription-based recurring revenue stream through the
+        Microsoft Azure Marketplace by developing an MCP server using FastAPI,
+        enabling Microsoft Copilot for Security to integrate with insider threat
+        detections.
       </p>,
       <p>
         Established CI workflows and developer tools to validate data pipelines.
@@ -207,15 +210,14 @@ const experienceHistory: (PositionContent | AsideContent)[] = [
       "Contributed to web applications for real-time collection, analysis, and visualization of data from sensors aboard recreational, industrial, and government ships.",
     achievements: [
       <p>
-        Developed full-stack features for fleets of sensor hubs sold by{" "}
+        Developed on-device features for fleets of sensor hubs sold by{" "}
         <strong>100+</strong> retailers, allowing end-users to remotely monitor
         their property from anywhere in the world through real-time video and
         sensor readings.
       </p>,
       <p>
-        Architected a unified framework for implementing persistence, analytics,
-        and REST APIs for sensor integrations using Express, Node.js,
-        TypeScript, and SQLite.
+        Architected a framework for sensor integrations, handling on-device
+        persistence and analysis using Express, Node.js, TypeScript, and SQLite.
       </p>,
       <p>
         Constructed frontend views for sensor configuration and data monitoring
@@ -394,6 +396,19 @@ interface ProjectContent {
 const projectList: ProjectContent[] = [
   // priority order: first is highest priority
   {
+    name: "cgzip",
+    description:
+      "Standards-compliant Gzip compressor implemented in C++23, using techniques including LZSS, Huffman coding, and adaptive block type selection, achieving compression ratios competitive with official implementations.",
+    link: "https://github.com/callumcurtis/cgzip",
+    image: (
+      <img
+        src="./images/projects/cgzip/compression-ratio.png"
+        alt="Difference in Compression Ratio Between cgzip and gzip"
+      />
+    ),
+    tags: ["C++"],
+  },
+  {
     name: "TenaDiff",
     description:
       "Tensor library with dynamic computation graph generation and reverse-mode automatic differentiation written in C++23 with no extra dependencies, designed to mirror the API of popular deep learning frameworks like PyTorch.",
@@ -430,14 +445,7 @@ const projectList: ProjectContent[] = [
         alt="RestauWants Landing Page"
       />
     ),
-    tags: [
-      "TypeScript",
-      "Drizzle",
-      "MySQL",
-      "Tailwind CSS",
-      "React",
-      "Next.js",
-    ],
+    tags: ["TypeScript", "Drizzle", "MySQL", "Tailwind", "React", "Next.js"],
   },
   {
     name: "RAG Stack",
@@ -468,7 +476,7 @@ const projectList: ProjectContent[] = [
   {
     name: "Beeline Interpreter",
     description:
-      "Interpreter built from scratch using C++20 for a custom programming language, supporting loops, logical operators, variables, and more.",
+      "Interpreter built from scratch using C++20 for a custom programming language, supporting loops, logic operations, arithmetic, string manipulation, variables, and more.",
     link: "https://github.com/callumcurtis/beeline-interpreter",
     image: (
       <img
