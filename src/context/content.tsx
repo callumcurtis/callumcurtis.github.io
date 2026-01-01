@@ -422,6 +422,19 @@ const projectList: ProjectContent[] = [
     tags: ["C++"],
   },
   {
+    name: "dotfiles",
+    description:
+      "An opinionated, modular, ergonomic Linux configuration leveraging NixOS and Home Manager for declarative and reproducible system and user environments.",
+    link: "https://github.com/callumcurtis/dotfiles",
+    image: (
+      <img
+        src="./images/projects/dotfiles/desktop.png"
+        alt="Screenshot of Desktop"
+      />
+    ),
+    tags: ["Nix", "Lua", "NixOS", "Home Manager"],
+  },
+  {
     name: "BigQuery <> Skyflow",
     description:
       "Serverless function allowing customers to exchange secure tokens stored in BigQuery for sensitive data stored in Skyflow's data privacy vault.",
