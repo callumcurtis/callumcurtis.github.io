@@ -43,6 +43,13 @@ interface AsideContent {
 const experienceHistory: (PositionContent | AsideContent)[] = [
   // order: most recent first
   {
+    position: "AI Performance Engineer",
+    organization: "Modular",
+    location: "Los Altos, CA, United States",
+    duration: "Jan. 2026 - Present",
+    showInExperience: true,
+  },
+  {
     duration: "Sept. 2025 - Dec. 2025",
     brief: "Continuing: Software Engineering at the University of Victoria.",
     icon: <SchoolIcon />,
@@ -504,8 +511,7 @@ const projectList: ProjectContent[] = [
 const defaultContent = {
   hero: {
     heading: "Hi, I'm Callum",
-    brief:
-      "I'm a fourth-year software engineering student with 2+ years of industry experience building data-intensive systems.",
+    brief: "I'm an AI Performance Engineer at Modular.",
   },
   about: {
     heading: "A bit about me",
@@ -519,8 +525,8 @@ const defaultContent = {
         I'm passionate about building data-intensive systems. I've pursued this
         interest from multiple angles: generating product recommendations,
         detecting security threats, monitoring sensors onboard ships, rethinking
-        how people share and review restaurants, and more.
-        <br />
+        how people share and review restaurants, and more. Most recently, I've
+        joined Modular to work on AI modeling and performance. <br />
         <br />
         Curiosity drives this broad scope of interest. I love peeling back
         abstractions and diving into new problems, gaining perspectives and
