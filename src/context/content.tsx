@@ -43,10 +43,24 @@ interface AsideContent {
 const experienceHistory: (PositionContent | AsideContent)[] = [
   // order: most recent first
   {
+    position: "Senior AI Performance Engineer",
+    organization: "Modular",
+    location: "Los Altos, CA, United States",
+    duration: "July 2026 - Present",
+    showInExperience: true,
+  },
+  {
     position: "AI Performance Engineer",
     organization: "Modular",
     location: "Los Altos, CA, United States",
-    duration: "Jan. 2026 - Present",
+    duration: "June 2026 - July 2026",
+    showInExperience: true,
+  },
+  {
+    position: "New Grad AI Performance Engineer",
+    organization: "Modular",
+    location: "Los Altos, CA, United States",
+    duration: "Jan. 2026 - June 2026",
     showInExperience: true,
   },
   {
